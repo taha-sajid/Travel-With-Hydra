@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-Regular.ttf"), url("/fonts/Lato/Lato-Bold.ttf"),
+    url("/fonts/Lato/Lato-Medium.ttf");
+}
+@font-face {
+  font-family: "Prototype";
+  src: url("/fonts/Prototype/Prototype.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins";
+  font-weight: 400;
+  background: linear-gradient(to bottom, #e2f6fc, #fff);
+  background-repeat: no-repeat;
+}
+.btn-primary {
+  display: flex;
+  align-items: center;
+  font-family: "Lato";
+  background-color: #42a7c3;
+  padding: 0.64vw 1.15vw;
+  border-radius: 0.521vw;
+  color: white;
+  font-size: 1.25vw;
+}
+.btn-primary img {
+  margin-right: 0.521vw;
+  width: 1.563vw;
+}
+
+.animated-navbar {
+  animation: slideDown 2.5s ease-out forwards;
+}
+
+.animated-hero-left {
+  animation: slideInLeft 1.25s ease-out forwards;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.animated-hero-right {
+  animation: slideInRight 1.25s ease-out forwards;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+  opacity: 0;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-400%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}

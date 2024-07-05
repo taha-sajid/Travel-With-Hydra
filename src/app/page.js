@@ -1,5 +1,8 @@
-import Image from "next/image";
+import React from "react";
 
-export default function Home() {
-  return <h1>Travel With Hydra</h1>;
-}
+const Header = () => {
+  // return <div className="">Home Page</div>;
+};
+
+export default Header;
+  

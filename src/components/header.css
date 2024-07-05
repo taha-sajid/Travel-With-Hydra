@@ -1,0 +1,188 @@
+.navbar-container {
+  display: flex;
+  align-items: center;
+  padding-left: 4.479vw;
+  padding-top: 1.667vw;
+  padding-right: 3.125vw;
+}
+.navbar-links ul {
+  display: flex;
+  gap: 7.54vw;
+  margin-left: 6.84vw;
+}
+.navbar-links ul li {
+  font-size: 1.25vw;
+  font-weight: 500;
+  cursor: pointer;
+}
+.navbar-links ul li:hover {
+  transition: 0.4s all ease;
+  color: #42a7c3;
+}
+.navbar-logo {
+  height: 5.1vw;
+  width: 5.1vw;
+}
+
+.navbar-avatar {
+  flex: 1;
+  display: flex;
+  gap: 1.615vw;
+  font-size: 1.25vw;
+
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 2.292vw;
+  height: 2.292vw;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.hero-section-container {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 2.698vw;
+}
+.hero-section-heading {
+  max-width: 30.99vw;
+  padding-top: 10.885vw;
+  margin-left: 3.698vw;
+}
+.hero-section-heading h1 {
+  font-size: 7.5vw;
+  color: #42a7c3;
+  line-height: 8.333vw;
+  font-family: "Prototype";
+}
+
+.hero-section-heading p {
+  font-size: 0.938vw;
+  margin-top: 1.25vw;
+  line-height: 1.302vw;
+  padding-left: 0.313vw;
+}
+
+.hero-section-image img {
+  width: 50.104vw;
+}
+
+.avatar-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.my-avatar {
+  position: relative;
+  display: flex;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 2.35vw;
+  right: -9.5vw;
+  background: white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 1.042vw;
+  z-index: 1000;
+  width: 19.844vw;
+  padding: 1.042vw 0.781vw;
+  font-family: "Lato";
+}
+.dropdown-menu h3 {
+  font-family: "Lato";
+  font-weight: bold;
+}
+.dropdown-menu p {
+  display: block;
+  color: #7b7b7b;
+  font-size: 0.833vw;
+  font-weight: 400;
+  margin-top: 0.833vw;
+  margin-bottom: 1.146vw;
+  line-height: 1vw;
+}
+
+.dropdown-menu a:hover {
+  background: #f0f0f0;
+}
+
+.dropdown-menu button {
+  margin: 0 auto;
+  margin-top: 1.146vw;
+}
+
+/* Chat GPT CODE */
+/* header.css */
+
+.dropdown-country-selector {
+  position: relative;
+  font-size: 0.711vw;
+}
+
+.selected-country {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.469vw 0vw;
+  padding-left: 0.208vw;
+  padding-right: 1.198vw;
+  border: 1px solid #ccc;
+  border-radius: 1.536vw;
+  cursor: pointer;
+}
+
+.country-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  z-index: 1000;
+  max-height: 32vw;
+  overflow-y: auto;
+  margin-top: 0.409vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.388vw;
+  padding-bottom: 0.905vw;
+}
+
+.country-item {
+  display: flex;
+  align-items: center;
+  padding-top: 0.551vw;
+  padding-left: 0.651vw;
+  padding-bottom: 0.464vw;
+  cursor: pointer;
+  border: 0.05vw solid #d9d9d9;
+  border-radius: 1.563vw;
+}
+
+.country-item:hover {
+  /* background-color: #f0f0f0; */
+}
+
+.country-flag {
+  width: 2.083vw;
+  height: 2.083vw;
+  border-radius: 50%;
+  margin-right: 0.952vw;
+}
+
+.country-name {
+  flex-grow: 1;
+}
+
+.dropdown-arrow {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  /* header.css for Mobile */
+  .navbar-links ul {
+    display: none;
+  }
+}
