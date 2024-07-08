@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins/Poppins-Regular.ttf");
+  src: url("/fonts/Poppins/Poppins-Medium.ttf");
 }
 @font-face {
   font-family: "Lato";
@@ -24,8 +24,10 @@
 body {
   font-family: "Poppins";
   font-weight: 400;
-  background: linear-gradient(to bottom, #e2f6fc, #fff);
   background-repeat: no-repeat;
+}
+:root {
+  --color-primary: #42a7c3;
 }
 .btn-primary {
   display: flex;
@@ -59,6 +61,7 @@ body {
   animation: slideInRight 1.25s ease-out forwards;
   animation-delay: 3s;
   animation-fill-mode: forwards;
+
   visibility: hidden;
   opacity: 0;
 }
@@ -103,5 +106,6 @@ body {
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
+    /* z-index: 1; */
   }
 }

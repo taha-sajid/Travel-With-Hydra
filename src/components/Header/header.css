@@ -1,3 +1,7 @@
+.header-container {
+  background: linear-gradient(to bottom, #e2f6fc, #fff);
+}
+
 .navbar-container {
   display: flex;
   align-items: center;
@@ -44,6 +48,7 @@
   display: flex;
   justify-content: space-between;
   padding-right: 2.698vw;
+  z-index: 0;
 }
 .hero-section-heading {
   max-width: 30.99vw;
@@ -112,9 +117,6 @@
   margin-top: 1.146vw;
 }
 
-/* Chat GPT CODE */
-/* header.css */
-
 .dropdown-country-selector {
   position: relative;
   font-size: 0.711vw;
@@ -179,10 +181,83 @@
   margin-left: auto;
   font-size: 12px;
 }
+.hamburger {
+  display: none;
+}
 
 @media (max-width: 768px) {
-  /* header.css for Mobile */
   .navbar-links ul {
     display: none;
+  }
+
+  .my-avatar,
+  .navbar-avatar .btn-primary {
+    /* display: none; */
+    opacity: 0;
+  }
+  /* Hamburger */
+
+  /* --- hamburger button --- */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    z-index: 2;
+    padding: 5px;
+    position: relative;
+  }
+
+  .hamburger span {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: #42a7c3;
+    border-radius: 50px;
+    /*opacity: 0.5;*/
+    transition: 400ms cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .hamburger:hover span {
+    /*opacity: 1;*/
+  }
+
+  .hamburger .top {
+    top: 22%;
+  }
+  .hamburger .middle {
+    top: 50%;
+  }
+  .hamburger .bottom {
+    top: 78%;
+  }
+
+  /* --- transition effect from hamburger to X --- */
+  .hamburger.active .middle {
+    background: transparent;
+  }
+  .hamburger.active .top,
+  .hamburger.active .bottom {
+    background: #42a7c3;
+    top: 50%;
+  }
+  .hamburger.active .top {
+    transform: rotate(225deg);
+  }
+  .hamburger.active .bottom {
+    transform: rotate(-225deg);
+  }
+
+  .active .my-avatar {
+    position: absolute;
+  }
+
+  .navbar-avatar.active {
+    background-color: cadetblue;
+  }
+  .active .my-avatar,
+  .navbar-avatar.active .btn-primary {
+    display: flex;
+    opacity: 1;
+    transition: 1s ease;
   }
 }

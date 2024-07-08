@@ -3,7 +3,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import "./header.css";
-
 const countries = [
   { name: "United Kingdom", flag: "/assets/flags/uk.png" },
   { name: "Germany", flag: "/assets/flags/de.png" },
@@ -21,6 +20,11 @@ const Header = () => {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const dropdownRef = useRef(null);
   const countrySelectorRef = useRef(null);
+  const [isActive, setIsActive] = useState(false);
+
+  const handleToggle = () => {
+    setIsActive(!isActive);
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -56,7 +60,7 @@ const Header = () => {
   }, []);
 
   return (
-    <>
+    <div className="header-container">
       <nav className="navbar-container animated-navbar">
         <div className="navbar-logo">
           <img src="/assets/logo.png" />
@@ -68,7 +72,7 @@ const Header = () => {
             <li>CONTACT US</li>
           </ul>
         </div>
-        <div className="navbar-avatar">
+        <div className={`navbar-avatar ${isActive ? "active" : ""}`}>
           <div ref={dropdownRef} className="my-avatar">
             <button onClick={toggleDropdown} className="avatar-button">
               <img src="/assets/avatar.png" alt="Avatar" className="avatar" />
@@ -125,6 +129,14 @@ const Header = () => {
               </div>
             )}
           </div>
+          <div
+            className={`hamburger ${isActive ? "active" : ""}`}
+            onClick={handleToggle}
+          >
+            <span class="top"></span>
+            <span class="middle"></span>
+            <span class="bottom"></span>
+          </div>
           <button className="btn-primary">
             <img src="/assets/user-avatar.png" /> Login/Sign up
           </button>
@@ -143,7 +155,7 @@ const Header = () => {
           <img src="/assets/illus.png" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

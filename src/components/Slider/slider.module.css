@@ -1,0 +1,40 @@
+.slider_container {
+  /* position: relative; */
+  padding-left: 12.96vw;
+}
+
+.slider_heading h1 {
+  font-family: "Lato";
+  font-size: 1.845vw;
+  color: var(--color-primary);
+  font-weight: 700;
+  padding-bottom: 1vw;
+}
+.carousel_container {
+  max-width: 100%;
+  width: 100%;
+  padding-left: 0.781vw;
+  padding-right: 1.5vw;
+}
+
+.carousel_card_container {
+  position: relative;
+}
+
+.carousel_card_container h3 {
+  position: absolute;
+  color: white;
+  left: 1.25vw;
+  bottom: 0.833vw;
+}
+.carousel_card_container img {
+  border-radius: 1.042vw;
+  height: 16.823vw;
+}
+
+.carousel_btn_container {
+  position: absolute;
+  display: flex;
+  top: -2.4vw;
+  right: 5rem;
+}
