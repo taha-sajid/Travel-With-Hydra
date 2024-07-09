@@ -1,8 +1,9 @@
 import React from "react";
+
 const page = () => {
   return (
     <div>
-        About Page
+      <h1>About Page </h1>
     </div>
   );
 };
