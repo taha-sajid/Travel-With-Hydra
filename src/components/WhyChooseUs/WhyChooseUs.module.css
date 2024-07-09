@@ -3,6 +3,7 @@
   justify-content: space-between;
   padding: 4.583vw 8.49vw;
   margin-top: 6.719vw;
+  overflow: hidden;
 }
 .left_container img {
   max-width: 32.604vw;
@@ -77,4 +78,50 @@
 .card:hover .card_text h3,
 .card:hover .card_text p {
   color: white;
+}
+
+.why_choose_us.visible {
+  opacity: 1;
+}
+
+.left_container {
+  transform: translateX(-150%);
+  transition: transform 3s ease-out;
+}
+
+.right_container {
+  transform: translateX(150%);
+  transition: transform 3s ease-out;
+}
+
+.why_choose_us.visible .left_container {
+  transform: translateX(0);
+}
+
+.why_choose_us.visible .right_container {
+  transform: translateX(0);
+}
+
+.why_choose_us.visible .card:nth-child(1) {
+  transform: translateX(0);
+}
+.card_container .card:nth-child(1) {
+  transform: translateX(100%);
+  transition: transform 2s ease-in-out;
+}
+
+.why_choose_us.visible .card:nth-child(2) {
+  transform: translateX(0);
+}
+.card_container .card:nth-child(2) {
+  transform: translateX(100%);
+  transition: transform 2.5s ease-in-out;
+}
+
+.why_choose_us.visible .card:nth-child(3) {
+  transform: translateX(0);
+}
+.card_container .card:nth-child(3) {
+  transform: translateX(100%);
+  transition: transform 3s ease-in-out;
 }

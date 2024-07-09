@@ -45,6 +45,8 @@ body {
 }
 
 .animated-navbar {
+  position: relative;
+  z-index: 2000;
   animation: slideDown 2.5s ease-out forwards;
 }
 
@@ -55,6 +57,7 @@ body {
 
   visibility: hidden;
   opacity: 0;
+  z-index: 1;
 }
 
 .animated-hero-right {
@@ -64,6 +67,7 @@ body {
 
   visibility: hidden;
   opacity: 0;
+  z-index: 1;
 }
 
 @keyframes slideDown {

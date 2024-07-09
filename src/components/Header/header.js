@@ -14,6 +14,13 @@ const countries = [
   { name: "China", flag: "/assets/flags/cn.png" },
 ];
 
+const images = [
+  "/assets/illus1.png",
+  "/assets/illus2.png",
+  "/assets/illus3.png",
+  "/assets/illus4.png",
+];
+
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
@@ -21,6 +28,7 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const countrySelectorRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleToggle = () => {
     setIsActive(!isActive);
@@ -31,11 +39,13 @@ const Header = () => {
     setIsCountrySelectorOpen(false);
   };
 
-  const toggleCountrySelector = () => {
+  const toggleCountrySelector = (event) => {
+    event.stopPropagation(); 
     setIsCountrySelectorOpen(!isCountrySelectorOpen);
   };
 
-  const handleSelectCountry = (country) => {
+  const handleSelectCountry = (country, event) => {
+    event.stopPropagation();
     setSelectedCountry(country);
     setIsCountrySelectorOpen(false);
   };
@@ -57,6 +67,14 @@ const Header = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 4000); 
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -100,7 +118,13 @@ const Header = () => {
                       className="country-flag"
                     />
                     <span className="country-name">{selectedCountry.name}</span>
-                    <span className="dropdown-arrow">▼</span>
+                    <span
+                      className={`dropdown-arrow ${
+                        isCountrySelectorOpen ? "open" : ""
+                      }`}
+                    >
+                      ▼
+                    </span>
                   </div>
                   {isCountrySelectorOpen && (
                     <div className="country-list">
@@ -152,7 +176,11 @@ const Header = () => {
           </p>
         </div>
         <div className="hero-section-image animated-hero-right">
-          <img src="/assets/illus.png" />
+          <img
+            src={images[currentImageIndex]}
+            alt="Hero"
+            className="hero-image"
+          />
         </div>
       </div>
     </div>

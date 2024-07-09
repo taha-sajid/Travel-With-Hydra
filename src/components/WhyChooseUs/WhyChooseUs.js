@@ -1,8 +1,32 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+
 import style from "./WhyChooseUs.module.css";
 const WhyChooseUs = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          sectionRef.current.classList.add(style.visible);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
   return (
-    <div className={`${style.why_choose_us}`}>
+    <div ref={sectionRef} className={`${style.why_choose_us}`}>
       <div className={`${style.left_container}`}>
         <img src="./assets/whychooseus.png" />
       </div>

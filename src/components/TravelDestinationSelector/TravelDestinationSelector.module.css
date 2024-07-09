@@ -1,3 +1,4 @@
+/*  */
 .travel_Destination_selector_container {
   margin-top: 5.729vw;
   display: flex;
@@ -14,7 +15,7 @@
   text-align: center;
 }
 .travel_Destination_selector_container input {
-  max-width: 30.938vw;
+  max-width: 36.146vw;
   width: 100%;
   font-size: 1.1vw;
   border: 1px solid #7b7b7b;
@@ -30,6 +31,16 @@
   outline: none;
 }
 
+.travel_Destination_selector_container.start-animation .cards_container {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1.5s ease-in-out, transform 3s ease-in-out;
+}
+
+.travel_Destination_selector_container.start-animation input {
+  transform: scale(0.86);
+  transition: transform 3s ease-in-out;
+}
 .filter_container {
   display: flex;
   gap: 0.365vw;
@@ -58,6 +69,8 @@
   width: 100%;
   margin-top: 2.188vw;
   padding: 0 9.115vw;
+  opacity: 0;
+  transform: translateY(100%);
 }
 
 .cards_container h3 {
@@ -119,11 +132,13 @@
   border: 1px solid var(--color-primary);
   background-color: white;
   font-weight: 600;
+  margin: 0 auto;
 }
 
 .travel_Destination_selector_container > button:hover {
   background-color: var(--color-primary);
   color: white;
+  transition: 0.3s all ease-in-out;
 }
 
 .card:hover {

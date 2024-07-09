@@ -1,8 +1,32 @@
-.slider_container {
-  /* position: relative; */
-  padding-left: 12.96vw;
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
+.carousel_content {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 2s ease-out, opacity 2s ease-out;
+}
+
+.carousel_content.visible {
+  animation: slideInFromRight 2s forwards;
+  animation-delay: 0.5s;
+}
+
+.slider_container {
+  padding-left: 12.96vw;
+  overflow: hidden;
+}
+.slider_container.visible {
+  animation: slideInFromRight 1s forwards;
+}
 .slider_heading h1 {
   font-family: "Lato";
   font-size: 1.845vw;
@@ -13,8 +37,7 @@
 .carousel_container {
   max-width: 100%;
   width: 100%;
-  padding-left: 0.781vw;
-  padding-right: 1.5vw;
+  padding: 0vw 1.5vw;
 }
 
 .carousel_card_container {
@@ -36,5 +59,5 @@
   position: absolute;
   display: flex;
   top: -2.4vw;
-  right: 5rem;
+  right: 7.5vw;
 }

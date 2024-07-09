@@ -1,6 +1,5 @@
 "use client";
-import React, { useState } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
 import style from "./TravelDestinationSelector.module.css";
 
 const destinations = [
@@ -63,6 +62,25 @@ const destinations = [
 const TravelDestinationSelector = () => {
   const [activeFilter, setActiveFilter] = useState("traditional");
   const [searchQuery, setSearchQuery] = useState("");
+  const [animate, setAnimate] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (containerRef.current) {
+        const top = containerRef.current.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (top < windowHeight * 0.75) {
+          setAnimate(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); 
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
@@ -78,7 +96,12 @@ const TravelDestinationSelector = () => {
     );
   });
   return (
-    <div className={`${style.travel_Destination_selector_container}`}>
+    <div
+      ref={containerRef}
+      className={`${style.travel_Destination_selector_container} ${
+        animate ? style["start-animation"] : ""
+      }`}
+    >
       <h1>Choose your Next Travel Destination</h1>
 
       <input
