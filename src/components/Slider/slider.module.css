@@ -46,6 +46,7 @@
 
 .carousel_card_container h3 {
   position: absolute;
+  font-size: 1.38vw;
   color: white;
   left: 1.25vw;
   bottom: 0.833vw;
@@ -60,4 +61,13 @@
   display: flex;
   top: -2.4vw;
   right: 7.5vw;
+}
+
+.carousel_btn_container button {
+  width: 2.083vw;
+  height: 2.083vw;
+}
+.carousel_btn_container button svg{
+  width: 100% ;
+
 }

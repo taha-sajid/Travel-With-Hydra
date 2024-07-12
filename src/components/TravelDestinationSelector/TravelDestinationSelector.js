@@ -78,7 +78,7 @@ const TravelDestinationSelector = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); 
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -138,25 +138,27 @@ const TravelDestinationSelector = () => {
         </div>
       </div>
 
-      <div className={`${style.cards_container}`}>
-        {filteredDestinations.map((destination, index) => (
-          <div key={index} className={style.card}>
-            <h3>{destination.country}</h3>
-            <div className={`${style.card_image}`}>
-              <img src="./assets/card.png" alt={destination.country} />
+      <div className={`${style.cards_section_container}`}>
+        <div className={`${style.cards_container}`}>
+          {filteredDestinations.map((destination, index) => (
+            <div key={index} className={style.card}>
+              <h3>{destination.country}</h3>
+              <div className={`${style.card_image}`}>
+                <img src="./assets/card.png" alt={destination.country} />
+              </div>
+              <div className={`${style.card_date}`}>
+                <p>Get On</p>
+                <p>{destination.date}</p>
+              </div>
+              <div className={`${style.card_price}`}>
+                <h4>{destination.price}</h4>
+                <button className="btn-primary">Apply Now</button>
+              </div>
             </div>
-            <div className={`${style.card_date}`}>
-              <p>Get On</p>
-              <p>{destination.date}</p>
-            </div>
-            <div className={`${style.card_price}`}>
-              <h4>{destination.price}</h4>
-              <button className="btn-primary">Apply Now</button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <button className="btn-primary">See More</button>
       </div>
-      <button className="btn-primary">See More</button>
     </div>
   );
 };

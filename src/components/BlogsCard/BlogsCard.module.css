@@ -1,0 +1,115 @@
+/* BlogsCard.module.css */
+.Blogs_section_container {
+  padding: 0vw 9.323vw;
+  margin-top: 14.271vw;
+}
+
+.Blogs_section_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4.688vw;
+}
+
+.Blogs_section_heading button:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transition: 0.3s all ease-in-out;
+}
+.Blogs_section_heading h1 {
+  font-family: "Urbanist";
+  font-size: 2.5vw;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.Blogs_section_heading p {
+  font-family: "Urbanist";
+  color: rgba(64, 64, 64, 1);
+  font-size: 1.25vw;
+  font-weight: 500;
+}
+
+.btn_primary {
+  font-family: "Montserrat";
+  color: #42a7c3;
+  padding: 1.12vw 4.271vw;
+  border: 1px solid #42a7c3;
+  border-radius: 2.604vw;
+  cursor: pointer;
+  font-size: 1.25vw;
+  font-weight: 600;
+}
+
+.Blogs_card_container {
+  display: flex;
+  gap: 3.75vw;
+}
+
+.Blogs_card {
+  background-color: white;
+  overflow: hidden;
+  width: 100%;
+}
+
+.card_head img {
+  width: 100%;
+  height: auto;
+  border-radius: 1.667vw;
+  margin-bottom: 1.458vw;
+}
+
+.card_tag {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.146vw;
+}
+
+.card_tag span {
+  font-size: 1.25vw;
+  color: #5b5b5b;
+}
+
+.card_tag span:first-child {
+  font-family: "Urbanist";
+  background-color: rgba(66, 167, 195, 0.2);
+  padding: 0vw 1.458vw;
+  border-radius: 1.042vw;
+  color: rgba(66, 167, 195, 1);
+  font-size: 1.042vw;
+  font-weight: 500;
+  height: 1.406vw;
+}
+
+.card_tag span:last-child {
+  color: #999;
+}
+.Blogs_card p {
+  font-family: "Poppins";
+  font-size: 1.25vw;
+  font-weight: 400;
+  line-height: 1.875vw;
+}
+.Blogs_card h3 {
+  font-size: 1.875vw;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 1.042vw;
+  line-height: 2.813vw;
+}
+
+.Blogs_card button {
+  font-family: "Urbanist";
+  font-weight: 500;
+  color: #42a7c3;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25vw;
+  align-self: flex-start;
+  margin-top: 1.979vw;
+}
+.Blogs_card button i {
+  font-size: 1.3vw;
+  transform: rotate(45deg);
+  margin-left: 1.137vw;
+}

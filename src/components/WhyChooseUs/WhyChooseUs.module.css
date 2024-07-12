@@ -5,10 +5,13 @@
   margin-top: 6.719vw;
   overflow: hidden;
 }
-.left_container img {
-  max-width: 32.604vw;
+.left_container {
   width: 100%;
-  margin-left: 4.531vw;
+}
+.left_container img {
+  max-width: 33.604vw;
+  width: 100%;
+  margin-left: 3.531vw;
 }
 .right_container {
   max-width: 34.167vw;
@@ -46,14 +49,19 @@
   border-radius: 0.521vw;
 }
 .card_image {
-  width: 3.333vw;
-  height: 3.333vw;
+  max-width: 3.333vw;
+  max-height: 3.333vw;
+  width: 100%;
+  height: 100%;
   border-radius: 0.833vw;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.729vw;
   background-color: white;
+}
+.card_image img {
+  width: 100%;
 }
 .card_container .card:first-child .card_image {
   box-shadow: 0 16px 24px 0 rgba(96, 97, 112, 0.12);

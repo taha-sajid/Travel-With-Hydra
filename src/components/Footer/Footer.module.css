@@ -1,0 +1,84 @@
+/* Footer.module.css */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 9.688vw;
+}
+
+.footer_content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.667vw;
+  padding: 0vw 10.417vw;
+  width: 100%;
+}
+.footer_content .footer_section {
+  max-width: 16.354vw;
+}
+.footer_content .footer_section:last-child {
+  max-width: 14.063vw;
+}
+.footer_section {
+  flex: 1;
+}
+.footer_section:first-child p {
+  font-family: "Lato";
+  font-size: 0.833vw;
+  line-height: 1vw;
+  font-weight: 400;
+}
+
+.footer_section h3 {
+  font-size: 1.042vw;
+  font-weight: 600;
+  color: #333;
+  margin-top: 2.5vw;
+  margin-bottom: 1.042vw;
+  line-height: 1.563vw;
+}
+.footer_section:last-child > p {
+  font-size: 0.833vw;
+  font-weight: 600;
+  margin-top: 1.563vw;
+}
+.footer_section:last-child span p {
+  font-family: "Lato";
+  font-weight: 400;
+  font-size: 0.938vw;
+  margin-bottom: 0.521vw;
+}
+.logo {
+  max-width: 3.906vw;
+  width: 100%;
+  margin-top: 2.5vw;
+  margin-bottom: 1.042vw;
+}
+
+.social_icons {
+  display: flex;
+  gap: 0.8vw;
+  margin-top: 0.521vw;
+}
+
+.social_icons i {
+  font-size: 1.25vw;
+  cursor: pointer;
+}
+
+.footer_bottom {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  height: 2.5vw;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.footer_bottom p {
+  margin: 0 auto;
+  font-size: 0.729vw;
+}

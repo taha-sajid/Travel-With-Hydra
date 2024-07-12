@@ -43,7 +43,9 @@
   height: 5.1vw;
   width: 5.1vw;
 }
-
+.navbar-logo img{
+  width: 100%;
+}
 .navbar-avatar {
   flex: 1;
   display: flex;
