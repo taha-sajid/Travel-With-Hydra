@@ -76,7 +76,13 @@ const Header = () => {
 
     return () => clearInterval(interval);
   }, []);
-
+  useEffect(() => {
+    if (isActive) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [isActive]);
   return (
     <div className="header-container">
       <nav
