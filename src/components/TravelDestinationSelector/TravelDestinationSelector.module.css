@@ -171,3 +171,69 @@
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   font-weight: 500;
 }
+
+/* Media query for mobile screen sizes */
+@media (max-width: 768px) {
+  .travel_Destination_selector_container {
+    padding: 0;
+  }
+  .travel_Destination_selector_container h1 {
+    font-size: 1.3rem;
+
+    margin-bottom: 1.5rem;
+    max-width: 17rem;
+  }
+  .travel_Destination_selector_container input {
+    max-width: 14rem;
+    font-size: 0.8rem;
+    border-radius: 0.521rem;
+    padding: 1rem 1rem;
+  }
+  .visa_category {
+    display: flex;
+  }
+  .filter_container {
+    gap: 0.2rem;
+    padding: 0.1rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .filter_container button {
+    padding: 1.12vw 3.125vw;
+    font-size: 0.65rem;
+    font-weight: 600;
+  }
+  .cards_container {
+    justify-content: space-between;
+  }
+  .card {
+    width: 48%;
+    border-radius: 0.8rem;
+    padding: 0.5rem;
+    padding-bottom: 0.8rem;
+  }
+  .card h3 {
+    font-size: 0.8rem;
+  }
+  .card_date p:first-child {
+    font-size: 0.5rem;
+  }
+  .card_date p:last-child {
+    font-size: 0.5rem;
+  }
+  .card_price {
+    align-items: center;
+  }
+  .card_price h4 {
+    font-size: 0.5rem;
+  }
+  .card_price button {
+    font-size: 0.5rem;
+    padding: 0.1rem 0.5rem;
+  }
+  .cards_section_container > button {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    border-radius: 100rem;
+  }
+}

@@ -83,7 +83,10 @@ const slider = () => {
           className={`${style.carousel_content} animate-accordion-down`}
         >
           {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem
+              key={index}
+              className={`${style.carousel_item} md:basis-1/2 lg:basis-1/3`}
+            >
               <div className="p-1">
                 <div className={`${style.carousel_card_container}`}>
                   <img src="./assets/slider.png" />

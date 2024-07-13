@@ -58,7 +58,7 @@
 
 .carousel_btn_container {
   position: absolute;
-  display: flex;
+  /* display: flex; */
   top: -2.4vw;
   right: 7.5vw;
 }
@@ -67,7 +67,47 @@
   width: 2.083vw;
   height: 2.083vw;
 }
-.carousel_btn_container button svg{
-  width: 100% ;
+.carousel_btn_container button svg {
+  width: 100%;
+}
 
+/* Media queries for mobile screens */
+@media screen and (max-width: 768px) {
+  .slider_container {
+    margin: 4rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .slider_heading h1 {
+    font-size: 1rem;
+  }
+  .carousel_container {
+    padding: 0;
+  }
+  .carousel_card_container img {
+    object-fit: cover;
+    width: 100%;
+    height: 10rem;
+  }
+
+  .carousel_card_container h3 {
+    left: 1rem;
+    bottom: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .carousel_btn_container {
+    top: -3.5vw;
+    right: 1vw;
+  }
+  .next_btn {
+    margin-right: 3rem;
+  }
+
+  .carousel_btn_container button {
+    width: 4vw;
+    height: 4vw;
+  }
+  .slider_container {
+    padding-left: 0;
+  }
 }

@@ -133,3 +133,40 @@
 .navigationButtons button img {
   height: 3.188vw;
 }
+
+@media (max-width: 768px) {
+  .customer_stories_container {
+    margin: 0rem 1.5rem;
+  }
+  .customer_stories_container h1 {
+    font-size: 1rem;
+  }
+  .customer_stories_container p {
+    font-size: 0.6rem;
+    line-height: 1rem;
+    max-width: none;
+  }
+
+  .centerSlide {
+    max-width: 50.917vw;
+    transform: translate(-50%, -50%);
+  }
+
+  .prevSlide {
+    max-width: 32.583vw;
+    transform: translate(-100%, -50%);
+  }
+  .nextSlide {
+    max-width: 32.583vw;
+    transform: translate(0%, -50%);
+  }
+  .prevSlide,
+  .nextSlide,
+  .centerSlide {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .navigationButtons button img {
+    height: 1.2rem;
+  }
+}

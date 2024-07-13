@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   const toggleCountrySelector = (event) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     setIsCountrySelectorOpen(!isCountrySelectorOpen);
   };
 
@@ -72,14 +72,18 @@ const Header = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000); 
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="header-container">
-      <nav className="navbar-container animated-navbar">
+      <nav
+        className={`${
+          isActive ? "active" : ""
+        } navbar-container animated-navbar`}
+      >
         <div className="navbar-logo">
           <img src="/assets/logo.png" />
         </div>
@@ -153,19 +157,19 @@ const Header = () => {
               </div>
             )}
           </div>
-          <div
-            className={`hamburger ${isActive ? "active" : ""}`}
-            onClick={handleToggle}
-          >
-            <span class="top"></span>
-            <span class="middle"></span>
-            <span class="bottom"></span>
-          </div>
-          <button className="btn-primary">
-            <img src="/assets/user-avatar.png" /> Login/Sign up
-          </button>
         </div>
+        <button className="btn-primary auth_btn">
+          <img src="/assets/user-avatar.png" /> Login/Sign up
+        </button>
       </nav>
+      <div
+        className={`hamburger ${isActive ? "active" : ""}`}
+        onClick={handleToggle}
+      >
+        <span className="top"></span>
+        <span className="middle"></span>
+        <span className="bottom"></span>
+      </div>
       <div className="hero-section-container">
         <div className="hero-section-heading animated-hero-left">
           <h1>Discover the world</h1>

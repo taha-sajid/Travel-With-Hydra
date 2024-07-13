@@ -69,7 +69,7 @@ const Slider = () => {
       ref={sliderRef}
     >
       <h1>Customer Stories</h1>
-      <p>
+      <p> 
         Lorem ipsum dolor sit amet consectetur. Orci lectus aliquam nunc
         fringilla blandit id. At ut blandit in fermentum consectetur nisl
         sagittis quis morbi.

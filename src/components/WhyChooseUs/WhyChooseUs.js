@@ -12,7 +12,7 @@ const WhyChooseUs = () => {
           sectionRef.current.classList.add(style.visible);
         }
       },
-      { threshold: 0.1 }  
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
