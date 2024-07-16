@@ -79,3 +79,24 @@
 .dropdownSelectOption:last-of-type {
   border-bottom: 0;
 }
+
+@media (max-width: 768px) {
+  .dropdown {
+    max-width: 4rem;
+    width: 100%;
+  }
+  .dropdownSelect {
+    width: 5rem;
+  }
+  .dropdownFilter {
+    font-size: 0.45rem;
+  }
+  .dropdownFilter::after {
+    top: 35%;
+    width: 0.3rem;
+    height: 0.3rem;
+  }
+  .dropdownSelectOption {
+    font-size: 0.45rem;
+  }
+}

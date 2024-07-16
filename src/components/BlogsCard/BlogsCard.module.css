@@ -133,6 +133,9 @@
 }
 
 @media (max-width: 768px) {
+  .Blogs_section_container {
+    margin-top: 2rem !important;
+  }
   .Blogs_section_heading {
     margin-bottom: 1.5rem;
   }
@@ -156,6 +159,7 @@
   }
   .Blogs_card {
     margin-bottom: 1rem;
+    max-width: none;
   }
   .card_head img {
     border-radius: 0.8rem;

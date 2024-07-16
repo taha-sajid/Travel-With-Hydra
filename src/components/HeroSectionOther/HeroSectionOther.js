@@ -7,9 +7,11 @@ const HeroSectionOther = () => {
   return (
     <>
       {!isBlogDetailsPage && (
-        <div className={styles.hero_section_container}>
-          <img src="/assets/BlogHeroImage.png" />
-          <div className={styles.overlay}></div>
+        <div className={styles.header_section}>
+          <div className={styles.hero_section_container}>
+            <img src="/assets/BlogHeroImage.png" />
+            <div className={styles.overlay}></div>
+          </div>
         </div>
       )}
     </>

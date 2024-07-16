@@ -225,8 +225,16 @@
   display: none;
 }
 
+
+
+
+
 /* Media queries for mobile screens */
 @media screen and (max-width: 768px) {
+  .header-container {
+    overflow-x: unset;
+    min-height: max-content;
+  }
   .navbar-container {
     padding: 1rem 1.5rem;
   }

@@ -92,3 +92,23 @@
   .accordionItemDescription {
   min-height: 0;
 }
+
+@media (max-width: 768px) {
+  .accordion {
+    max-width: none;
+  }
+  .accordion .accordionItem .accordionItemDescriptionWrapper,
+  .accordion .accordionItem .accordionItemHeader .accordionItemHeaderTitle {
+    font-size: 0.5rem;
+  }
+
+  .accordion .accordionItem .accordionItemDescriptionWrapper p {
+    line-height: 0.7rem;
+  }
+
+  .accordion .accordionItem .accordionItemHeader .accordionItemHeaderIcon {
+    width: 0.8rem;
+    height: 0.8rem;
+    padding: 0.285vw 0.342vw;
+  }
+}

@@ -1,3 +1,9 @@
+.header_section {
+  background-color: cadetblue;
+  /* position: absolute; */
+  /* top: 0; */
+}
+
 .hero_section_container {
   max-height: 36.458vw;
   height: 100%;
@@ -19,4 +25,10 @@
 
 .header-container .hero_section_container {
   /* background-color: cadetblue; */
+}
+
+@media screen and (max-width: 768px) {
+  .hero_section_container {
+    margin-top: -23.8vw;
+  }
 }

@@ -96,3 +96,54 @@
 .submitButton:hover {
   background-color: rgba(66, 167, 195, 1);
 }
+
+@media (max-width: 768px) {
+  .contactFormContainer {
+    flex-direction: column;
+    margin: 2rem 1.5rem;
+    width: 100%;
+    max-width: -webkit-fill-available;
+    padding: 2rem 1rem;
+    border-radius: 0.3rem;
+  }
+  .contactInfo {
+    max-width: none;
+    width: 100%;
+  }
+  .contactForm {
+    max-width: none;
+    width: 100%;
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .contactInfo h2 {
+    font-size: 1rem;
+  }
+
+  .contactInfo p {
+    font-size: 0.6rem;
+  }
+  .contactInfo span p {
+    font-size: 0.5rem;
+  }
+
+  .inputGroup input,
+  .inputGroup textarea {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.5rem;
+  }
+
+  .submitButton {
+    border-radius: 3rem;
+    padding: 0.5rem;
+    font-size: 0.6rem;
+  }
+  .error {
+    font-size: 0.4rem;
+    margin-top: 0.2rem;
+  }
+  .inputGroup textarea {
+    min-height: 4rem;
+  }
+}
