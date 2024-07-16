@@ -1,0 +1,76 @@
+.blogDetailsContainer {
+  padding-left: 10.885vw;
+  padding-right: 9.479vw;
+  margin-top: 4.167vw;
+}
+
+.blogImage {
+  max-width: 79.635vw;
+}
+
+.blogImage img {
+  width: 100%;
+}
+.blogBody {
+  margin-top: 3.49vw;
+}
+
+.blogHeading h1 {
+  font-family: "Roboto";
+  font-size: 2.5vw;
+  font-weight: 700;
+  line-height: 3vw;
+  color: rgba(66, 167, 195, 1);
+  max-width: 74.323vw;
+  width: 100%;
+  margin-bottom: 3.49vw;
+}
+.blogDescription {
+  padding-right: 1.406vw;
+}
+.blogDescription h1 {
+  font-family: "Poppins";
+  font-weight: 700;
+  margin: 1.25vw 0rem;
+  font-size: 2.083vw;
+  line-height: 2.5vw;
+}
+
+.blogDescription p {
+  font-size: 0.938vw;
+  line-height: 1.406vw;
+  color: black;
+  margin-bottom: 0.833vw;
+  font-weight: 500;
+}
+.highlightedText {
+  font-family: "Poppins";
+  font-weight: bold !important;
+  margin-top: 1.667vw;
+}
+.intendedParagraph {
+  font-style: italic;
+  border-left: 0.1vw solid black;
+  padding-left: 1.25vw;
+  font-size: 1.042vw;
+  margin: 1.667vw 0vw !important;
+}
+.highlightedText,
+.intendedParagraph {
+  font-size: 1.042vw;
+}
+
+.headerConclusion {
+  font-size: 1.667vw;
+  line-height: 2.167vw;
+  font-weight: 700;
+  margin: 1.042vw 0vw;
+  margin-top: 2.083vw;
+}
+
+.bottomLine {
+  display: block;
+  max-width: 40vw;
+  border-top: 1px solid black;
+  margin-top: 3.385vw;
+}

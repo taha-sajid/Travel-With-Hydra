@@ -13,6 +13,7 @@
   justify-content: space-between;
   margin-bottom: 1.667vw;
   padding: 0vw 10.417vw;
+  padding-right: 6.927vw;
   width: 100%;
 }
 .footer_content .footer_section {
@@ -83,6 +84,7 @@
   margin: 0 auto;
   font-size: 0.729vw;
   color: rgba(255, 255, 255, 1);
+  font-weight: normal;
 }
 @media (max-width: 768px) {
   .footer_content {

@@ -15,7 +15,8 @@
 /* General styles for larger screens */
 .header-container {
   background: linear-gradient(to bottom, #e2f6fc, #fff);
-  overflow: hidden;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .navbar-container {

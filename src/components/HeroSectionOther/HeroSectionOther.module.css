@@ -1,0 +1,22 @@
+.hero_section_container {
+  max-height: 36.458vw;
+  height: 100%;
+  position: relative;
+  margin-top: -6.8vw;
+}
+.hero_section_container img {
+  width: 100vw;
+  height: 100%;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.header-container .hero_section_container {
+  /* background-color: cadetblue; */
+}

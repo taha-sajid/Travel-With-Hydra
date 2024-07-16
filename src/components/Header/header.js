@@ -3,6 +3,10 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import "./header.css";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import HeroSectionHome from "../HeroSectionHome/HeroSectionHome";
+import HeroSectionOther from "../HeroSectionOther/HeroSectionOther";
 const countries = [
   { name: "United Kingdom", flag: "/assets/flags/uk.png" },
   { name: "Germany", flag: "/assets/flags/de.png" },
@@ -14,13 +18,6 @@ const countries = [
   { name: "China", flag: "/assets/flags/cn.png" },
 ];
 
-const images = [
-  "/assets/illus1.png",
-  "/assets/illus2.png",
-  "/assets/illus3.png",
-  "/assets/illus4.png",
-];
-
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
@@ -28,7 +25,10 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const countrySelectorRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const router = useRouter();
+  const isHomePage = router.pathname === "/";
+  const isBlogDetailsPage = router.pathname === "/blogdetails";
 
   const handleToggle = () => {
     setIsActive(!isActive);
@@ -70,34 +70,36 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
-  useEffect(() => {
     if (isActive) {
       document.body.classList.add("no-scroll");
     } else {
       document.body.classList.remove("no-scroll");
     }
   }, [isActive]);
+
   return (
-    <div className="header-container">
+    <div className={`${isBlogDetailsPage ? "" : "header-container"} `}>
       <nav
         className={`${
           isActive ? "active" : ""
         } navbar-container animated-navbar`}
       >
         <div className="navbar-logo">
-          <img src="/assets/logo.png" />
+          <Link href={"/"}>
+            <img src="/assets/logo.png" />
+          </Link>
         </div>
         <div className="navbar-links">
           <ul>
-            <li>BLOGS</li>
-            <li>FAQs</li>
-            <li>CONTACT US</li>
+            <li>
+              <Link href={"/blogs"}> BLOGS</Link>
+            </li>
+            <li>
+              <Link href={"/faqs"}> FAQs</Link>
+            </li>
+            <li>
+              <Link href={"/contactus"}> CONTACT US</Link>
+            </li>
           </ul>
         </div>
         <div className={`navbar-avatar ${isActive ? "active" : ""}`}>
@@ -176,23 +178,7 @@ const Header = () => {
         <span className="middle"></span>
         <span className="bottom"></span>
       </div>
-      <div className="hero-section-container">
-        <div className="hero-section-heading animated-hero-left">
-          <h1>Discover the world</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Id mi erat faucibus ac est
-            metus tristique. Semper sapien metus elit diam in id. Pretium congue
-            ridiculus bibendum magna pellentesque
-          </p>
-        </div>
-        <div className="hero-section-image animated-hero-right">
-          <img
-            src={images[currentImageIndex]}
-            alt="Hero"
-            className="hero-image"
-          />
-        </div>
-      </div>
+      {isHomePage ? <HeroSectionHome /> : <HeroSectionOther />}
     </div>
   );
 };

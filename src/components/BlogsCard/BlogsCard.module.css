@@ -1,5 +1,7 @@
 /* BlogsCard.module.css */
 .Blogs_section_container {
+  display: flex;
+  flex-direction: column;
   padding: 0vw 9.323vw;
   margin-top: 14.271vw;
 }
@@ -8,7 +10,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4.688vw;
 }
 
 .Blogs_section_heading button:hover {
@@ -41,15 +42,32 @@
   font-weight: 600;
 }
 
+.blogs_filter {
+  align-self: flex-end;
+  margin-top: 2.083vw;
+  margin-bottom: 2.604vw;
+}
+.blogs_filter label {
+  font-size: 1.042vw;
+}
+.blogs_filter select {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  font-size: 0.833vw;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+  padding: 0.521vw 1.25vw;
+  border-radius: 100px;
+}
 .Blogs_card_container {
   display: flex;
-  gap: 3.75vw;
+  justify-content: space-between;
 }
 
 .Blogs_card {
   background-color: white;
   overflow: hidden;
   width: 100%;
+  max-width: 38.75vw;
 }
 
 .card_head img {
@@ -136,7 +154,7 @@
   .Blogs_card_container {
     flex-direction: column;
   }
-  .Blogs_card{
+  .Blogs_card {
     margin-bottom: 1rem;
   }
   .card_head img {

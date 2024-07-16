@@ -1,0 +1,94 @@
+.accordionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5vw;
+  max-width: 77.188vw;
+  width: 100%;
+}
+
+.accordion .accordionItem {
+  display: flex;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 1);
+}
+.accordion .accordionItem.open {
+  gap: 1.25vw;
+}
+.accordion .accordionItem .accordionItemDescriptionWrapper hr {
+  border: none;
+  border-top: 1px solid var(--borderColor);
+  visibility: visible;
+}
+.accordion .accordionItem.open .accordionItemDescriptionWrapper {
+  background-color: white;
+  color: rgba(0, 0, 0, 1);
+  padding: 2.083vw;
+}
+.accordion .accordionItem.open .accordionItemDescriptionWrapper hr {
+  visibility: visible;
+}
+
+.accordion .accordionItem .accordionItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  padding: 2.083vw 2.76vw;
+  cursor: pointer;
+  background-color: rgba(66, 167, 195, 1);
+  box-shadow: 0 0.26vw 0.833vw 0 rgba(0, 0, 0, 0.16);
+  border-radius: 0.938vw;
+}
+
+.accordion .accordionItem .accordionItemHeader .accordionItemHeaderTitle {
+  font-weight: 500;
+  font-size: 1.146vw;
+  line-height: 1.458vw;
+}
+
+.accordion .accordionItem .accordionItemHeader .accordionItemHeaderIcon {
+  background-color: white;
+  width: 2.656vw;
+  height: 2.656vw;
+  padding: 0.485vw 0.542vw;
+  border-radius: 50%;
+  color: rgba(66, 167, 195, 1);
+  transition: var(--transition);
+  transform: rotate(-90deg);
+}
+
+.accordion .accordionItem.open .accordionItemHeader .accordionItemHeaderIcon {
+  transform: rotate(0deg);
+}
+
+.accordion .accordionItem .accordionItemDescriptionWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: var(--transition);
+  font-size: 0.938vw;
+}
+.accordion .accordionItem .accordionItemDescriptionWrapper p {
+  line-height: 1.563vw;
+}
+.accordion .accordionItem.open .accordionItemDescriptionWrapper {
+  border-radius: 0.938vw;
+  box-shadow: 0 0.26vw 0.833vw 0 rgba(0, 0, 0, 0.16);
+  border: 2px solid rgba(216, 225, 224, 1);
+}
+.accordion .accordionItem.open .accordionItemDescriptionWrapper {
+  grid-template-rows: 1fr;
+}
+
+.accordion
+  .accordionItem
+  .accordionItemDescriptionWrapper
+  .accordionItemDescription {
+  min-height: 0;
+}

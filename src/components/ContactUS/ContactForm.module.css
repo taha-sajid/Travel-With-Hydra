@@ -1,0 +1,98 @@
+/* components/ContactForm.module.css */
+.contactFormContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 81.042vw;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid rgba(189, 189, 189, 1);
+  box-shadow: 0px 0px 1.042vw 0px rgba(0, 0, 0, 0.1);
+  padding: 4.583vw 5.729vw;
+  border-radius: 0.521vw;
+  background-color: white;
+}
+
+.contactInfo {
+  flex: 1;
+  max-width: 21.406vw;
+}
+.contactInfo h2 {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 1.875vw;
+  margin-bottom: 1.042vw;
+}
+
+.contactInfo > p {
+  font-size: 0.833vw;
+  margin-bottom: 1.563vw;
+}
+.contactInfo span {
+  display: flex;
+  flex-direction: column;
+  gap: 1.563vw;
+}
+.contactInfo span p {
+  font-size: 0.938vw;
+}
+.contactForm {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.042vw;
+  background: white;
+  max-width: 37.76vw;
+}
+.contactForm span {
+  display: flex;
+  gap: 1.094vw;
+}
+.contactForm span .inputGroup {
+  width: 100%;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  font-family: "OpenSans";
+  font-weight: 400;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0.521vw;
+  font-size: 0.833vw;
+  background-color: rgba(249, 249, 249, 1);
+  padding: 0.625vw 1.042vw;
+}
+.inputGroup input::placeholder,
+.inputGroup textarea::placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+.inputGroup textarea {
+  min-height: 7.292vw;
+}
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+  border: 1px solid rgba(66, 167, 195, 1);
+  outline: 1px solid rgba(66, 167, 195, 1);
+  background-color: white;
+  color: black;
+}
+.error {
+  color: #ff6666;
+  font-size: 0.75vw;
+}
+
+.submitButton {
+  border: none;
+  padding: 0.677vw;
+  border-radius: 1.563vw;
+  background-color: rgba(66, 167, 195, 0.92);
+  color: white;
+  font-size: 0.938vw;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: rgba(66, 167, 195, 1);
+}

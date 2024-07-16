@@ -52,10 +52,12 @@ const slider = () => {
       );
 
       return () => {
-        carouselContentRef.current.removeEventListener(
-          "animationend",
-          handleAnimationEnd
-        );
+        if (carouselContentRef.current) {
+          carouselContentRef.current.removeEventListener(
+            "animationend",
+            handleAnimationEnd
+          );
+        }
       };
     }
   }, []);

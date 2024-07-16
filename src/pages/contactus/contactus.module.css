@@ -1,0 +1,11 @@
+.contactUsContainer {
+  position: relative;
+}
+
+.bodyContainer {
+  position: absolute;
+  top: 70vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}   

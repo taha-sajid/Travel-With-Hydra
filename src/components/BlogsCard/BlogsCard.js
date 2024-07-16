@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./BlogsCard.module.css";
 import { format } from "date-fns";
+import { useRouter } from "next/router";
+import FilterSelector from "../FilterSelector/FilterSelector";
 
 const BlogsCard = () => {
   // Dummy data for blogs
@@ -25,23 +27,69 @@ const BlogsCard = () => {
     },
   ];
 
+  const [selectedCountry, setSelectedCountry] = useState("All");
+  const [filteredBlogs, setFilteredBlogs] = useState(blogs);
+  const router = useRouter();
+  const isHomePage = router.pathname === "/";
+  const isBlogPage = router.pathname === "/blogs";
+
+  useEffect(() => {
+    if (selectedCountry === "All") {
+      setFilteredBlogs(blogs);
+    } else {
+      setFilteredBlogs(
+        blogs.filter((blog) => blog.country === selectedCountry)
+      );
+    }
+  }, [selectedCountry]);
+
+  const handleCountryChange = (e) => {
+    setSelectedCountry(e.target.value);
+  };
+
   return (
-    <div className={styles.Blogs_section_container}>
+    <div
+      className={`${styles.Blogs_section_container} blogs-container `}
+      style={!isHomePage ? { marginTop: 0 } : {}}
+    >
       <div className={styles.Blogs_section_heading}>
         <div>
           <h1>Blogs</h1>
           <p>Explore our latest blogs from our active users</p>
         </div>
-        <div>
-          <button className={`${styles.btn_primary}`}>View All</button>
-        </div>
+        {isHomePage && (
+          <div>
+            <button className={`${styles.btn_primary}`}>View All</button>
+          </div>
+        )}
       </div>
+
+      {isBlogPage && (
+        <FilterSelector />
+
+        // <div className={styles.blogs_filter}>
+        //   <label htmlFor="countryFilter">Filter by: </label>
+        //   <select
+        //     id="countryFilter"
+        //     value={selectedCountry}
+        //     onChange={handleCountryChange}
+        //   >
+        //     <option value="All">Country</option>
+        //     {Array.from(new Set(blogs.map((blog) => blog.country))).map(
+        //       (country) => (
+        //         <option key={country} value={country}>
+        //           {country}
+        //         </option>
+        //       )
+        //     )}
+        //   </select>
+        // </div>
+      )}
       <div className={styles.Blogs_card_container}>
-        {blogs.map((blog) => (
+        {filteredBlogs.map((blog) => (
           <div key={blog.id} className={styles.Blogs_card}>
             <div className={styles.card_head}>
               <img src={blog.image} alt={blog.title} />
-
               <div className={styles.card_tag}>
                 <span>{blog.country}</span>
                 <span>{format(new Date(blog.date), "MMM dd, yyyy")}</span>
@@ -49,7 +97,8 @@ const BlogsCard = () => {
               <h3>{blog.title}</h3>
               <p>{blog.description}</p>
               <button>
-                Read Full Post <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                Read Full Post
+                <i className="fa fa-arrow-up" aria-hidden="true"></i>
               </button>
             </div>
           </div>

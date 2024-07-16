@@ -1,0 +1,10 @@
+.faqsContainer {
+  padding: 0vw 11.406vw;
+}
+.faqsContainer h1 {
+  font-family: "Roboto";
+  font-size: 3.333vw;
+  margin-bottom: 5.26vw;
+  color: rgba(66, 167, 195, 1);
+  font-weight: 700;
+}
