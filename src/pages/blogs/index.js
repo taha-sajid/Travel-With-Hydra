@@ -10,7 +10,7 @@ const index = () => {
       <BlogsCard />
       <Footer />
     </div>
-  );
+  );  
 };
 
 export default index;

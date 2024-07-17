@@ -17,6 +17,15 @@
   flex: 1;
   max-width: 21.406vw;
 }
+.contactInfo span p {
+  display: flex;
+  align-items: center;
+  gap: 0.521vw;
+}
+.contactInfo span p img{
+  width:1.25vw
+
+}
 .contactInfo h2 {
   color: var(--color-primary);
   font-weight: 600;

@@ -37,8 +37,12 @@ const ContactForm = () => {
           to us at:
         </p>
         <span>
-          <p>+1611 111 1111</p>
-          <p>info@flyhydra.com</p>
+          <p>
+            <img src="/assets/phone.png" /> +1611 111 1111
+          </p>
+          <p>
+            <img src="/assets/mail.png" /> info@flyhydra.com
+          </p>
         </span>
       </div>
       <form onSubmit={formik.handleSubmit} className={styles.contactForm}>

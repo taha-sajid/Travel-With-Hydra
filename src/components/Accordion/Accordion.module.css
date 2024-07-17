@@ -80,7 +80,7 @@
 .accordion .accordionItem.open .accordionItemDescriptionWrapper {
   border-radius: 0.938vw;
   box-shadow: 0 0.26vw 0.833vw 0 rgba(0, 0, 0, 0.16);
-  border: 2px solid rgba(216, 225, 224, 1);
+  border: 0.104vw solid rgba(216, 225, 224, 1);
 }
 .accordion .accordionItem.open .accordionItemDescriptionWrapper {
   grid-template-rows: 1fr;

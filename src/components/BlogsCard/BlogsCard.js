@@ -32,7 +32,7 @@ const BlogsCard = () => {
   const router = useRouter();
   const isHomePage = router.pathname === "/";
   const isBlogPage = router.pathname === "/blogs";
-
+  console.log(isHomePage);
   useEffect(() => {
     if (selectedCountry === "All") {
       setFilteredBlogs(blogs);
@@ -52,7 +52,10 @@ const BlogsCard = () => {
       className={`${styles.Blogs_section_container} blogs-container `}
       style={!isHomePage ? { marginTop: 0 } : {}}
     >
-      <div className={styles.Blogs_section_heading}>
+      <div
+        className={`${styles.Blogs_section_heading} ${isHomePage && styles.marginBottom}`}
+  
+      >
         <div>
           <h1>Blogs</h1>
           <p>Explore our latest blogs from our active users</p>

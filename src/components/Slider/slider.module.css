@@ -53,7 +53,8 @@
 }
 .carousel_card_container img {
   border-radius: 1.042vw;
-  height: 16.823vw;
+  max-height: 16.823vw;
+  height: 100%;
 }
 
 .carousel_btn_container {
@@ -73,8 +74,9 @@
 
 /* Media queries for mobile screens */
 @media screen and (max-width: 768px) {
-  .slider_container {
+  .slider_section_container {
     margin: 4rem 1.5rem;
+    /* margin-left: 0; */
     margin-bottom: 2rem;
   }
   .slider_heading h1 {
@@ -83,9 +85,17 @@
   .carousel_container {
     padding: 0;
   }
+  .carousel_card_container {
+    /* width: 99%; */
+    margin: 0 auto;
+    margin-left: 0.3rem;
+    border-radius: 1rem;
+    /* padding-left: 1rem; */
+  }
   .carousel_card_container img {
     object-fit: cover;
     width: 100%;
+    max-height: none;
     height: 10rem;
   }
 
@@ -108,6 +118,6 @@
     height: 4vw;
   }
   .slider_container {
-    padding-left: 0;
+    padding-left: unset;
   }
 }

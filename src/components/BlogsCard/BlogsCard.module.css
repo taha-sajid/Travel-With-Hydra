@@ -131,11 +131,10 @@
   transform: rotate(45deg);
   margin-left: 1.137vw;
 }
-
+.marginBottom {
+  margin-bottom: 4.668vw;
+}
 @media (max-width: 768px) {
-  .Blogs_section_container {
-    margin-top: 2rem !important;
-  }
   .Blogs_section_heading {
     margin-bottom: 1.5rem;
   }

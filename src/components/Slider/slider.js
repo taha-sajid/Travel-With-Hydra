@@ -68,41 +68,43 @@ const slider = () => {
   }, [animationComplete]);
 
   return (
-    <div className={`${style.slider_container}`}>
-      <div className={`${style.slider_heading}`}>
-        <h1> Top Travel Destinations</h1>
-      </div>
-      <Carousel
-        plugins={[
-          Autoplay({
-            delay: 3000,
-          }),
-        ]}
-        className={`${style.carousel_container} w-full max-w-sm`}
-      >
-        <CarouselContent
-          ref={carouselContentRef}
-          className={`${style.carousel_content} animate-accordion-down`}
-        >
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem
-              key={index}
-              className={`${style.carousel_item} md:basis-1/2 lg:basis-1/3`}
-            >
-              <div className="p-1">
-                <div className={`${style.carousel_card_container}`}>
-                  <img src="./assets/slider.png" />
-                  <h3>Bali, Indonesia</h3>
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <div className={`${style.carousel_btn_container}`}>
-          <CarouselNext className={`${style.next_btn}`} />
-          <CarouselPrevious className={`${style.prev_btn}`} />
+    <div className={style.slider_section_container}>
+      <div className={`${style.slider_container}`}>
+        <div className={`${style.slider_heading}`}>
+          <h1> Top Travel Destinations</h1>
         </div>
-      </Carousel>
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
+          className={`${style.carousel_container} w-full max-w-sm`}
+        >
+          <CarouselContent
+            ref={carouselContentRef}
+            className={`${style.carousel_content} animate-accordion-down -ml-2 md:-ml-4`}
+          >
+            {Array.from({ length: 5 }).map((_, index) => (
+              <CarouselItem
+                key={index}
+                className={`${style.carousel_item}w-full md:basis-1/2 lg:basis-1/3`}
+              >
+                <div className="p-1">
+                  <div className={`${style.carousel_card_container}`}>
+                    <img src="./assets/slider.png" />
+                    <h3>Bali, Indonesia</h3>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className={`${style.carousel_btn_container}`}>
+            <CarouselNext className={`${style.next_btn}`} />
+            <CarouselPrevious className={`${style.prev_btn}`} />
+          </div>
+        </Carousel>
+      </div>
     </div>
   );
 };

@@ -78,7 +78,10 @@ const Header = () => {
   }, [isActive]);
 
   return (
-    <div className={`${isBlogDetailsPage ? "" : "header-container"} `}>
+    <div
+      className={`${isBlogDetailsPage ? "" : "header-container"}`}
+      style={isHomePage ? { overflowX: "hidden" } : { overflowX: "unset" }}
+    >
       <nav
         className={`${
           isActive ? "active" : ""
@@ -171,7 +174,7 @@ const Header = () => {
         </button>
       </nav>
       <div
-        className={`hamburger ${isActive ? "active" : ""}`}
+        className={`hamburger animated-navbar ${isActive ? "active" : ""}`}
         onClick={handleToggle}
       >
         <span className="top"></span>
