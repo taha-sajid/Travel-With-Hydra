@@ -68,27 +68,8 @@ const BlogsCard = () => {
         )}
       </div>
 
-      {isBlogPage && (
-        <FilterSelector />
+      {isBlogPage && <FilterSelector />}
 
-        // <div className={styles.blogs_filter}>
-        //   <label htmlFor="countryFilter">Filter by: </label>
-        //   <select
-        //     id="countryFilter"
-        //     value={selectedCountry}
-        //     onChange={handleCountryChange}
-        //   >
-        //     <option value="All">Country</option>
-        //     {Array.from(new Set(blogs.map((blog) => blog.country))).map(
-        //       (country) => (
-        //         <option key={country} value={country}>
-        //           {country}
-        //         </option>
-        //       )
-        //     )}
-        //   </select>
-        // </div>
-      )}
       <div className={styles.Blogs_card_container}>
         {filteredBlogs.map((blog) => (
           <div key={blog.id} className={styles.Blogs_card}>

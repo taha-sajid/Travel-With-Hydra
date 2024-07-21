@@ -3,6 +3,7 @@ import styles from "./CountryDetails.module.css";
 import Header from "../Header/header";
 import Footer from "../Footer/Footer";
 import PaymentCard from "../PaymentCard/PaymentCard";
+import BlogsCard from "../BlogsCard/BlogsCard";
 
 const cardData = {
   cardHeading: "Apply Now",
@@ -10,22 +11,6 @@ const cardData = {
 };
 
 const CountryDetails = () => {
-  const [applicantCount, setApplicantCount] = useState(1);
-
-  const handleIncrement = () => {
-    setApplicantCount(applicantCount + 1);
-  };
-
-  const handleDecrement = () => {
-    if (applicantCount > 1) {
-      setApplicantCount(applicantCount - 1);
-    }
-  };
-
-  const visaFees = 850;
-  const serviceFees = 40; // Assuming $40 as service fees
-  const totalAmount = visaFees * applicantCount + serviceFees;
-
   return (
     <div>
       <Header />
@@ -131,6 +116,9 @@ const CountryDetails = () => {
         <div className={styles.applyNowContainer}>
           <PaymentCard cardData={cardData} />
         </div>
+      </div>
+      <div className={styles.blogsCardContainer}>
+        <BlogsCard />
       </div>
       <Footer />
     </div>

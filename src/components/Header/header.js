@@ -174,9 +174,11 @@ const Header = () => {
             )}
           </div>
         </div>
-        <button className="btn-primary auth_btn">
-          <img src="/assets/user-avatar.png" /> Login/Sign up
-        </button>
+        <Link href="/login">
+          <button className="btn-primary auth_btn">
+            <img src="/assets/user-avatar.png" /> Login/Sign up
+          </button>
+        </Link>
       </nav>
       <div
         className={`hamburger animated-navbar ${isActive ? "active" : ""}`}
