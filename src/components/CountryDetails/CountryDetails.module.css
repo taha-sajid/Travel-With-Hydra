@@ -1,83 +1,25 @@
 .countryDetailsContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .countryDescription {
-    max-width: 800px;
-    margin-bottom: 20px;
-  }
-  
-  .applyNowContainer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .applyNowCard {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 300px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .applyNowCard h2 {
-    background: #00a7c7;
-    color: white;
-    padding: 10px;
-    border-radius: 8px 8px 0 0;
-    margin: -20px -20px 10px -20px;
-  }
-  
-  .formGroup {
-    margin-bottom: 15px;
-  }
-  
-  .inputGroup {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .counterButton {
-    background: #f1f1f1;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .input {
-    width: 50px;
-    text-align: center;
-    border: none;
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-  
-  .priceDetails {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .totalAmount {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  .startApplicationButton {
-    background: #00a7c7;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10.208vw;
+  padding-right: 9.01vw;
+}
+
+.countryDescription {
+  max-width: 50.313vw;
+}
+.countryDescription h1 {
+  font-size: 2.5vw;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.198vw;
+}
+.countryDescription p {
+  font-size: 1.042vw;
+  line-height: 1.563vw;
+}
+.applyNowContainer {
+  margin-top: 4vw;
+  max-width: 24.427vw;
+  width: 100%;
+}

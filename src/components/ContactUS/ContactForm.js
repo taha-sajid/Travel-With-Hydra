@@ -38,10 +38,12 @@ const ContactForm = () => {
         </p>
         <span>
           <p>
-            <img src="/assets/phone.png" /> +1611 111 1111
+            <img src="/assets/phone.png" />
+            +1611 111 1111
           </p>
           <p>
-            <img src="/assets/mail.png" /> info@flyhydra.com
+            <img src="/assets/mail.png" />
+            info@flyhydra.com
           </p>
         </span>
       </div>

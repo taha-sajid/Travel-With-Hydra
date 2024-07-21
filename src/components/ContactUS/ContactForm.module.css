@@ -22,9 +22,8 @@
   align-items: center;
   gap: 0.521vw;
 }
-.contactInfo span p img{
-  width:1.25vw
-
+.contactInfo span p img {
+  width: 1.25vw;
 }
 .contactInfo h2 {
   color: var(--color-primary);
@@ -154,5 +153,15 @@
   }
   .inputGroup textarea {
     min-height: 4rem;
+  }
+
+  .contactInfo span p img {
+    width: 0.6rem;
+  }
+  .contactInfo span p {
+    gap: 0.5rem;
+  }
+  .contactInfo span {
+    margin-top: 0.5rem;
   }
 }

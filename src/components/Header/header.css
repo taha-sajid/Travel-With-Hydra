@@ -67,6 +67,8 @@
   height: 2.292vw;
   border-radius: 100%;
   cursor: pointer;
+  box-shadow: 2px 2px 5px 0px #00000033;
+  border: 0.104vw solid white;
 }
 
 .hero-section-container {
@@ -229,7 +231,7 @@
   justify-content: space-between;
   width: 30px;
   height: 20px;
-  cursor: pointer;    
+  cursor: pointer;
   position: relative;
   display: none;
 }

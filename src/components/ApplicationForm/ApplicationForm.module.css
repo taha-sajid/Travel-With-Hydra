@@ -1,0 +1,13 @@
+.applicationFormContainer {
+  padding: 2rem 4rem;
+  background-image: url("/assets/glassCircle.png");
+  position: relative;
+}
+.visaApplicationFormContainer {
+  position: absolute;
+  position: relative;
+}
+.visaApplicationFormContainer h1 {
+  position: absolute;
+  color: white;
+}

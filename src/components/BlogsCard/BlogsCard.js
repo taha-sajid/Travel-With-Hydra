@@ -53,8 +53,9 @@ const BlogsCard = () => {
       style={!isHomePage ? { marginTop: 0 } : {}}
     >
       <div
-        className={`${styles.Blogs_section_heading} ${isHomePage && styles.marginBottom}`}
-  
+        className={`${styles.Blogs_section_heading} ${
+          isHomePage && styles.marginBottom
+        }`}
       >
         <div>
           <h1>Blogs</h1>

@@ -28,7 +28,9 @@ const Header = () => {
 
   const router = useRouter();
   const isHomePage = router.pathname === "/";
-  const isBlogDetailsPage = router.pathname === "/blogdetails";
+  const isBlogDetailsPage = router.pathname.startsWith("/blogs/");
+  const isDashboardPage = router.pathname === "/dashboard";
+  const isPayment = router.pathname === "/payment";
 
   const handleToggle = () => {
     setIsActive(!isActive);
@@ -77,9 +79,12 @@ const Header = () => {
     }
   }, [isActive]);
 
+  const headerClass =
+    isBlogDetailsPage || isDashboardPage || isPayment ? "" : "header-container";
+
   return (
     <div
-      className={`${isBlogDetailsPage ? "" : "header-container"}`}
+      className={headerClass}
       style={isHomePage ? { overflowX: "hidden" } : { overflowX: "unset" }}
     >
       <nav

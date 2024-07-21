@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import style from "./TravelDestinationSelector.module.css";
+import Link from "next/link";
 
 const destinations = [
   {
@@ -141,20 +142,22 @@ const TravelDestinationSelector = () => {
       <div className={`${style.cards_section_container}`}>
         <div className={`${style.cards_container}`}>
           {filteredDestinations.map((destination, index) => (
-            <x1div key={index} className={style.card}>
-              <h3>{destination.country}</h3>
-              <div className={`${style.card_image}`}>
-                <img src="./assets/card.png" alt={destination.country} />
+            <Link href={"/countrydetails"}>
+              <div key={index} className={style.card}>
+                <h3>{destination.country}</h3>
+                <div className={`${style.card_image}`}>
+                  <img src="./assets/card.png" alt={destination.country} />
+                </div>
+                <div className={`${style.card_date}`}>
+                  <p>Get On</p>
+                  <p>{destination.date}</p>
+                </div>
+                <div className={`${style.card_price}`}>
+                  <h4>{destination.price}</h4>
+                  <button className="btn-primary">Apply Now</button>
+                </div>
               </div>
-              <div className={`${style.card_date}`}>
-                <p>Get On</p>
-                <p>{destination.date}</p>
-              </div>
-              <div className={`${style.card_price}`}>
-                <h4>{destination.price}</h4>
-                <button className="btn-primary">Apply Now</button>
-              </div>
-            </x1div>
+            </Link>
           ))}
         </div>
         <button className="btn-primary">See More</button>

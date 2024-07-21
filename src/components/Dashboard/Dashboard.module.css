@@ -1,0 +1,130 @@
+.dashboardContainer {
+  display: flex;
+  gap: 3.75vw;
+  background-color: #f5f7fb;
+  padding-top: 2.865vw;
+  padding-bottom: 6.823vw;
+  height: 100%;
+}
+
+.sidebar {
+  max-width: 23.802vw;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    #e2f6fc 18.16%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.userInfo {
+  margin-top: 2.5vw;
+  margin-left: 2.813vw;
+}
+.userInfo h3 {
+  font-size: 1.563vw;
+  color: #42a7c3;
+  line-height: 1.953vw;
+  font-weight: 600;
+  margin-bottom: 2.188vw;
+}
+.userInfo p {
+  display: flex;
+  align-items: center;
+  gap: 0.99vw;
+  font-size: 1.042vw;
+  margin-bottom: 1.667vw;
+  line-height: 1.563vw;
+  color: #292d32;
+}
+.userInfo p svg {
+  font-size: 1.563vw;
+}
+.userInfo .phoneIcon svg {
+  font-size: 1.15vw;
+  transform: rotate(15deg);
+}
+.mainContent {
+  background-color: white;
+  padding: 2.5vw;
+  padding-left: 2.604vw;
+  max-width: 67.5vw;
+  width: 100%;
+}
+.mainContent h2 {
+  font-size: 1.25vw;
+  line-height: 1.875vw;
+  color: #42a7c3;
+  font-weight: 500;
+  margin-bottom: 0.885vw;
+}
+.submitted {
+  background-color: #ffb80133;
+  color: #ffb801;
+  padding: 0.104vw 1.719vw;
+
+  border-radius: 3rem;
+}
+
+.approved {
+  background-color: #00990033;
+  padding: 0.17vw 1.719vw;
+  color: #009900;
+  border-radius: 3rem;
+}
+.table td {
+  border: 0.052vw solid #e6eaee;
+  font-size: 0.833vw;
+  padding-top: 0.625vw;
+  padding-bottom: 0.677vw;
+}
+
+.table th {
+  font-size: 0.938vw;
+  text-align: center;
+  padding: 0.729vw 0vw;
+}
+.table th:first-child {
+  text-align: left;
+  padding-left: 0.521vw;
+}
+.table tr td:nth-child(1) {
+  width: 4.688vw;
+  text-align: center;
+}
+.table tr td:nth-child(2) {
+  width: 12.969vw;
+}
+
+.table tr td:nth-child(3),
+.table tr td:nth-child(4) {
+  width: 11.25vw;
+}
+.table tr td:nth-child(5) {
+  width: 9.844vw;
+}
+.table tr td:nth-child(2),
+.table tr td:nth-child(3) {
+  padding-left: 0.938vw;
+}
+.table tr td:nth-child(4) {
+  text-align: center;
+}
+.table tr td:nth-child(5) {
+  text-align: center;
+  vertical-align: middle;
+}
+.table tr td:nth-child(5) button:first-child {
+  /* margin-right: 2.604vw;  */
+  font-size: 1.25vw;
+
+  color: #42a7c3;
+}
+.table tr td:nth-child(5) button:last-child img {
+  width: 1.25vw;
+}
+
+.actionContainer div {
+  display: flex;
+  gap: 2.604vw;
+  justify-content: center;
+}

@@ -1,0 +1,13 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.headerContainer {
+  flex: 0 0 auto;
+}
+.dashboard {
+  flex: 1;
+  height: 100%;
+  background-color: cadetblue !important  ;
+}
