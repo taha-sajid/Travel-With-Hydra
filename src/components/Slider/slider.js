@@ -23,11 +23,11 @@ const slider = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add(style.visible);
-            observer.unobserve(entry.target); // Stop observing after it's visible
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 } // Adjust this threshold as needed
+      { threshold: 0.1 }
     );
 
     if (carouselContentRef.current) {
@@ -83,7 +83,7 @@ const slider = () => {
         >
           <CarouselContent
             ref={carouselContentRef}
-            className={`${style.carousel_content} animate-accordion-down -ml-2 md:-ml-4`}
+            className={`${style.carousel_content} animate-accordion-down sm: -ml-2 md:-ml-4`}
           >
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem

@@ -121,6 +121,7 @@
 @media screen and (max-width: 768px) {
   .applyNowContainer {
     max-width: none;
+    margin-top: 2rem;
   }
   .applicantFormGroup {
     padding: 0.3rem 0rem;
@@ -166,5 +167,9 @@
   }
   .totalAmount span:last-child {
     font-size: 0.5rem;
+  }
+  .startApplicationButton {
+    font-size: 0.6rem;
+    margin-top: 0.5rem;
   }
 }

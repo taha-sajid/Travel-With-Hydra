@@ -263,7 +263,9 @@
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-
+.auth_btn a {
+  display: flex;
+}
 /* Media queries for mobile screens */
 @media screen and (max-width: 768px) {
   .header-container {

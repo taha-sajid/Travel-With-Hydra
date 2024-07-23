@@ -3,6 +3,7 @@ import styles from "./PaymentCard.module.css";
 import { FiPlusCircle } from "react-icons/fi";
 import { FiMinusCircle } from "react-icons/fi";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const PaymentCard = ({ cardData }) => {
   const [applicantCount, setApplicantCount] = useState(1);
@@ -21,7 +22,7 @@ const PaymentCard = ({ cardData }) => {
     }
   };
   const visaFees = 850;
-  const serviceFees = 40; // Assuming $40 as service fees
+  const serviceFees = 40;
   const totalAmount = visaFees * applicantCount + serviceFees;
   return (
     <div className={styles.applyNowContainer}>
@@ -33,24 +34,12 @@ const PaymentCard = ({ cardData }) => {
             <label>No of Applicant</label>
           </div>
           <div className={styles.inputGroup}>
-            {/* <button
-        className={styles.counterButton}
-        onClick={handleDecrement}
-      >
-        -
-      </button> */}
             <FiMinusCircle
               onClick={handleDecrement}
               className={styles.counterIcon}
             />
 
             <p className={styles.applicantCount}>{applicantCount}</p>
-            {/* <button
-        className={styles.counterButton}
-        onClick={handleIncrement}
-      >
-        +
-      </button> */}
 
             <FiPlusCircle
               onClick={handleIncrement}
@@ -77,9 +66,11 @@ const PaymentCard = ({ cardData }) => {
           <span>${totalAmount}</span>
         </div>
         {isButton && (
-          <button className={styles.startApplicationButton}>
-            Start Application
-          </button>
+          <Link href={"/visaapplicationform"}>
+            <button className={styles.startApplicationButton}>
+              Start Application
+            </button>
+          </Link>
         )}
       </div>
     </div>

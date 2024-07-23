@@ -113,9 +113,7 @@ const CountryDetails = () => {
             egestas massa risus et. Morbi quam scelerisqu
           </p>
         </div>
-        <div className={styles.applyNowContainer}>
-          <PaymentCard cardData={cardData} />
-        </div>
+        <PaymentCard cardData={cardData} />
       </div>
       <div className={styles.blogsCardContainer}>
         <BlogsCard />
