@@ -27,7 +27,7 @@ const index = () => {
       rememberText: "Remember Password",
       forgotText: "Forgot Password?",
       forgotLink: "/forgotpassword",
-      submitText: "Sign In",
+      submitText: "SIGN IN",
       submitBtnLink: "/dashboard",
       signUpText: "Didn't have an account?",
       signUpLinkText: "Sign Up",

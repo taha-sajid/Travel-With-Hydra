@@ -6,14 +6,18 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins/Poppins-Medium.ttf");
+  src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
   font-weight: 500;
 }
-
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  font-weight: bold;
+  src: url("/fonts/Poppins/Poppins-Bold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Medium.ttf");
+  font-weight: 400;
 }
 @font-face {
   font-family: "Poppins";
@@ -32,12 +36,33 @@
   font-weight: 700;
 }
 @font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-Medium.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "LatoSemiBold";
+  src: url("/fonts/Lato/Lato-Semibold.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "LatoBold";
+  src: url("/fonts/Lato/Lato-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
   font-family: "Prototype";
   src: url("/fonts/Prototype/Prototype.ttf");
 }
 @font-face {
   font-family: "Urbanist";
-  src: url("/fonts/Urbanist/Urbanist-SemiBold.ttf");
+  src: url("/fonts/Urbanist/Urbanist-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist/Urbanist-Medium.ttf");
+  font-weight: 500;
 }
 @font-face {
   font-family: "Montserrat";
@@ -48,6 +73,11 @@
   font-family: "Montserrat";
   src: url("/fonts/Montserrat/Montserrat-Regular.ttf");
   font-weight: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat/Montserrat-SemiBold.ttf");
+  font-weight: 600;
 }
 
 @font-face {
@@ -63,6 +93,10 @@
 @font-face {
   font-family: "OpenSans";
   src: url("/fonts/OpenSans/OpenSans-Regular.ttf");
+}
+@font-face {
+  font-family: "SegoeUI";
+  src: url("/fonts/SegoeUIEmoji/SegoeUIEmoji.ttf");
 }
 
 /* GENERAL STYLINGS */
@@ -85,18 +119,21 @@ body {
   --transition: all 0.2s ease;
 }
 .btn-primary {
-  display: flex;
-  align-items: center;
-  font-family: "Lato";
+  font-family: "LatoSemiBold";
+  font-weight: 500;
   background-color: #42a7c3;
   padding: 0.64vw 1.15vw;
   border-radius: 0.521vw;
   color: white;
   font-size: 1.25vw;
 }
-.btn-primary img {
-  margin-right: 0.521vw;
-  width: 1.563vw;
+.btn-primary a {
+  display: flex;
+  align-items: center;
+  gap: 0.521vw;
+}
+.btn-primary .icon {
+  font-size: 1.1vw;
 }
 
 /* VIDEO BUTTON */
@@ -212,4 +249,3 @@ div.x:after {
     visibility: visible;
   }
 }
-

@@ -19,7 +19,7 @@
 .visaApplicationFormContainer h1 {
   color: white;
   font-size: 2.5vw;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 3.75vw;
   padding-top: 2.344vw;
   text-align: center;
@@ -154,7 +154,7 @@
   right: 0;
   top: -2.383vw;
   font-size: 1.042vw;
-  font-weight: 600;
+  font-weight: 500;
 }
 .animatedProgressBar div {
   position: relative;

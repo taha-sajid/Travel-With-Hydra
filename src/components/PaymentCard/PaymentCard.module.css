@@ -1,6 +1,7 @@
 .applyNowContainer {
   max-width: 24.427vw;
   width: 100%;
+  margin-top: 0.833vw;
 }
 
 .applyNowCard {
@@ -35,6 +36,7 @@
   margin-top: 1.667vw;
 }
 .applicantFormGroup label {
+  font-family: "SegoeUI";
   font-size: 1.042vw;
 }
 .applicantFormGroup img {
@@ -88,9 +90,13 @@
   width: 1.042vw;
   height: 1.042vw;
 }
+.priceDetails span p {
+  line-height: 0.8vw;
+  border-bottom: 1px solid black;
+}
 .priceDetails span:last-child {
   font-size: 1.042vw;
-  font-weight: 600;
+  font-weight: 500;
 }
 .totalAmount {
   display: flex;
@@ -99,20 +105,24 @@
   margin-bottom: 1.979vw;
 }
 .totalAmount span:first-child {
+  font-family: "Lato";
+  font-weight: 500;
   font-size: 1.042vw;
 }
 .totalAmount span:last-child {
   font-size: 1.25vw;
 }
 .startApplicationButton {
-  font-family: "Lato";
+  font-family: "LatoBold";
   background: #42a7c3;
   color: white;
   font-size: 1.042vw;
   border: none;
-  padding: 10px;
+  padding-top: 0.833vw;
+  padding-bottom: 1.198vw;
   border-radius: 1.042vw;
   cursor: pointer;
+  line-height: 1.25vw;
   width: 100%;
   box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.1),
     0px 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -124,7 +134,7 @@
     margin-top: 2rem;
   }
   .applicantFormGroup {
-    padding: 0.3rem 0rem;
+    padding: 0rem 0rem;
   }
   .applicantFormGroup label {
     font-size: 0.5rem;
@@ -135,6 +145,9 @@
   }
   .counterIcon {
     width: 0.5rem;
+  }
+  .applyNowCard {
+    padding-bottom: 1.5rem;
   }
   .applyNowCard h2 {
     padding: 0.7rem;
@@ -171,5 +184,7 @@
   .startApplicationButton {
     font-size: 0.6rem;
     margin-top: 0.5rem;
+    padding: 0.5rem 2rem;
+    width: 90%;
   }
 }

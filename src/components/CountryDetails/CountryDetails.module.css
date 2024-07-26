@@ -10,7 +10,7 @@
 }
 .countryDescription h1 {
   font-size: 2.5vw;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-primary);
   margin-bottom: 1.198vw;
 }
@@ -22,9 +22,6 @@
   margin-top: 4vw;
   max-width: 24.427vw;
   width: 100%;
-}
-.blogsCardContainer {
-  margin-top: 12.552vw;
 }
 
 @media screen and (max-width: 768px) {

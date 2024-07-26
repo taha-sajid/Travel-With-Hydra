@@ -1,9 +1,5 @@
-import React, { useState } from "react";
 import styles from "./CountryDetails.module.css";
-import Header from "../Header/header";
-import Footer from "../Footer/Footer";
 import PaymentCard from "../PaymentCard/PaymentCard";
-import BlogsCard from "../BlogsCard/BlogsCard";
 
 const cardData = {
   cardHeading: "Apply Now",
@@ -13,7 +9,6 @@ const cardData = {
 const CountryDetails = () => {
   return (
     <div>
-      <Header />
       <div className={styles.countryDetailsContainer}>
         <div className={styles.countryDescription}>
           <h1>Portugal</h1>
@@ -115,10 +110,6 @@ const CountryDetails = () => {
         </div>
         <PaymentCard cardData={cardData} />
       </div>
-      <div className={styles.blogsCardContainer}>
-        <BlogsCard />
-      </div>
-      <Footer />
     </div>
   );
 };

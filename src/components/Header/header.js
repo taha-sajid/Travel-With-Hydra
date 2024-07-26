@@ -7,6 +7,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import HeroSectionHome from "../HeroSectionHome/HeroSectionHome";
 import HeroSectionOther from "../HeroSectionOther/HeroSectionOther";
+
+import { FaUser } from "react-icons/fa";
+
 const countries = [
   { name: "United Kingdom", flag: "/assets/flags/uk.png" },
   { name: "Germany", flag: "/assets/flags/de.png" },
@@ -31,6 +34,11 @@ const Header = () => {
   const isBlogDetailsPage = router.pathname.startsWith("/blogs/");
   const isDashboardPage = router.pathname === "/dashboard";
   const isPayment = router.pathname === "/payment";
+
+  const isCountryDetailsPage = router.pathname === "/countrydetails";
+  const isBlogPage = router.pathname === "/blogs";
+  const isFAQsPage = router.pathname === "/faqs";
+  const isContactUsPage = router.pathname === "/contactus";
 
   const handleToggle = () => {
     setIsActive(!isActive);
@@ -79,12 +87,19 @@ const Header = () => {
     }
   }, [isActive]);
 
-  const headerClass =
-    isBlogDetailsPage || isDashboardPage || isPayment ? "" : "header-container";
+  const headerClass1 =
+    isBlogDetailsPage || isDashboardPage || isPayment
+      ? "header-with-border"
+      : "header-container";
+
+  const headerClass2 =
+    isCountryDetailsPage || isFAQsPage || isBlogPage || isContactUsPage
+      ? "hero-section-other-header-container"
+      : "";
 
   return (
     <div
-      className={headerClass}
+      className={`${headerClass1} ${headerClass2} ${isBlogDetailsPage && "header-without-border"}`}
       style={isHomePage ? { overflowX: "hidden" } : { overflowX: "unset" }}
     >
       <nav
@@ -176,7 +191,9 @@ const Header = () => {
         </div>
         <button className="btn-primary auth_btn">
           <Link href="/login">
-            <img src="/assets/user-avatar.png" />
+            {/* <img src="/assets/user-avatar.png" /> */}
+            <FaUser className="icon" />
+
             <span> Login/Sign up</span>
           </Link>
         </button>

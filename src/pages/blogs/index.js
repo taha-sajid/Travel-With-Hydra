@@ -7,10 +7,12 @@ const index = () => {
   return (
     <div>
       <Header />
-      <BlogsCard />
+      <div className={styles.blogsCardContainer}>
+        <BlogsCard />
+      </div>
       <Footer />
     </div>
-  );  
+  );
 };
 
 export default index;

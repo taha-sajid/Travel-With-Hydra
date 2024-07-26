@@ -84,6 +84,7 @@
   font-size: 1.25vw;
   text-align: center;
   margin-bottom: 1.25vw;
+  font-weight: 500;
 }
 .card {
   padding: 1.667vw;
@@ -129,17 +130,23 @@
 }
 
 .card_price h4 {
-  font-size: 0.938vw;
-  font-weight: 500;
+  font-size: 1.25vw;
+  font-weight: 400;
+}
+.cards_container a:first-child .card .card_price h4 span {
+  color: #7b7b7b;
+  font-size: 0.9vw;
 }
 
 .cards_section_container > button {
+  display: flex;
   padding: 1.12vw 3.906vw;
   border-radius: 2.604vw;
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
   background-color: white;
-  font-weight: 600;
+  font-family: "Poppins";
+  font-weight: 400;
   margin: 0 auto;
 }
 
@@ -161,8 +168,9 @@
 }
 
 .card:hover .card_date p,
-.card:hover .card_price h4 {
-  color: white;
+.card:hover .card_price h4,
+.card:hover .card_price h4 span {
+  color: white !important;
 }
 
 .card:hover button {
@@ -229,6 +237,9 @@
   }
   .card_price h4 {
     font-size: 0.5rem;
+  }
+  .cards_container a:first-child .card .card_price h4 span {
+    font-size: inherit;
   }
   .card_price button {
     font-size: 0.5rem;

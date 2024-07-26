@@ -46,7 +46,10 @@
   transform: rotate(45deg) translateX(-45%);
   transition: 0.2s ease-in-out;
 }
-
+.dropdownFilter li {
+  font-size: 0.833vw;
+  line-height: 1.042vw;
+}
 .dropdownSelect {
   position: absolute;
   top: 100%;
@@ -82,19 +85,27 @@
 
 @media (max-width: 768px) {
   .dropdown {
-    max-width: 4rem;
+    max-width: 4.5rem;
     width: 100%;
+    margin-bottom: 1rem;
   }
   .dropdownSelect {
     width: 5rem;
+    right: 0;
+    left: unset;
   }
   .dropdownFilter {
     font-size: 0.45rem;
   }
+
   .dropdownFilter::after {
     top: 35%;
     width: 0.3rem;
     height: 0.3rem;
+  }
+  .dropdownFilter li {
+    font-size: 0.5rem;
+    line-height: 0.7rem;
   }
   .dropdownSelectOption {
     font-size: 0.45rem;

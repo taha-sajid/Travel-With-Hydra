@@ -69,7 +69,7 @@ const Slider = () => {
       ref={sliderRef}
     >
       <h1>Customer Stories</h1>
-      <p> 
+      <p>
         Lorem ipsum dolor sit amet consectetur. Orci lectus aliquam nunc
         fringilla blandit id. At ut blandit in fermentum consectetur nisl
         sagittis quis morbi.
@@ -88,7 +88,11 @@ const Slider = () => {
               />
             </div>
           ))}
-          <VideoButton className={styles.video_play_button} />
+          {/* <VideoButton className={styles.video_play_button} /> */}
+          <img
+            src="/assets/videoButton.png"
+            className={styles.videoButtonIcon}
+          />
         </div>
         <div className={styles.navigationButtons}>
           <button onClick={prevSlide}>

@@ -1,8 +1,8 @@
 .hero_section_container {
   max-height: 36.458vw;
   height: 100%;
-  position: relative;
-  margin-top: -9vw;
+  position: absolute;
+  top: 0;
 }
 .hero_section_container img {
   width: 100vw;
@@ -22,7 +22,4 @@
 }
 
 @media screen and (max-width: 768px) {
-  .hero_section_container {
-    margin-top: -25vw;
-  }
 }

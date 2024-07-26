@@ -1,51 +1,123 @@
-import React, { useState, useEffect } from "react";
-import styles from "./BlogsCard.module.css";
+// REACT HOOKS IMPORT
+import React, { useState, useRef, useEffect } from "react";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
+
+// COMPONENTS IMPORT
+import styles from "./BlogsCard.module.css";
 import FilterSelector from "../FilterSelector/FilterSelector";
+import { PrevArrow, NextArrow } from "../LeftRightArrow/LeftRightArrow";
+
+// SLICK SLIDER IMPORT
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+const blogsData = [
+  {
+    id: 1,
+    country: "France",
+    date: "2023-02-27",
+    title: "A Wonderful Journey to France",
+    description:
+      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
+    image: "/assets/blogscard.png",
+  },
+  {
+    id: 2,
+    country: "Italy",
+    date: "2023-02-27",
+    title: "A Wonderful Journey to Italy",
+    description:
+      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
+    image: "/assets/blogscard.png",
+  },
+  {
+    id: 3,
+    country: "Italy",
+    date: "2023-02-27",
+    title: "A Wonderful Journey to Italy",
+    description:
+      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
+    image: "/assets/blogscard.png",
+  },
+  {
+    id: 4,
+    country: "Italy",
+    date: "2023-02-27",
+    title: "A Wonderful Journey to Italy",
+    description:
+      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
+    image: "/assets/blogscard.png",
+  },
+  {
+    id: 5,
+    country: "Italy",
+    date: "2023-02-27",
+    title: "A Wonderful Journey to Italy",
+    description:
+      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
+    image: "/assets/blogscard.png",
+  },
+  {
+    id: 6,
+    country: "Italy",
+    date: "2023-02-27",
+    title: "A Wonderful Journey to Italy",
+    description:
+      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
+    image: "/assets/blogscard.png",
+  },
+];
 
 const BlogsCard = () => {
-  // Dummy data for blogs
-  const blogs = [
-    {
-      id: 1,
-      country: "France",
-      date: "2023-02-27",
-      title: "A Wonderful Journey to France",
-      description:
-        "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
-      image: "/assets/blogscard.png",
-    },
-    {
-      id: 2,
-      country: "Italy",
-      date: "2023-02-27",
-      title: "A Wonderful Journey to Italy",
-      description:
-        "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
-      image: "/assets/blogscard.png",
-    },
-  ];
+  // COMPONENTS STATE
+  const [blogs, setBlogs] = useState(blogsData);
+  const sliderRef = useRef(null);
 
-  const [selectedCountry, setSelectedCountry] = useState("All");
-  const [filteredBlogs, setFilteredBlogs] = useState(blogs);
+  // CHECKING ROUTES
   const router = useRouter();
   const isHomePage = router.pathname === "/";
   const isBlogPage = router.pathname === "/blogs";
-  console.log(isHomePage);
-  useEffect(() => {
-    if (selectedCountry === "All") {
-      setFilteredBlogs(blogs);
-    } else {
-      setFilteredBlogs(
-        blogs.filter((blog) => blog.country === selectedCountry)
-      );
-    }
-  }, [selectedCountry]);
+  const isCountryDetailsPage = router.pathname === "/countrydetails";
 
-  const handleCountryChange = (e) => {
-    setSelectedCountry(e.target.value);
+  // SLICK SLIDER CONFIGURATION
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "-17",
+    autoplay: true,
+    autoplaySpeed: 2500,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          centerPadding: "0px",
+        },
+      },
+    ],
   };
+
+  // HANDLING PREVIOUS AND NEXT BUTTON OF SLIDER
+  const goToPrev = () => sliderRef.current.slickPrev();
+  const goToNext = () => sliderRef.current.slickNext();
+
+  useEffect(() => {
+    require("slick-carousel/slick/slick.min.js");
+  }, []);
+
+  useEffect(() => {
+    if (isHomePage) {
+      setBlogs(blogsData.slice(0, 2));
+    } else {
+      setBlogs(blogsData);
+    }
+  }, [router.pathname]);
 
   return (
     <div
@@ -57,12 +129,16 @@ const BlogsCard = () => {
           isHomePage && styles.marginBottom
         }`}
       >
-        <div>
+        <div className={isHomePage && styles.BlogsHeading}>
           <h1>Blogs</h1>
-          <p>Explore our latest blogs from our active users</p>
+          <p>
+            Embark on unforgettable journeys with our travel blogs! Dive into
+            expert tips, hidden gems, and inspiring stories that will fuel your
+            wanderlust and guide your next adventure.
+          </p>
         </div>
         {isHomePage && (
-          <div>
+          <div className={styles.blogsButton}>
             <button className={`${styles.btn_primary}`}>View All</button>
           </div>
         )}
@@ -70,25 +146,65 @@ const BlogsCard = () => {
 
       {isBlogPage && <FilterSelector />}
 
-      <div className={styles.Blogs_card_container}>
-        {filteredBlogs.map((blog) => (
-          <div key={blog.id} className={styles.Blogs_card}>
-            <div className={styles.card_head}>
-              <img src={blog.image} alt={blog.title} />
-              <div className={styles.card_tag}>
-                <span>{blog.country}</span>
-                <span>{format(new Date(blog.date), "MMM dd, yyyy")}</span>
+      {!isCountryDetailsPage && (
+        <div className={styles.Blogs_card_container}>
+          {blogs.map((blog) => (
+            <div
+              key={blog.id}
+              className={`${styles.Blogs_card} ${
+                isHomePage && styles.homePage
+              }`}
+            >
+              <div className={styles.card_head}>
+                <img src={blog.image} alt={blog.title} />
+                <div className={styles.card_tag}>
+                  <span>{blog.country}</span>
+                  <span>{format(new Date(blog.date), "MMM dd, yyyy")}</span>
+                </div>
+                <h3>{blog.title}</h3>
+                <p>{blog.description}</p>
+                <button>
+                  Read Full Post
+                  <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                </button>
               </div>
-              <h3>{blog.title}</h3>
-              <p>{blog.description}</p>
-              <button>
-                Read Full Post
-                <i className="fa fa-arrow-up" aria-hidden="true"></i>
-              </button>
             </div>
+          ))}
+        </div>
+      )}
+
+      {/* SLICK SLIDER */}
+      {isCountryDetailsPage && (
+        <div className={styles.sliderContainer}>
+          <Slider
+            className={styles.Blogs_card_container}
+            {...settings}
+            ref={sliderRef}
+          >
+            {blogs.map((blog) => (
+              <div key={blog.id} className={styles.Blogs_card}>
+                <div className={styles.card_head}>
+                  <img src={blog.image} alt={blog.title} />
+                  <div className={styles.card_tag}>
+                    <span>{blog.country}</span>
+                    <span>{format(new Date(blog.date), "MMM dd, yyyy")}</span>
+                  </div>
+                  <h3>{blog.title}</h3>
+                  <p>{blog.description}</p>
+                  <button>
+                    Read Full Post
+                    <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </Slider>
+          <div className={styles.sliderButtons}>
+            <PrevArrow onClick={goToPrev} />
+            <NextArrow onClick={goToNext} />
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

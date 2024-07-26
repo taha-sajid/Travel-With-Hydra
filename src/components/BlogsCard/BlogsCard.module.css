@@ -4,6 +4,7 @@
   flex-direction: column;
   padding: 0vw 9.323vw;
   margin-top: 14.271vw;
+  position: relative;
 }
 
 .Blogs_section_heading {
@@ -11,7 +12,9 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.BlogsHeading {
+  width: 80%;
+}
 .Blogs_section_heading button:hover {
   background-color: var(--color-primary);
   color: white;
@@ -22,6 +25,7 @@
   font-size: 2.5vw;
   font-weight: 700;
   color: var(--color-primary);
+  margin-bottom: 1.042vw;
 }
 
 .Blogs_section_heading p {
@@ -40,6 +44,7 @@
   cursor: pointer;
   font-size: 1.25vw;
   font-weight: 600;
+  line-height: 1.524vw;
 }
 
 .blogs_filter {
@@ -61,11 +66,14 @@
 .Blogs_card_container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3.75vw;
+  transition: transform 0.5s ease;
 }
 
 .Blogs_card {
+  flex: 0 0 calc(50% - 1.875vw);
   background-color: white;
-  overflow: hidden;
   width: 100%;
   max-width: 38.75vw;
 }
@@ -76,7 +84,10 @@
   border-radius: 1.667vw;
   margin-bottom: 1.458vw;
 }
-
+.card_head p {
+  font-size: 1.25vw;
+  font-weight: 500;
+}
 .card_tag {
   display: flex;
   justify-content: space-between;
@@ -103,19 +114,31 @@
   color: #999;
 }
 .Blogs_card p {
-  font-family: "Poppins";
+  font-family: "Urbanist";
   font-size: 1.25vw;
-  font-weight: 400;
-  line-height: 1.875vw;
+  font-weight: 500;
+  line-height: 1.458vw;
 }
 .Blogs_card h3 {
+  font-family: "Urbanist";
   font-size: 1.875vw;
-  font-weight: 600;
+  font-weight: 700;
   color: black;
   margin-bottom: 1.042vw;
   line-height: 2.813vw;
 }
 
+.Blogs_card.homePage p,
+.Blogs_card.homePage h3 {
+  font-family: "Poppins";
+}
+.Blogs_card.homePage h3 {
+  font-weight: 500;
+}
+.Blogs_card.homePage p {
+  font-weight: 400;
+  line-height: 1.875vw;
+}
 .Blogs_card button {
   font-family: "Urbanist";
   font-weight: 500;
@@ -134,18 +157,31 @@
 .marginBottom {
   margin-bottom: 4.668vw;
 }
+
+.sliderButtons {
+  display: flex;
+  gap: 1.667vw;
+  position: absolute;
+  top: 1vw;
+  right: 9.323vw;
+}
+
+.sliderContainer {
+  margin-top: 4.688vw;
+}
 @media (max-width: 768px) {
   .Blogs_section_heading {
+    gap: 1rem;
     margin-bottom: 1.5rem;
+  }
+  .Blogs_section_heading .blogsButton button {
+    width: max-content;
   }
   .Blogs_section_heading h1 {
     font-size: 1rem;
   }
   .Blogs_section_heading p {
     font-size: 0.6rem;
-  }
-  .Blogs_section_heading div:first-child {
-    max-width: 70%;
   }
 
   .Blogs_section_heading button {
@@ -178,12 +214,20 @@
     font-size: 0.7rem;
   }
 
-  .Blogs_card h3 {
+  .Blogs_card h3,
+  .Blogs_card.homePage h3 {
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
   }
   .Blogs_card p {
     font-size: 0.7rem;
+    line-height: 0.9rem;
+  }
+  .Blogs_card.homePage p {
+    font-size: 0.7rem;
+    line-height: 1rem;
+  }
+  .Blogs_card.homePage p {
     line-height: 1rem;
   }
   .Blogs_card button {
@@ -191,5 +235,11 @@
   }
   .Blogs_card button i {
     font-size: 0.7rem;
+  }
+  .btn_primary {
+    padding: 0.5rem 1rem;
+  }
+  .sliderButtons {
+    gap: 1.3rem;
   }
 }

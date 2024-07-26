@@ -4,7 +4,7 @@
 }
 .customer_stories_container h1 {
   font-family: "Poppins";
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-primary);
   font-size: 2.5vw;
   text-align: center;
@@ -15,7 +15,7 @@
 }
 .customer_stories_container p {
   font-family: "Poppins";
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.25vw;
   line-height: 1.875vw;
   text-align: center;
@@ -133,6 +133,19 @@
 .navigationButtons button img {
   height: 3.188vw;
 }
+.slides {
+  position: relative;
+}
+
+.videoButtonIcon {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  z-index: 9999;
+  cursor: pointer;
+  width: 7.4vw;
+}
 
 @media (max-width: 768px) {
   .customer_stories_container {
@@ -170,5 +183,8 @@
   }
   .navigationButtons button img {
     height: 1.2rem;
+  }
+  .videoButtonIcon {
+    width: 2.5rem;
   }
 }

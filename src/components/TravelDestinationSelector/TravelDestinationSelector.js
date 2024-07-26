@@ -7,55 +7,55 @@ const destinations = [
   {
     country: "Portugal",
     date: "20.5.24",
-    price: "850$/Person",
+    price: "850",
     visaType: "traditional",
   },
   {
     country: "Spain",
     date: "21.5.24",
-    price: "900$/Person",
+    price: "900",
     visaType: "free_visa",
   },
   {
     country: "France",
     date: "22.5.24",
-    price: "950$/Person",
+    price: "950",
     visaType: "traditional",
   },
   {
     country: "Portugal",
     date: "20.5.24",
-    price: "850$/Person",
+    price: "850",
     visaType: "traditional",
   },
   {
     country: "Spain",
     date: "21.5.24",
-    price: "900$/Person",
+    price: "900",
     visaType: "e_visa",
   },
   {
     country: "France",
     date: "22.5.24",
-    price: "950$/Person",
+    price: "950",
     visaType: "free_visa",
   },
   {
     country: "Portugal",
     date: "20.5.24",
-    price: "850$/Person",
+    price: "850",
     visaType: "traditional",
   },
   {
     country: "Canada",
     date: "21.5.24",
-    price: "900$/Person",
+    price: "900",
     visaType: "e_visa",
   },
   {
     country: "Switzerland",
     date: "21.5.24",
-    price: "900$/Person",
+    price: "900",
     visaType: "e_visa",
   },
 ];
@@ -153,7 +153,9 @@ const TravelDestinationSelector = () => {
                   <p>{destination.date}</p>
                 </div>
                 <div className={`${style.card_price}`}>
-                  <h4>{destination.price}</h4>
+                  <h4>
+                    {destination.price}$<span>/Person</span>
+                  </h4>
                   <button className="btn-primary">Apply Now</button>
                 </div>
               </div>

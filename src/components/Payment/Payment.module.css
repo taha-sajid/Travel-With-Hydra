@@ -19,7 +19,7 @@
   font-size: 1.25vw;
   line-height: 1.771vw;
   color: #42a7c3;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .accordion {
@@ -60,7 +60,7 @@
 }
 .accordionItemHeaderTitle {
   font-size: 0.938vw;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .accordionItemHeaderIcon {
@@ -100,7 +100,7 @@
 }
 .accordionItemDescription .formGroup label {
   font-size: 0.833vw;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0.417vw;
 }
 .accordionItemDescription p {

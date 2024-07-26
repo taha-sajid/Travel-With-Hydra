@@ -4,6 +4,7 @@ import styles from "./FilterSelector.module.css";
 const Filter = () => {
   return (
     <div className={styles.dropdown}>
+      {/* Filter by: */}
       <input
         type="checkbox"
         className={styles.dropdownSwitch}
@@ -19,21 +20,24 @@ const Filter = () => {
             <ul className={styles.dropdownSelect}>
               <li
                 className={`${styles.dropdownSelectOption} ${styles.active}`}
-                role="option"
+                role="United Kingdom"
               >
-                Option 1
+                United Kingdom
               </li>
-              <li className={styles.dropdownSelectOption} role="option">
-                Option 2
+              <li className={styles.dropdownSelectOption} role="Portugal">
+                Portugal
               </li>
-              <li className={styles.dropdownSelectOption} role="option">
-                Option 3
+              <li className={styles.dropdownSelectOption} role="Denmark">
+                Denmark
               </li>
-              <li className={styles.dropdownSelectOption} role="option">
-                Option 4
+              <li className={styles.dropdownSelectOption} role="Morocco">
+                Morocco
               </li>
-              <li className={styles.dropdownSelectOption} role="option">
-                Option 5
+              <li className={styles.dropdownSelectOption} role="Australia">
+                Australia
+              </li>
+              <li className={styles.dropdownSelectOption} role="Scotland">
+                Scotland
               </li>
             </ul>
           </li>

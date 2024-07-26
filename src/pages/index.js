@@ -6,7 +6,7 @@ import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 import Header from "../components/Header/header";
 import BlogsCard from "@/components/BlogsCard/BlogsCard";
 import Footer from "@/components/Footer/Footer";
-import ApplicationForm from "@/components/ApplicationForm/ApplicationForm";
+import styles from "./homepage.module.css";
 
 const Page = () => {
   return (
@@ -16,7 +16,9 @@ const Page = () => {
       <TravelDestinationSelector />
       <WhyChooseUs />
       <CustomerStories />
-      <BlogsCard />
+      <div className={styles.BlogsCardContainer}>
+        <BlogsCard />
+      </div>
       <Footer />
     </div>
   );
