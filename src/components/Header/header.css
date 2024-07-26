@@ -1,22 +1,7 @@
-@keyframes change-img-anim {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.6;
-  }
-  90% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 /* General styles for larger screens */
 .header-container {
   background: linear-gradient(to bottom, #e2f6fc, #fff);
   overflow-x: hidden;
-  /* min-height: 100vh; */
 }
 .hero-section-other-header-container {
   height: 36.458vw;
@@ -241,6 +226,11 @@
   transform: rotate(180deg);
 }
 
+.btn-primary span {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
 /* Hamburger for mobile */
 
 .hamburger {
@@ -284,6 +274,23 @@
 .auth_btn a {
   display: flex;
 }
+
+/* ANIMATION */
+@keyframes change-img-anim {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* Media queries for mobile screens */
 @media screen and (max-width: 768px) {
   .header-container {
@@ -299,7 +306,6 @@
   }
 
   .avatar-button {
-    /* position: absolute; */
     top: 2rem;
   }
   .navbar-links {
@@ -338,7 +344,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    /* background-color: cadetblue; */
     position: absolute;
     top: 1.9rem;
     right: 1.5rem;
@@ -346,7 +351,6 @@
     z-index: 9999;
   }
   .hamburger span {
-    /* display: block; */
     border: 1.5px solid #42a7c3;
     width: 2.3rem;
     height: 0rem;
@@ -452,8 +456,8 @@
     padding: 0.5rem 0.8rem;
     border-radius: 0.3rem;
   }
-  .btn-primary a {
-    gap: 0.4rem;
+  .btn-primary span {
+    gap: 0.5rem;
   }
   .btn-primary .icon {
     font-size: 0.9rem;

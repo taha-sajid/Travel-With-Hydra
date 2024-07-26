@@ -29,15 +29,6 @@ const Dashboard = () => {
     },
   ]);
 
-  const handleView = (id) => {
-    // Logic for viewing an application
-    alert(`Viewing application ${id}`);
-  };
-
-  const handleEdit = (id) => {
-    // Logic for editing an application
-    alert(`Editing application ${id}`);
-  };
 
   return (
     <div className={styles.dashboardContainer}>

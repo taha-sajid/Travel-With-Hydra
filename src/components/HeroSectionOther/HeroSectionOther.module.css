@@ -16,10 +16,3 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.1);
 }
-
-.header-container .hero_section_container {
-  /* background-color: cadetblue; */
-}
-
-@media screen and (max-width: 768px) {
-}

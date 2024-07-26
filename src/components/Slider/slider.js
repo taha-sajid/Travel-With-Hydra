@@ -83,7 +83,7 @@ const slider = () => {
         >
           <CarouselContent
             ref={carouselContentRef}
-            className={`${style.carousel_content} animate-accordion-down sm: -ml-2 md:-ml-4`}
+            className={`${style.carousel_content} sm: -ml-2 md:-ml-4`}
           >
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem

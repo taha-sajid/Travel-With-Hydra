@@ -139,7 +139,6 @@
   .why_choose_us {
     flex-direction: column-reverse;
     justify-content: center;
-    /* align-items: center; */
   }
   .left_container {
     width: 100%;

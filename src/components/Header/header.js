@@ -72,6 +72,10 @@ const Header = () => {
     }
   };
 
+  const handleLogin = () => {
+    router.push("/login");
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -99,7 +103,9 @@ const Header = () => {
 
   return (
     <div
-      className={`${headerClass1} ${headerClass2} ${isBlogDetailsPage && "header-without-border"}`}
+      className={`${headerClass1} ${headerClass2} ${
+        isBlogDetailsPage && "header-without-border"
+      }`}
       style={isHomePage ? { overflowX: "hidden" } : { overflowX: "unset" }}
     >
       <nav
@@ -189,13 +195,10 @@ const Header = () => {
             )}
           </div>
         </div>
-        <button className="btn-primary auth_btn">
-          <Link href="/login">
-            {/* <img src="/assets/user-avatar.png" /> */}
-            <FaUser className="icon" />
-
-            <span> Login/Sign up</span>
-          </Link>
+        <button className="btn-primary auth_btn" onClick={handleLogin}>
+          <span>
+            <FaUser className="icon" /> <p> Login/Sign up</p>
+          </span>
         </button>
       </nav>
       <div

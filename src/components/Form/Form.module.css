@@ -3,7 +3,6 @@
 }
 
 .leftContainer {
-  background-color: cadetblue;
   width: 100%;
   max-width: 50vw;
 }
@@ -191,7 +190,6 @@
     margin-bottom: 0.8rem;
   }
   .loginInputWrapper {
-    /* height: 1.8rem; */
     margin-bottom: 0.5rem;
   }
   .loginInput {

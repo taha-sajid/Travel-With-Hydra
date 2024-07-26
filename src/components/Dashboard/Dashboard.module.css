@@ -115,9 +115,7 @@
   vertical-align: middle;
 }
 .table tr td:nth-child(5) button:first-child {
-  /* margin-right: 2.604vw;  */
   font-size: 1.25vw;
-
   color: #42a7c3;
 }
 .table tr td:nth-child(5) button:last-child img {

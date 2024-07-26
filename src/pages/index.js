@@ -8,6 +8,11 @@ import BlogsCard from "@/components/BlogsCard/BlogsCard";
 import Footer from "@/components/Footer/Footer";
 import styles from "./homepage.module.css";
 
+const blogsCardData = {
+  heading: "Blogs",
+  shortDescription: "Explore our latest blogs from our active users",
+};
+
 const Page = () => {
   return (
     <div className="">
@@ -17,7 +22,7 @@ const Page = () => {
       <WhyChooseUs />
       <CustomerStories />
       <div className={styles.BlogsCardContainer}>
-        <BlogsCard />
+        <BlogsCard cardData={blogsCardData} />
       </div>
       <Footer />
     </div>

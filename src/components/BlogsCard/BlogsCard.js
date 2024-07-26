@@ -70,7 +70,8 @@ const blogsData = [
   },
 ];
 
-const BlogsCard = () => {
+const BlogsCard = ({ cardData }) => {
+  const { heading, shortDescription } = cardData;
   // COMPONENTS STATE
   const [blogs, setBlogs] = useState(blogsData);
   const sliderRef = useRef(null);
@@ -130,12 +131,8 @@ const BlogsCard = () => {
         }`}
       >
         <div className={isHomePage && styles.BlogsHeading}>
-          <h1>Blogs</h1>
-          <p>
-            Embark on unforgettable journeys with our travel blogs! Dive into
-            expert tips, hidden gems, and inspiring stories that will fuel your
-            wanderlust and guide your next adventure.
-          </p>
+          <h1>{heading}</h1>
+          <p>{shortDescription}</p>
         </div>
         {isHomePage && (
           <div className={styles.blogsButton}>

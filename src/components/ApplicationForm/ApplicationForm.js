@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import styles from "./ApplicationForm.module.css";
 import { IoIosCloseCircle } from "react-icons/io";
 import Link from "next/link";
-import { BiCloudUpload, BiCloudDownload } from "react-icons/bi";
 
 const ApplicationForm = () => {
-  // Step state
+  // Handle form current step
   const [currentStep, setCurrentStep] = useState(1);
 
   // Function to handle next button click
@@ -33,6 +32,8 @@ const ApplicationForm = () => {
           >
             Visa Application Form
           </h1>
+
+          {/* View Progress Bar */}
           {currentStep !== 4 && (
             <div className={styles.progressBarContainer}>
               <div className={styles.progressBar}>
@@ -67,8 +68,7 @@ const ApplicationForm = () => {
           {currentStep === 1 && <textarea placeholder="Answer..."></textarea>}
           {currentStep === 2 && <textarea placeholder="Answer..."></textarea>}
 
-          {/* {currentStep === 1 ||
-            currentStep === 2()} */}
+          {/* View Upload Section */}
           {currentStep === 3 && (
             <label className={styles.uploadContainer} htmlFor="personImage">
               <img src="/assets/uploadIcon.png" className={styles.icon} />
@@ -82,6 +82,8 @@ const ApplicationForm = () => {
               />
             </label>
           )}
+
+          {/* View in last step of form  */}
           {currentStep === 4 && (
             <>
               <img src="/assets/done.gif" className={styles.doneIcon} />
@@ -95,6 +97,7 @@ const ApplicationForm = () => {
               </div>
             </>
           )}
+
           <div
             className={`${styles.btnContainer} ${
               currentStep === 4 ? styles.btnContainerDone : ""
@@ -103,6 +106,7 @@ const ApplicationForm = () => {
             <button onClick={handlePreviousClick}>Previous</button>
             <button onClick={handleNextClick}>Next</button>
           </div>
+          
           <Link href={"/"}>
             <div className={`${styles.exitBtnContainer}`}>
               <span className={styles.icon}>

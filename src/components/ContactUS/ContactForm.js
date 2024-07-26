@@ -1,4 +1,3 @@
-// components/ContactForm.js
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -24,7 +23,6 @@ const ContactForm = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      // Handle form submission
     },
   });
 

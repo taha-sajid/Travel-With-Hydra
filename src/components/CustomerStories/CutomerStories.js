@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./CustomerStories.module.css";
-import { GoChevronRight, GoChevronLeft } from "react-icons/go";
-import VideoButton from "../VideoButton/VideoButton";
 
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -88,7 +86,6 @@ const Slider = () => {
               />
             </div>
           ))}
-          {/* <VideoButton className={styles.video_play_button} /> */}
           <img
             src="/assets/videoButton.png"
             className={styles.videoButtonIcon}

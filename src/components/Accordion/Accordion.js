@@ -33,7 +33,7 @@ const Accordion = () => {
         header.removeEventListener("click", toggleOpen(item));
       });
     };
-  }, [data]); // Run this effect when data changes
+  }, [data]); 
 
   return (
     <main className={styles.accordionContainer}>

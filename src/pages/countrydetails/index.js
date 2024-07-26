@@ -4,6 +4,11 @@ import Header from "@/components/Header/header";
 import styles from "./countrydetails.module.css";
 import Footer from "@/components/Footer/Footer";
 import BlogsCard from "@/components/BlogsCard/BlogsCard";
+
+const blogsCardData = {
+  heading: "Related Blogs",
+  shortDescription: "Explore our latest blogs from our active users",
+};
 const index = () => {
   return (
     <div>
@@ -12,7 +17,7 @@ const index = () => {
         <CountryDetails />
       </div>
       <div className={styles.blogsCardContainer}>
-        <BlogsCard />
+        <BlogsCard cardData={blogsCardData} />
       </div>
       <Footer />
     </div>

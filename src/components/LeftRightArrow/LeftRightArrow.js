@@ -1,4 +1,3 @@
-// components/CustomArrows.js
 import React from "react";
 import styles from "./LeftRightArrow.module.css";
 import {
