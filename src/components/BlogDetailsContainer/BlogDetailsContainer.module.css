@@ -10,6 +10,7 @@
 
 .blogImage img {
   width: 100%;
+  max-height: 33.49vw;
 }
 .blogBody {
   margin-top: 3.49vw;
@@ -96,8 +97,8 @@
     margin-top: 1rem;
     margin-bottom: 0.5rem;
   }
-  .bottomLine{
-    margin-top: 1rem ;
+  .bottomLine {
+    margin-top: 1rem;
     margin-bottom: 2rem;
   }
 }
