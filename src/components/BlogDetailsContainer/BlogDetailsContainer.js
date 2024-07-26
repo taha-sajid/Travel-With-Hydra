@@ -5,7 +5,7 @@ const BlogDetailsContainer = () => {
   return (
     <div className={styles.blogDetailsContainer}>
       <div className={styles.blogImage}>
-        <img src="/assets/blogsCard.png" />
+        <img src="https://i.ibb.co/QNPm2wW/blogscard.png" />
       </div>
       <div className={styles.blogBody}>
         <div className={styles.blogHeading}>
