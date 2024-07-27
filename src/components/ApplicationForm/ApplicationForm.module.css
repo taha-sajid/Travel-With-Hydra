@@ -1,10 +1,11 @@
 .applicationFormContainer {
-  padding: 3.542vw 10.573vw;
+  padding: 1.542vw 10.573vw;
   padding-bottom: 8.906vw;
   background-image: url("/assets/visaFormImage.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 .visaApplicationFormContainer {
   background-image: url("/assets/glassCard.png");

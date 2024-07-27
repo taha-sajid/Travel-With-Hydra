@@ -12,6 +12,7 @@ import { PrevArrow, NextArrow } from "../LeftRightArrow/LeftRightArrow";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Link from "next/link";
 
 const blogsData = [
   {
@@ -160,10 +161,12 @@ const BlogsCard = ({ cardData }) => {
                 </div>
                 <h3>{blog.title}</h3>
                 <p>{blog.description}</p>
-                <button>
-                  Read Full Post
-                  <i className="fa fa-arrow-up" aria-hidden="true"></i>
-                </button>
+                <Link href={"/blogs/abc"}>
+                  <button>
+                        Read Full Post
+                        <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -188,10 +191,12 @@ const BlogsCard = ({ cardData }) => {
                   </div>
                   <h3>{blog.title}</h3>
                   <p>{blog.description}</p>
-                  <button>
-                    Read Full Post
-                    <i className="fa fa-arrow-up" aria-hidden="true"></i>
-                  </button>
+                  <Link href={"/blogs/abc"}>
+                    <button>
+                      Read Full Post
+                      <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}

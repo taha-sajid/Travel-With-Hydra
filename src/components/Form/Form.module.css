@@ -1,5 +1,6 @@
 .formContainer {
   display: flex;
+  height: 100vh;
 }
 
 .leftContainer {
