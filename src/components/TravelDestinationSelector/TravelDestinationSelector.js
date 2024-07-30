@@ -73,7 +73,7 @@ const TravelDestinationSelector = () => {
         const top = containerRef.current.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
 
-        if (top < windowHeight * 0.75) {
+        if (top < windowHeight * 0.85) {
           setAnimate(true);
         }
       }

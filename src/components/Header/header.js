@@ -73,30 +73,33 @@ const Header = () => {
           isActive ? "active" : ""
         } navbar-container animated-navbar`}
       >
-        <div className="navbar-logo">
-          <Link href={"/"}>
-            <img src="/assets/logo.png" />
-          </Link>
+        <div className="logo-and-links-wrapper">
+          <div className="navbar-logo">
+            <Link href={"/"}>
+              <img src="/assets/logo.png" />
+            </Link>
+          </div>
+          <div className="navbar-links">
+            <ul>
+              <li>
+                <Link href={"/blogs"}> BLOGS</Link>
+              </li>
+              <li>
+                <Link href={"/faqs"}> FAQs</Link>
+              </li>
+              <li>
+                <Link href={"/contactus"}> CONTACT US</Link>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="navbar-links">
-          <ul>
-            <li>
-              <Link href={"/blogs"}> BLOGS</Link>
-            </li>
-            <li>
-              <Link href={"/faqs"}> FAQs</Link>
-            </li>
-            <li>
-              <Link href={"/contactus"}> CONTACT US</Link>
-            </li>
-          </ul>
-        </div>
-        <CountrySelector />
+        {/* <div className="signInButtonContainer"> */}
         <button className="btn-primary auth_btn" onClick={handleLogin}>
           <span>
             <FaUser className="icon" /> <p> Login/Sign up</p>
           </span>
         </button>
+        {/* </div> */}
       </nav>
       <div
         className={`hamburger animated-navbar ${isActive ? "active" : ""}`}

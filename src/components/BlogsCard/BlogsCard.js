@@ -142,7 +142,11 @@ const BlogsCard = ({ cardData }) => {
         )}
       </div>
 
-      {isBlogPage && <FilterSelector />}
+      {isBlogPage && (
+        <div className={styles.filterSelector}>
+          <p>Filter By:</p> <FilterSelector />
+        </div>
+      )}
 
       {!isCountryDetailsPage && (
         <div className={styles.Blogs_card_container}>
@@ -163,8 +167,8 @@ const BlogsCard = ({ cardData }) => {
                 <p>{blog.description}</p>
                 <Link href={"/blogs/abc"}>
                   <button>
-                        Read Full Post
-                        <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                    Read Full Post
+                    <i className="fa fa-arrow-up" aria-hidden="true"></i>
                   </button>
                 </Link>
               </div>

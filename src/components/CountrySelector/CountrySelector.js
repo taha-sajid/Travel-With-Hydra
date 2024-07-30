@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+// import "./styles.css"; // Import your CSS file here
 
 const countries = [
   { name: "United Kingdom", flag: "/assets/flags/uk.png" },
@@ -16,10 +16,12 @@ const CountrySelector = () => {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
-
   const [isActive, setIsActive] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(false);
+
   const countrySelectorRef = useRef(null);
   const dropdownRef = useRef(null);
+  const observerRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -64,8 +66,35 @@ const CountrySelector = () => {
     }
   }, [isActive]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsAnimated(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className={`navbar-avatar ${isActive ? "active" : ""}`}>
+    <div
+      ref={observerRef}
+      className={`navbar-avatar ${isActive ? "active" : ""} ${
+        isAnimated ? "animated-avatar" : ""
+      }`}
+    >
       <div ref={dropdownRef} className="my-avatar">
         <button onClick={toggleDropdown} className="avatar-button">
           <img src="/assets/avatar.png" alt="Avatar" className="avatar" />

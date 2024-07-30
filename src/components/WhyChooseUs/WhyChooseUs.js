@@ -39,28 +39,28 @@ const WhyChooseUs = () => {
         <div className={`${style.card_container}`}>
           <div className={`${style.card}`}>
             <div className={`${style.card_image}`}>
-              <img src="./assets/flight.png" />
+              <img src="./assets/getintouch.png" />
             </div>
             <div className={`${style.card_text}`}>
-              <h3>Flight Ticket</h3>
+              <h3>Get in Touch</h3>
               <p>Vitae donec pellentesque a aliquam et ultricies auctor. </p>
             </div>
           </div>
           <div className={`${style.card}`}>
             <div className={`${style.card_image}`}>
-              <img src="./assets/hotel.png" />
+              <img src="./assets/getvisa.png" />
             </div>
             <div className={`${style.card_text}`}>
-              <h3>Accomodation</h3>
+              <h3>Get Your Visa</h3>
               <p>Vitae donec pellentesque a aliquam et ultricies auctor. </p>
             </div>
           </div>
           <div className={`${style.card}`}>
             <div className={`${style.card_image}`}>
-              <img src="./assets/bagpack.png" />
+              <img src="./assets/flyaway.png" />
             </div>
             <div className={`${style.card_text}`}>
-              <h3>Packaged Tour</h3>
+              <h3>Fly Away</h3>
               <p>Vitae donec pellentesque a aliquam et ultricies auctor. </p>
             </div>
           </div>

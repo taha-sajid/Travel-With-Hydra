@@ -2,7 +2,6 @@
   max-width: 8.385vw;
   display: flex;
   align-self: flex-end;
-  margin-bottom: 2.604vw;
 }
 .dropdownSwitch:checked + .dropdownOptionsFilter .dropdownSelect {
   transform: scaleY(1);
@@ -87,7 +86,6 @@
   .dropdown {
     max-width: 4.5rem;
     width: 100%;
-    margin-bottom: 1rem;
   }
   .dropdownSelect {
     width: 5rem;

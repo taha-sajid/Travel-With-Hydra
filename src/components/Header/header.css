@@ -9,6 +9,7 @@
 .navbar-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0.833vw 0vw;
   padding-left: 4.479vw;
   padding-right: 3.125vw;
@@ -48,21 +49,30 @@
 .navbar-avatar {
   flex: 1;
   display: flex;
-  margin-right: 1.615vw;
   font-size: 1.25vw;
   align-items: center;
   justify-content: flex-end;
 }
 
 .avatar {
-  width: 2.292vw;
-  height: 2.292vw;
+  /* width: 2.292vw; */
+  /* height: 2.292vw; */
+
+  width: 3.292vw;
+  height: 3.292vw;
+
   border-radius: 100%;
   cursor: pointer;
   box-shadow: 2px 2px 5px 0px #00000033;
   border: 0.104vw solid white;
+  /* background-color: cadetblue; */
 }
-
+.animated-avatar .my-avatar .avatar-button .avatar {
+  background-color: cadetblue;
+  transform: scale(0.7);
+  margin-right: 1rem;
+  transition: all 3s ease-in-out;
+}
 .hero-section-container {
   display: flex;
   justify-content: space-between;
@@ -291,6 +301,15 @@
   }
 }
 
+/* .signInButtonContainer { */
+/* display: flex; */
+/* justify-content: flex-end; */
+/* } */
+
+.logo-and-links-wrapper {
+  display: flex;
+  align-items: center;
+}
 /* Media queries for mobile screens */
 @media screen and (max-width: 768px) {
   .header-container {
@@ -366,10 +385,14 @@
   }
   .navbar-avatar {
     width: 2rem;
-    margin-right: 0;
+    margin-right: 0.8rem;
+  }
+  .navbar-avatar.animated-avatar {
+    margin-right: 2rem;
+    transition: all 3s ease-in-out;
   }
   .my-avatar {
-    right: 3rem;
+    right: 0rem;
   }
   .avatar {
     width: 2rem;

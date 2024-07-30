@@ -22,7 +22,6 @@ const Form = ({ formTitle, formSubtitle, fields, options }) => {
         <img src="/assets/formPageImage.png" alt="Form Page" />
       </div>
       <div className={styles.rightContainer}>
-        <img src="/assets/logo.png" className={styles.formLogo} />
         <div className={styles.login}>
           <h2 className={styles.loginTitle}>{formTitle}</h2>
           <p className={styles.loginSubtitle}>{formSubtitle}</p>

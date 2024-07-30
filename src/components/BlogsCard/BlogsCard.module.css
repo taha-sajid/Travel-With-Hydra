@@ -54,6 +54,14 @@
 .blogs_filter label {
   font-size: 1.042vw;
 }
+.filterSelector {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 2.604vw;
+  font-size: 1.042vw;
+  gap: 1.042vw;
+}
 .blogs_filter select {
   border: 1px solid rgba(0, 0, 0, 0.5);
   font-size: 0.833vw;
@@ -187,7 +195,10 @@
     font-size: 0.7rem;
     border-radius: 100rem;
   }
-
+  .filterSelector {
+    font-size: 0.5rem;
+    gap: 0.5rem;
+  }
   .Blogs_card_container {
     flex-direction: column;
   }

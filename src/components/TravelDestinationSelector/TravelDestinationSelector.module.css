@@ -26,7 +26,7 @@
   position: absolute;
   top: 46%;
   transform: translateY(-50%);
-  right: -3.375vw;
+  right: -3.5vw;
 }
 
 .countrySelectorContainer input {
@@ -113,7 +113,6 @@
   border-radius: 1.563vw;
   width: 18.594vw;
   width: 100%;
-  margin-bottom: 2.5vw;
   transition: 0.8s all ease-in-out;
 }
 .card_image {
@@ -216,11 +215,13 @@
     max-width: 17rem;
   }
   .countrySelectorContainer {
-    max-width: none;
+    max-width: 20rem;
   }
   .countrySelector {
     right: 0rem;
+    /* margin-right: -1.5rem; */
   }
+
   .travel_Destination_selector_container input {
     max-width: 14rem;
     font-size: 0.8rem;
