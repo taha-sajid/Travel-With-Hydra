@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import style from "./TravelDestinationSelector.module.css";
 import Link from "next/link";
+import CountrySelector from "../CountrySelector/CountrySelector";
 
 const destinations = [
   {
@@ -61,7 +62,7 @@ const destinations = [
 ];
 
 const TravelDestinationSelector = () => {
-  const [activeFilter, setActiveFilter] = useState("traditional");
+  const [activeFilter, setActiveFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [animate, setAnimate] = useState(false);
   const containerRef = useRef(null);
@@ -91,6 +92,11 @@ const TravelDestinationSelector = () => {
     setSearchQuery(e.target.value);
   };
   const filteredDestinations = destinations.filter((destination) => {
+    if (activeFilter === "all") {
+      return destination.country
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+    }
     return (
       destination.country.toLowerCase().includes(searchQuery.toLowerCase()) &&
       destination.visaType === activeFilter
@@ -104,15 +110,26 @@ const TravelDestinationSelector = () => {
       }`}
     >
       <h1>Choose your Next Travel Destination</h1>
-
-      <input
-        type="text"
-        placeholder="Search Country"
-        value={searchQuery}
-        onChange={handleSearchChange}
-      />
-
+      <div className={style.countrySelectorContainer}>
+        <input
+          type="text"
+          placeholder="Search Country"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        <div className={style.countrySelector}>
+          <CountrySelector />
+        </div>
+      </div>
       <div className={`${style.filter_container}`}>
+        <div className={`${style.visa_category}`}>
+          <button
+            className={activeFilter === "all" ? style.active : ""}
+            onClick={() => handleFilterClick("all")}
+          >
+            All
+          </button>
+        </div>
         <div className={`${style.visa_category}`}>
           <button
             className={activeFilter === "traditional" ? style.active : ""}

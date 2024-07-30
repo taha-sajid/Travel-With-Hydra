@@ -1,4 +1,5 @@
 import Form from "@/components/Form/Form";
+import Header from "@/components/Header/header";
 import React from "react";
 
 const index = () => {
@@ -66,6 +67,7 @@ const index = () => {
   };
   return (
     <div>
+      <Header />
       <Form {...formData} />
     </div>
   );

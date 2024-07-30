@@ -369,7 +369,7 @@
     margin-right: 0;
   }
   .my-avatar {
-    right: 4rem;
+    right: 3rem;
   }
   .avatar {
     width: 2rem;
@@ -398,8 +398,10 @@
     margin: 0 1rem;
     flex-direction: column;
   }
+
   .hero-section-heading {
     max-width: none;
+    padding-top: 0;
   }
   .hero-section-heading h1 {
     font-size: 3rem;
@@ -421,7 +423,7 @@
   .dropdown-menu {
     top: 2rem;
     width: 10rem;
-    right: -4rem;
+    right: -1rem;
     padding: 0.8rem 0.8rem;
     border-radius: 0.7rem;
   }
