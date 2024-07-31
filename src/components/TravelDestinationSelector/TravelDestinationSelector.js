@@ -117,8 +117,10 @@ const TravelDestinationSelector = () => {
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <div className={style.countrySelector}>
-          <CountrySelector />
+        <div className={style.countrySelectorSection}>
+          <div className={style.countrySelector}>
+            <CountrySelector />
+          </div>
         </div>
       </div>
       <div className={`${style.filter_container}`}>

@@ -18,10 +18,11 @@
   max-width: 36.146vw;
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
 }
-
+.countrySelectorSection {
+  position: relative;
+  z-index: 9;
+}
 .countrySelector {
   position: absolute;
   top: 49.5%;
@@ -50,7 +51,6 @@
   opacity: 1;
   transform: translateY(0);
   transition: opacity 1.5s ease-in-out, transform 3s ease-in-out;
-  z-index: -2;
 }
 
 .travel_Destination_selector_container.start-animation input {
@@ -175,11 +175,16 @@
   font-family: "Poppins";
   font-weight: 400;
   margin: 0 auto;
+  margin-top: 2.5vw;
+  transition: all .3s ease-in-out;
+
 }
 
 .cards_section_container > button:hover {
   background-color: var(--color-primary);
   color: white;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
 }
 
 .card:hover {

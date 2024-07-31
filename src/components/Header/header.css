@@ -116,6 +116,7 @@
   background: none;
   border: none;
   cursor: pointer;
+  margin-top: 1px;
 }
 
 .my-avatar {
@@ -135,9 +136,9 @@
   background: white;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 1.042vw;
-  z-index: 2000;
   width: 19.844vw;
   padding: 1.042vw 0.781vw;
+  z-index: 999;
 }
 
 .dropdown-menu h3 {
@@ -385,10 +386,10 @@
   }
   .navbar-avatar {
     width: 2rem;
-    margin-right: 0.8rem;
+    margin-right:-2rem;
   }
   .navbar-avatar.animated-avatar {
-    margin-right: 2rem;
+    margin-right: -1.5rem;
     transition: all 3s ease-in-out;
   }
   .my-avatar {
