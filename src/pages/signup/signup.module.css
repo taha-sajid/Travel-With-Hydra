@@ -7,8 +7,7 @@
   .form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    /* display: none; */
+    padding-top: 2rem;
     background-color: #f5fdff;
     flex: 1;
   }
