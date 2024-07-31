@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-
 import style from "./WhyChooseUs.module.css";
 const WhyChooseUs = () => {
   const sectionRef = useRef(null);
