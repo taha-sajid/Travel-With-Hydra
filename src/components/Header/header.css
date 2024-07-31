@@ -386,7 +386,7 @@
   }
   .navbar-avatar {
     width: 2rem;
-    margin-right:-2rem;
+    margin-right: -2rem;
   }
   .navbar-avatar.animated-avatar {
     margin-right: -1.5rem;

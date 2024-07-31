@@ -20,6 +20,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* min-height: 100vh; */
+
 }
 /* Form */
 .login {
@@ -173,8 +175,11 @@
     display: none;
   }
   .rightContainer {
+    justify-content: flex-start;
     padding: 2rem 1.5rem;
     max-width: none;
+    flex: 1;
+    height: 100%;
   }
   .formLogo {
     width: 5rem;
