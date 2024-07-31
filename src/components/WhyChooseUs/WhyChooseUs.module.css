@@ -63,8 +63,8 @@
 .card_image img {
   width: 100%;
 }
-.card_container .card:first-child .card_image {
-  box-shadow: 0 16px 24px 0 rgba(96, 97, 112, 0.12);
+.card_container .card .card_image {
+  box-shadow: 0 0.833vw 1.25vw 0 rgba(96, 97, 112, 0.12);
 }
 .card_text h3 {
   font-family: "Lato";
@@ -163,7 +163,7 @@
     line-height: 1.05rem;
   }
   .card {
-    border-radius: .4rem;
+    border-radius: 0.4rem;
   }
   .card_image {
     max-width: none;
