@@ -21,7 +21,6 @@
   align-items: center;
   justify-content: center;
   /* min-height: 100vh; */
-
 }
 /* Form */
 .login {
@@ -148,6 +147,10 @@
   text-transform: uppercase;
   transition: background-color 0.3s;
   margin-top: 2.083vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vw;
 }
 
 .loginSignUp {
@@ -163,6 +166,11 @@
   margin-left: 0.4vw;
   color: #42a7c3;
   text-decoration: none;
+}
+
+.error {
+  font-size: 0.75vw;
+  color: #e64d28;
 }
 
 @media screen and (max-width: 768px) {

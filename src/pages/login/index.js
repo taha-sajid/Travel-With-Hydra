@@ -5,6 +5,7 @@ import styles from "./login.module.css";
 
 const index = () => {
   const formData = {
+    formType: "login",
     formTitle: "Login",
     formSubtitle: "Welcome back! Log in to your account.",
     fields: [
@@ -16,6 +17,7 @@ const index = () => {
         required: true,
         icon: "FiMail",
       },
+    
       {
         id: "password",
         type: "password",
@@ -41,7 +43,7 @@ const index = () => {
       <div>
         <Header />
       </div>
-      <div className={styles.form} >
+      <div className={styles.form}>
         <Form {...formData} />
       </div>
     </div>

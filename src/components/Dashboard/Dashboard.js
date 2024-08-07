@@ -6,6 +6,7 @@ import { FaPhone } from "react-icons/fa6";
 import { GrMapLocation } from "react-icons/gr";
 import { TfiWorld } from "react-icons/tfi";
 import { MdRemoveRedEye } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const [applications, setApplications] = useState([
@@ -28,36 +29,43 @@ const Dashboard = () => {
       status: "Approved",
     },
   ]);
+  const authState = useSelector((state) => state.auth);
 
-
+  const {
+    username,
+    citizenship_country,
+    email,
+    mobile_number,
+    resident_country,
+  } = authState.user;
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.sidebar}>
         <div className={styles.userInfo}>
-          <h3>Jesse Hensley</h3>
+          <h3>{username}</h3>
           <p>
             <span>
               <IoMdMail />
             </span>
-            info@example.com
+            {email}
           </p>
           <p>
             <span className={styles.phoneIcon}>
               <FaPhone />
             </span>
-            +16 111 111 111
+            {mobile_number}
           </p>
           <p>
             <span>
               <TfiWorld />
             </span>
-            United States
+            {citizenship_country}
           </p>
           <p>
             <span>
               <GrMapLocation />
             </span>
-            United Kingdom
+            {resident_country}
           </p>
         </div>
       </div>

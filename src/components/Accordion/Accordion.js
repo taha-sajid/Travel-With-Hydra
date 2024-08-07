@@ -33,7 +33,7 @@ const Accordion = () => {
         header.removeEventListener("click", toggleOpen(item));
       });
     };
-  }, [data]); 
+  }, [data]);
 
   return (
     <main className={styles.accordionContainer}>

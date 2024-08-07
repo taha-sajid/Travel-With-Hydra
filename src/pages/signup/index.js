@@ -5,17 +5,19 @@ import styles from "./signup.module.css";
 
 const index = () => {
   const formData = {
+    formType: "signup",
     formTitle: "Sign Up",
     formSubtitle: "Welcome back! Log in to your account.",
     fields: [
       {
-        id: "fullName",
+        id: "full_name",
         type: "text",
         label: "Full name",
         placeholder: "full name",
         required: true,
         icon: "FiMail",
       },
+
       {
         id: "email",
         type: "email",
@@ -25,23 +27,24 @@ const index = () => {
         icon: "FiMail",
       },
       {
-        id: "mobileNumber",
-        type: "number",
+        id: "mobile_number",
+        type: "text",
         label: "Mobile Number",
         placeholder: "+16 1111 111 111",
         required: true,
         icon: "LuPhone",
       },
       {
-        id: "password",
+        id: "password1",
         type: "password",
         label: "Password",
         placeholder: "Password",
         required: true,
         icon: "LuEyeOff",
       },
+
       {
-        id: "Citizenship",
+        id: "citizenship_country",
         type: "text",
         label: "Citizenship",
         placeholder: "Citizenship",
@@ -49,7 +52,7 @@ const index = () => {
         icon: "TfiWorld",
       },
       {
-        id: "Residency",
+        id: "resident_country",
         type: "text",
         label: "Country of Residency",
         placeholder: "Residency",
