@@ -25,7 +25,6 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
 
-
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
 

@@ -37,7 +37,7 @@ const Dashboard = () => {
     email,
     mobile_number,
     resident_country,
-  } = authState.user;
+  } = authState.user || {};
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.sidebar}>

@@ -7,13 +7,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import HeroSectionHome from "../HeroSectionHome/HeroSectionHome";
 import HeroSectionOther from "../HeroSectionOther/HeroSectionOther";
-
+import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
-import CountrySelector from "../CountrySelector/CountrySelector";
+import { getHeaderData, getFooterData, getHeroData } from "@/api/cms.js";
+import { logout } from "@/store/slices/authSlice";
 
-const Header = () => {
+const Header = ({ bannerImage }) => {
   const [isActive, setIsActive] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const isHomePage = router.pathname === "/";
   const isBlogDetailsPage = router.pathname.startsWith("/blogs/");
@@ -29,13 +30,60 @@ const Header = () => {
   const isFAQsPage = router.pathname === "/faqs";
   const isContactUsPage = router.pathname === "/contactus";
 
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
+
+  const isLoggedIn =
+    authState.status === "succeeded" && authState.user !== null;
+
   const handleToggle = () => {
     setIsActive(!isActive);
   };
 
-  const handleLogin = () => {
-    router.push("/login");
+  const handleAuthClick = async () => {
+    if (isLoggedIn) {
+      setLoading(true);
+      dispatch(logout());
+      await router.push("/");
+      setLoading(false);
+    } else {
+      setLoading(true);
+      await router.push("/login");
+      setLoading(false);
+    }
   };
+
+  const fetchHeader = async () => {
+    try {
+      const response = await getHeaderData();
+      console.log("Header data:", response.data);
+      // setData(response.data);
+    } catch (error) {
+      console.error("Error fetching header data:", error);
+    }
+  };
+  fetchHeader();
+
+  const fetchFooter = async () => {
+    try {
+      const response = await getFooterData();
+      console.log("Footer data:", response.data);
+    } catch (error) {
+      console.error("Error fetching footer data:", error);
+    }
+  };
+  fetchFooter();
+
+  const fetchHeroData = async () => {
+    try {
+      const response = await getHeroData();
+      console.log("Hero data:", response.data);
+    } catch (error) {
+      console.error("Error fetching Hero data:", error);
+    }
+  };
+
+  fetchHeroData();
 
   useEffect(() => {
     if (isActive) {
@@ -94,9 +142,16 @@ const Header = () => {
           </div>
         </div>
         {/* <div className="signInButtonContainer"> */}
-        <button className="btn-primary auth_btn" onClick={handleLogin}>
+        <button className="btn-primary auth_btn" onClick={handleAuthClick}>
           <span>
-            <FaUser className="icon" /> <p> Login/Sign up</p>
+            <FaUser className="icon" />
+            {loading ? (
+              <p>Loading...</p>
+            ) : isLoggedIn ? (
+              <p> Logout</p>
+            ) : (
+              <p> Login/Sign up</p>
+            )}
           </span>
         </button>
         {/* </div> */}
@@ -109,7 +164,11 @@ const Header = () => {
         <span className="middle"></span>
         <span className="bottom"></span>
       </div>
-      {isHomePage ? <HeroSectionHome /> : <HeroSectionOther />}
+      {isHomePage ? (
+        <HeroSectionHome />
+      ) : (
+        <HeroSectionOther bannerImage={bannerImage} />
+      )}
     </div>
   );
 };

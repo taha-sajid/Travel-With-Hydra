@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Accordion.module.css";
 
-const Accordion = () => {
+const Accordion = ({ faqs }) => {
   const [data, setData] = useState([]);
 
-  // Fetch data from the API
   useEffect(() => {
-    fetch("/api/data")
-      .then((response) => response.json())
-      .then((data) => setData(data));
-  }, []);
+    if (faqs && faqs.length > 0) {
+      setData(faqs[0]?.faqs || []);
+    }
+  }, [faqs]);
 
   // Setup accordion item toggle functionality
   useEffect(() => {
@@ -42,7 +41,7 @@ const Accordion = () => {
           <div key={item.id} className={styles.accordionItem}>
             <div className={styles.accordionItemHeader}>
               <span className={styles.accordionItemHeaderTitle}>
-                {item.title}
+                {item.question}
               </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +60,7 @@ const Accordion = () => {
             </div>
             <div className={styles.accordionItemDescriptionWrapper}>
               <div className={styles.accordionItemDescription}>
-                <p>{item.description}</p>
+                <p>{item.answer}</p>
               </div>
             </div>
           </div>

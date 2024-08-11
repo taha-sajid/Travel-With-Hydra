@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./HeroSectionOther.module.css";
-const HeroSectionOther = () => {
+import { API_BASE_URL } from "@/api/config";
+
+const HeroSectionOther = ({ bannerImage }) => {
   const router = useRouter();
   const isBlogDetailsPage = router.pathname.startsWith("/blogs/");
   const isDashboard = router.pathname === "/dashboard";
@@ -11,8 +13,13 @@ const HeroSectionOther = () => {
   const isForgotPassword = router.pathname === "/forgotpassword";
   const isResetPassword = router.pathname === "/newpassword";
 
-  console.log(isDashboard);
+  const [heroImage, setHeroImage] = useState("");
 
+  useEffect(() => {
+    setHeroImage(API_BASE_URL + bannerImage);
+  }, [bannerImage]);
+
+  console.log("bannerImage", bannerImage);
   return (
     <>
       {!isBlogDetailsPage &&
@@ -24,7 +31,8 @@ const HeroSectionOther = () => {
         !isResetPassword && (
           <div className={styles.header_section}>
             <div className={styles.hero_section_container}>
-              <img src="/assets/BlogHeroImage.png" />
+              {/* <img src="/assets/BlogHeroImage.png" alt="Banner Image" /> */}
+              <img src={heroImage} alt="Banner Image" />
               <div className={styles.overlay}></div>
             </div>
           </div>

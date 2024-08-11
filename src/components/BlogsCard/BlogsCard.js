@@ -1,6 +1,6 @@
 // REACT HOOKS IMPORT
 import React, { useState, useRef, useEffect } from "react";
-import { format } from "date-fns";
+import { format, isValid } from "date-fns";
 import { useRouter } from "next/router";
 
 // COMPONENTS IMPORT
@@ -13,6 +13,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Link from "next/link";
+import { getBlogsData } from "@/api/cms";
+import { API_BASE_URL } from "@/api/config";
 
 const blogsData = [
   {
@@ -73,8 +75,10 @@ const blogsData = [
 
 const BlogsCard = ({ cardData }) => {
   const { heading, shortDescription } = cardData;
+  // const [blogsData, setBlogsData] = useState([]);
+
   // COMPONENTS STATE
-  const [blogs, setBlogs] = useState(blogsData);
+  const [blogs, setBlogs] = useState([]);
   const sliderRef = useRef(null);
 
   // CHECKING ROUTES
@@ -113,17 +117,29 @@ const BlogsCard = ({ cardData }) => {
     require("slick-carousel/slick/slick.min.js");
   }, []);
 
+  // useEffect(() => {}, [router.pathname]);
+
+  // API CALL
   useEffect(() => {
-    if (isHomePage) {
-      setBlogs(blogsData.slice(0, 2));
-    } else {
-      setBlogs(blogsData);
-    }
+    const fetchBlogs = async () => {
+      try {
+        const response = await getBlogsData();
+        console.log("Blogs data:", response.data);
+        if (isHomePage) {
+          setBlogs(response.data.slice(0, 2));
+        } else {
+          setBlogs(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching Blogs data:", error);
+      }
+    };
+    fetchBlogs();
   }, [router.pathname]);
 
   return (
     <div
-      className={`${styles.Blogs_section_container} blogs-container `}
+      className={`${styles.Blogs_section_container} blogs-container`}
       style={!isHomePage ? { marginTop: 0 } : {}}
     >
       <div
@@ -158,10 +174,14 @@ const BlogsCard = ({ cardData }) => {
               }`}
             >
               <div className={styles.card_head}>
-                <img src={blog.image} alt={blog.title} />
+                <img src={API_BASE_URL + blog.image} alt={blog.title} />
                 <div className={styles.card_tag}>
                   <span>{blog.country}</span>
-                  <span>{format(new Date(blog.date), "MMM dd, yyyy")}</span>
+                  <span>
+                    {/* {isValid(new Date(blog.date))
+                      ? format(new Date(blog.date), "MMM dd, yyyy")
+                      : "Date not available"} */}
+                  </span>
                 </div>
                 <h3>{blog.title}</h3>
                 <p>{blog.description}</p>
@@ -188,10 +208,14 @@ const BlogsCard = ({ cardData }) => {
             {blogs.map((blog) => (
               <div key={blog.id} className={styles.Blogs_card}>
                 <div className={styles.card_head}>
-                  <img src={blog.image} alt={blog.title} />
+                  <img src={API_BASE_URL + blog.image} alt={blog.title} />
                   <div className={styles.card_tag}>
                     <span>{blog.country}</span>
-                    <span>{format(new Date(blog.date), "MMM dd, yyyy")}</span>
+                    <span>
+                      {/* {isValid(new Date(blog.date))
+                        ? format(new Date(blog.date), "MMM dd, yyyy")
+                        : "Date not available"} */}
+                    </span>
                   </div>
                   <h3>{blog.title}</h3>
                   <p>{blog.description}</p>

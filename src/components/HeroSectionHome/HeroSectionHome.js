@@ -1,39 +1,62 @@
+import { getHeroData } from "@/api/cms";
+import { API_BASE_URL } from "@/api/config";
 import React, { useEffect, useState } from "react";
 
-const images = [
-  "/assets/illus1.png",
-  "/assets/illus2.png",
-  "/assets/illus3.png",
-  "/assets/illus4.png",
-];
-
 const HeroSectionHome = () => {
+  const [heroSectionData, setHeroSectionData] = useState({});
+  const [heroBannerImages, setHeroBannerImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // API CALL
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
+    const fetchHeroImages = async () => {
+      try {
+        const response = await getHeroData();
+        console.log("Hero data:", response.data);
+        setHeroSectionData(response.data);
 
-    return () => clearInterval(interval);
+        const images = Object.keys(response.data)
+          .filter(
+            (key) =>
+              key.startsWith("hero_banner_image") && response.data[key] !== null
+          )
+          .map((key) => response.data[key]);
+
+        setHeroBannerImages(images);
+      } catch (error) {
+        console.error("Error fetching Hero data:", error);
+      }
+    };
+    fetchHeroImages();
   }, []);
+
+  useEffect(() => {
+    if (heroBannerImages.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex(
+          (prevIndex) => (prevIndex + 1) % heroBannerImages.length
+        );
+      }, 4000);
+
+      return () => clearInterval(interval);
+    }
+  }, [heroBannerImages]);
+
   return (
     <>
       <div className="hero-section-container">
         <div className="hero-section-heading animated-hero-left">
-          <h1>Discover the world</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Id mi erat faucibus ac est
-            metus tristique. Semper sapien metus elit diam in id. Pretium congue
-            ridiculus bibendum magna pellentesque
-          </p>
+          <h1>{heroSectionData.hero_title}</h1>
+          <p>{heroSectionData.hero_description}</p>
         </div>
         <div className="hero-section-image animated-hero-right">
-          <img
-            src={images[currentImageIndex]}
-            alt="Hero"
-            className="hero-image"
-          />
+          {heroBannerImages.length > 0 && (
+            <img
+              src={API_BASE_URL + heroBannerImages[currentImageIndex]}
+              alt="Hero"
+              className="hero-image"
+            />
+          )}
         </div>
       </div>
     </>
