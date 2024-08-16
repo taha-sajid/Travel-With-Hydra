@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Link from "next/link";
 import { getBlogsData } from "@/api/cms";
-import { API_BASE_URL } from "@/api/config";
+import { API_BASE_URL, IMAGE_BASE_URL } from "@/api/config";
 
 const blogsData = [
   {
@@ -174,7 +174,7 @@ const BlogsCard = ({ cardData }) => {
               }`}
             >
               <div className={styles.card_head}>
-                <img src={API_BASE_URL + blog.image} alt={blog.title} />
+                <img src={IMAGE_BASE_URL + blog.image} alt={blog.title} />
                 <div className={styles.card_tag}>
                   <span>{blog.country}</span>
                   <span>
@@ -208,7 +208,7 @@ const BlogsCard = ({ cardData }) => {
             {blogs.map((blog) => (
               <div key={blog.id} className={styles.Blogs_card}>
                 <div className={styles.card_head}>
-                  <img src={API_BASE_URL + blog.image} alt={blog.title} />
+                  <img src={IMAGE_BASE_URL + blog.image} alt={blog.title} />
                   <div className={styles.card_tag}>
                     <span>{blog.country}</span>
                     <span>

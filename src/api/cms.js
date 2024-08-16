@@ -13,7 +13,7 @@ export const getCategoriesData = () => {
 };
 
 export const contactUsAPI = () => {
-  return httpService.get("/cms/contact");
+  return httpService.post("/cms/contact");
 };
 
 export const getCustomerStoriesData = () => {

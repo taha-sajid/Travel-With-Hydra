@@ -27,7 +27,7 @@ const Index = () => {
   useEffect(() => {
     fetchFAQs();
   }, [bannerImage]);
-  
+
   console.log("bannerImage", bannerImage);
   return (
     <div>
@@ -35,7 +35,7 @@ const Index = () => {
       <Header bannerImage={bannerImage} />
       <div className={styles.faqsContainer}>
         <h1>FAQs</h1>
-        <Accordion faqs={faqs} />
+        <Accordion faqs={faqs[0]?.faqs || []} />
       </div>
       <Footer />
     </div>

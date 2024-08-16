@@ -1,71 +1,117 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import style from "./TravelDestinationSelector.module.css";
-import Link from "next/link";
 import CountrySelector from "../CountrySelector/CountrySelector";
-
-const destinations = [
-  {
-    country: "Portugal",
-    date: "20.5.24",
-    price: "850",
-    visaType: "traditional",
-  },
-  {
-    country: "Spain",
-    date: "21.5.24",
-    price: "900",
-    visaType: "free_visa",
-  },
-  {
-    country: "France",
-    date: "22.5.24",
-    price: "950",
-    visaType: "traditional",
-  },
-  {
-    country: "Portugal",
-    date: "20.5.24",
-    price: "850",
-    visaType: "traditional",
-  },
-  {
-    country: "Spain",
-    date: "21.5.24",
-    price: "900",
-    visaType: "e_visa",
-  },
-  {
-    country: "France",
-    date: "22.5.24",
-    price: "950",
-    visaType: "free_visa",
-  },
-  {
-    country: "Portugal",
-    date: "20.5.24",
-    price: "850",
-    visaType: "traditional",
-  },
-  {
-    country: "Canada",
-    date: "21.5.24",
-    price: "900",
-    visaType: "e_visa",
-  },
-  {
-    country: "Switzerland",
-    date: "21.5.24",
-    price: "900",
-    visaType: "e_visa",
-  },
-];
+import {
+  getResidentData,
+  getCitizenshipData,
+  getCountryData,
+} from "@/api/visa";
+import CountryCard from "../CountryCard/CountryCard";
 
 const TravelDestinationSelector = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [animate, setAnimate] = useState(false);
   const containerRef = useRef(null);
+  const [selectedResident, setSelectedResident] = useState("");
+  const [selectedCitizenship, setSelectedCitizenship] = useState("");
+
+  const [mergedVisaData, setMergedVisaData] = useState({
+    traditional_visas: [],
+    evisas: [],
+    visa_free: [],
+  });
+ 
+
+  const fetchResidentCountry = async (country) => {
+    try {
+      setMergedVisaData({
+        traditional_visas: [],
+        evisas: [],
+        visa_free: [],
+      });
+      const response = await getResidentData(country);
+      console.log("Resident data:", response.data);
+      mergeVisaData(response.data, "resident");
+    } catch (error) {
+      console.error("Error fetching Resident data:", error);
+    }
+  };
+
+  const fetchCitizenshipCountry = async (country) => {
+    try {
+      setMergedVisaData({
+        traditional_visas: [],
+        evisas: [],
+        visa_free: [],
+      });
+      const response = await getCitizenshipData(country);
+      console.log("Citizenship data:", response.data);
+      mergeVisaData(response.data, "citizenship");
+    } catch (error) {
+      console.error("Error fetching citizenship data:", error);
+    }
+  };
+
+  const mergeVisaData = (data, source) => {
+    setMergedVisaData((prevData) => {
+      const traditionalCountries = new Set(
+        prevData.traditional_visas.map((visa) => visa.destination_country)
+      );
+      const evisaCountries = new Set(
+        prevData.evisas.map((visa) => visa.destination_country)
+      );
+      const visaFreeCountries = new Set(
+        prevData.visa_free.map((visa) => visa.destination_country)
+      );
+
+      const mergedTraditionalVisas = [
+        ...prevData.traditional_visas,
+        ...data.traditional_visas.filter(
+          (visa) => !traditionalCountries.has(visa.destination_country)
+        ),
+      ];
+
+      const mergedEVisas = [
+        ...prevData.evisas,
+        ...data.evisas.filter(
+          (visa) => !evisaCountries.has(visa.destination_country)
+        ),
+      ];
+
+      const mergedVisaFree = [
+        ...prevData.visa_free,
+        ...data.visa_free.filter(
+          (visa) => !visaFreeCountries.has(visa.destination_country)
+        ),
+      ];
+
+      return {
+        traditional_visas: mergedTraditionalVisas,
+        evisas: mergedEVisas,
+        visa_free: mergedVisaFree,
+      };
+    });
+  };
+
+  useEffect(() => {
+    if (selectedResident) {
+      fetchResidentCountry(selectedResident.name);
+    }
+    if (selectedCitizenship) {
+      fetchCitizenshipCountry(selectedCitizenship.name);
+    }
+  }, [selectedResident, selectedCitizenship]);
+
+  const handleResidentSelect = (Resident) => {
+    setSelectedResident(Resident);
+  };
+
+  const handleCitizenshipSelect = (Citizenship) => {
+    console.log("successfully updated", Citizenship);
+    setSelectedCitizenship(Citizenship);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,17 +137,31 @@ const TravelDestinationSelector = () => {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-  const filteredDestinations = destinations.filter((destination) => {
+
+  const filteredDestinations = (() => {
     if (activeFilter === "all") {
-      return destination.country
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
+      return [
+        ...mergedVisaData.traditional_visas,
+        ...mergedVisaData.evisas,
+        ...mergedVisaData.visa_free,
+      ].filter((destination) =>
+        destination.destination_country
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase())
+      );
     }
-    return (
-      destination.country.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      destination.visaType === activeFilter
+
+    return mergedVisaData[`${activeFilter}`].filter((destination) =>
+      destination.destination_country
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
     );
-  });
+  })();
+
+  useEffect(() => {
+    console.log("Filtered Destinations Updated:", filteredDestinations);
+  }, [filteredDestinations]);
+
   return (
     <div
       ref={containerRef}
@@ -119,7 +179,14 @@ const TravelDestinationSelector = () => {
         />
         <div className={style.countrySelectorSection}>
           <div className={style.countrySelector}>
-            <CountrySelector />
+            <CountrySelector
+              onCitizenshipSelect={handleCitizenshipSelect}
+              heading={"Citizenship"}
+            />
+            <CountrySelector
+              onResidentSelect={handleResidentSelect}
+              heading={"Resident"}
+            />
           </div>
         </div>
       </div>
@@ -134,55 +201,30 @@ const TravelDestinationSelector = () => {
         </div>
         <div className={`${style.visa_category}`}>
           <button
-            className={activeFilter === "traditional" ? style.active : ""}
-            onClick={() => handleFilterClick("traditional")}
+            className={activeFilter === "traditional_visas" ? style.active : ""}
+            onClick={() => handleFilterClick("traditional_visas")}
           >
             Traditional Visa
           </button>
         </div>
         <div className={`${style.visa_category}`}>
           <button
-            className={activeFilter === "e_visa" ? style.active : ""}
-            onClick={() => handleFilterClick("e_visa")}
+            className={activeFilter === "evisas" ? style.active : ""}
+            onClick={() => handleFilterClick("evisas")}
           >
             E-Visa
           </button>
         </div>
         <div className={`${style.visa_category}`}>
           <button
-            className={activeFilter === "free_visa" ? style.active : ""}
-            onClick={() => handleFilterClick("free_visa")}
+            className={activeFilter === "visa_free" ? style.active : ""}
+            onClick={() => handleFilterClick("visa_free")}
           >
             Visa Free
           </button>
         </div>
       </div>
-
-      <div className={`${style.cards_section_container}`}>
-        <div className={`${style.cards_container}`}>
-          {filteredDestinations.map((destination, index) => (
-            <Link href={"/countrydetails"}>
-              <div key={index} className={style.card}>
-                <h3>{destination.country}</h3>
-                <div className={`${style.card_image}`}>
-                  <img src="./assets/card.png" alt={destination.country} />
-                </div>
-                <div className={`${style.card_date}`}>
-                  <p>Get On</p>
-                  <p>{destination.date}</p>
-                </div>
-                <div className={`${style.card_price}`}>
-                  <h4>
-                    {destination.price}$<span>/Person</span>
-                  </h4>
-                  <button className="btn-primary">Apply Now</button>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <button className="btn-primary">See More</button>
-      </div>
+      <CountryCard destinations={filteredDestinations} />
     </div>
   );
 };

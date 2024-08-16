@@ -1,5 +1,5 @@
 import { getHeroData } from "@/api/cms";
-import { API_BASE_URL } from "@/api/config";
+import { IMAGE_BASE_URL } from "@/api/config";
 import React, { useEffect, useState } from "react";
 
 const HeroSectionHome = () => {
@@ -52,7 +52,7 @@ const HeroSectionHome = () => {
         <div className="hero-section-image animated-hero-right">
           {heroBannerImages.length > 0 && (
             <img
-              src={API_BASE_URL + heroBannerImages[currentImageIndex]}
+              src={IMAGE_BASE_URL + heroBannerImages[currentImageIndex]}
               alt="Hero"
               className="hero-image"
             />

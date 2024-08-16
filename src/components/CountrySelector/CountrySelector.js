@@ -12,8 +12,13 @@ const countries = [
   { name: "China", flag: "/assets/flags/cn.png" },
 ];
 
-const CountrySelector = () => {
+const CountrySelector = ({
+  onCitizenshipSelect,
+  onResidentSelect,
+  heading,
+}) => {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [confirmedCountry, setConfirmedCountry] = useState(countries[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -33,8 +38,7 @@ const CountrySelector = () => {
     setIsCountrySelectorOpen(!isCountrySelectorOpen);
   };
 
-  const handleSelectCountry = (country, event) => {
-    event.stopPropagation();
+  const handleSelectCountry = (country) => {
     setSelectedCountry(country);
     setIsCountrySelectorOpen(false);
   };
@@ -88,6 +92,22 @@ const CountrySelector = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (onCitizenshipSelect) onCitizenshipSelect(confirmedCountry);
+    if (onResidentSelect) onResidentSelect(confirmedCountry);
+  }, [confirmedCountry, onCitizenshipSelect, onResidentSelect]);
+
+  const handleConfirm = () => {
+    setConfirmedCountry(selectedCountry);
+    setIsDropdownOpen(false);
+
+    if (heading === "Citizenship" && onCitizenshipSelect) {
+      onCitizenshipSelect(selectedCountry); // Ensure this is called with the selectedCountry
+    } else if (heading === "Resident" && onResidentSelect) {
+      onResidentSelect(selectedCountry); // Ensure this is called with the selectedCountry
+    }
+  };
+
   return (
     <div
       ref={observerRef}
@@ -97,12 +117,12 @@ const CountrySelector = () => {
     >
       <div ref={dropdownRef} className="my-avatar">
         <button onClick={toggleDropdown} className="avatar-button">
-          <img src="/assets/avatar.png" alt="Avatar" className="avatar" />
+          <img src={confirmedCountry.flag} alt="Avatar" className="avatar" />
         </button>
         {isDropdownOpen && (
           <div className="dropdown-menu">
             <div className="dropdown-heading">
-              <h3>Confirm Citizenship</h3>
+              <h3>Confirm {heading}</h3>
               <p>
                 This determines your visa requirements, and where you can travel
                 visa-free.
@@ -145,7 +165,9 @@ const CountrySelector = () => {
                 </div>
               )}
             </div>
-            <button className="btn-primary">Confirm</button>
+            <button className="btn-primary" onClick={handleConfirm}>
+              Confirm
+            </button>
           </div>
         )}
       </div>

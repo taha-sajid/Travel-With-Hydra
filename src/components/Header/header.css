@@ -78,6 +78,7 @@
   justify-content: space-between;
   padding-right: 2.698vw;
   z-index: 0;
+  min-height: 100vh;
 }
 
 .hero-section-heading {
@@ -91,6 +92,7 @@
   color: #42a7c3;
   line-height: 8.333vw;
   font-family: "Prototype";
+  text-transform: uppercase;
 }
 
 .hero-section-heading p {
@@ -389,7 +391,7 @@
     margin-right: -2rem;
   }
   .navbar-avatar.animated-avatar {
-    margin-right: -1.5rem;
+    /* margin-right: -1.5rem; */
     transition: all 3s ease-in-out;
   }
   .my-avatar {
@@ -447,7 +449,7 @@
   .dropdown-menu {
     top: 2rem;
     width: 10rem;
-    right: -1rem;
+    right: 0rem;
     padding: 0.8rem 0.8rem;
     border-radius: 0.7rem;
   }

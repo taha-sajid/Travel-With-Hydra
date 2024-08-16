@@ -2,29 +2,52 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./ContactForm.module.css";
+import { contactUs } from "@/store/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       phone: "",
       message: "",
     },
     validationSchema: Yup.object({
-      firstName: Yup.string().required("This field is required"),
-      lastName: Yup.string().required("This field is required"),
+      first_name: Yup.string().required("This field is required"),
+      last_name: Yup.string().required("This field is required"),
       email: Yup.string()
         .email("Invalid email address")
         .required("This field is required"),
       phone: Yup.string().required("This field is required"),
       message: Yup.string().required("This field is required"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        console.log("Form values:", values);
+        await dispatch(contactUs(values)).unwrap();
+      } catch (error) {
+        if (error.response && error.response.data) {
+          console.error("Backend error:", error.response.data);
+          extractErrorMessages(error.response.data);
+        } else {
+          console.error("An error occurred:", error);
+        }
+      }
     },
   });
+
+  const extractErrorMessages = (errors) => {
+    const messages = [];
+    Object.keys(errors).forEach((key) => {
+      messages.push(errors[key]);
+    });
+    console.error("Extracted error messages:", messages);
+    // Here, you might want to set these messages to state to display them in the UI
+  };
 
   return (
     <div className={styles.contactFormContainer}>
@@ -36,11 +59,11 @@ const ContactForm = () => {
         </p>
         <span>
           <p>
-            <img src="/assets/phone.png" />
+            <img src="/assets/phone.png" alt="Phone" />
             +1611 111 1111
           </p>
           <p>
-            <img src="/assets/mail.png" />
+            <img src="/assets/mail.png" alt="Mail" />
             info@flyhydra.com
           </p>
         </span>
@@ -50,27 +73,27 @@ const ContactForm = () => {
           <div className={styles.inputGroup}>
             <input
               type="text"
-              name="firstName"
+              name="first_name"
               placeholder="First Name*"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.firstName}
+              value={formik.values.first_name}
             />
-            {formik.touched.firstName && formik.errors.firstName ? (
-              <div className={styles.error}>{formik.errors.firstName}</div>
+            {formik.touched.first_name && formik.errors.first_name ? (
+              <div className={styles.error}>{formik.errors.first_name}</div>
             ) : null}
           </div>
           <div className={styles.inputGroup}>
             <input
               type="text"
-              name="lastName"
+              name="last_name"
               placeholder="Last Name*"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.lastName}
+              value={formik.values.last_name}
             />
-            {formik.touched.lastName && formik.errors.lastName ? (
-              <div className={styles.error}>{formik.errors.lastName}</div>
+            {formik.touched.last_name && formik.errors.last_name ? (
+              <div className={styles.error}>{formik.errors.last_name}</div>
             ) : null}
           </div>
         </span>

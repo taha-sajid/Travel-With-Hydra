@@ -1,45 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Accordion.module.css";
 
 const Accordion = ({ faqs }) => {
-  const [data, setData] = useState([]);
+  const [openIndex, setOpenIndex] = useState(null);
 
-  useEffect(() => {
-    if (faqs && faqs.length > 0) {
-      setData(faqs[0]?.faqs || []);
-    }
-  }, [faqs]);
-
-  // Setup accordion item toggle functionality
-  useEffect(() => {
-    const accordionItems = document.querySelectorAll(
-      `.${styles.accordionItem}`
-    );
-
-    const toggleOpen = (item) => () => {
-      item.classList.toggle(styles.open);
-    };
-
-    accordionItems.forEach((item) => {
-      const header = item.querySelector(`.${styles.accordionItemHeader}`);
-      header.addEventListener("click", toggleOpen(item));
-    });
-
-    // Cleanup event listeners on component unmount
-    return () => {
-      accordionItems.forEach((item) => {
-        const header = item.querySelector(`.${styles.accordionItemHeader}`);
-        header.removeEventListener("click", toggleOpen(item));
-      });
-    };
-  }, [data]);
-
+  const toggleOpen = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
   return (
     <main className={styles.accordionContainer}>
       <div className={styles.accordion}>
-        {data.map((item) => (
-          <div key={item.id} className={styles.accordionItem}>
-            <div className={styles.accordionItemHeader}>
+        {faqs.map((item, index) => (
+          <div
+            key={item.id}
+            className={`${styles.accordionItem} ${
+              openIndex === index ? styles.open : ""
+            }`}
+          >
+            <div
+              className={styles.accordionItemHeader}
+              onClick={() => toggleOpen(index)}
+            >
               <span className={styles.accordionItemHeaderTitle}>
                 {item.question}
               </span>
@@ -58,7 +39,11 @@ const Accordion = ({ faqs }) => {
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </div>
-            <div className={styles.accordionItemDescriptionWrapper}>
+            <div
+              className={`${styles.accordionItemDescriptionWrapper} ${
+                openIndex === index ? styles.open : ""
+              }`}
+            >
               <div className={styles.accordionItemDescription}>
                 <p>{item.answer}</p>
               </div>

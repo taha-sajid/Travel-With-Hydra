@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./header.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,12 +9,16 @@ import HeroSectionHome from "../HeroSectionHome/HeroSectionHome";
 import HeroSectionOther from "../HeroSectionOther/HeroSectionOther";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
-import { getHeaderData, getFooterData, getHeroData } from "@/api/cms.js";
+import { getHeaderData } from "@/api/cms.js";
 import { logout } from "@/store/slices/authSlice";
+import { IMAGE_BASE_URL } from "@/api/config";
 
 const Header = ({ bannerImage }) => {
   const [isActive, setIsActive] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [menuLinks, setMenuLinks] = useState([]);
+  const [headerLogo, setHeaderLogo] = useState("");
+
   const router = useRouter();
   const isHomePage = router.pathname === "/";
   const isBlogDetailsPage = router.pathname.startsWith("/blogs/");
@@ -25,7 +29,7 @@ const Header = ({ bannerImage }) => {
   const isNewPassword = router.pathname === "/newpassword";
   const isForgotPassword = router.pathname === "/forgotpassword";
 
-  const isCountryDetailsPage = router.pathname === "/countrydetails";
+  const isCountryDetailsPage = router.pathname === "/country/[countryName]";
   const isBlogPage = router.pathname === "/blogs";
   const isFAQsPage = router.pathname === "/faqs";
   const isContactUsPage = router.pathname === "/contactus";
@@ -56,34 +60,26 @@ const Header = ({ bannerImage }) => {
   const fetchHeader = async () => {
     try {
       const response = await getHeaderData();
-      console.log("Header data:", response.data);
-      // setData(response.data);
+      const data = response.data;
+      const links = [];
+      for (let i = 1; i <= 5; i++) {
+        const item = data[`menu_item_${i}`];
+        const link = data[`menu_item_${i}_link`];
+        if (item && link) {
+          links.push({ label: item, url: link });
+        }
+      }
+      setHeaderLogo(response.data.logo);
+      setMenuLinks(links);
+      console.log("Header Data", response.data);
     } catch (error) {
       console.error("Error fetching header data:", error);
     }
   };
-  fetchHeader();
 
-  const fetchFooter = async () => {
-    try {
-      const response = await getFooterData();
-      console.log("Footer data:", response.data);
-    } catch (error) {
-      console.error("Error fetching footer data:", error);
-    }
-  };
-  fetchFooter();
-
-  const fetchHeroData = async () => {
-    try {
-      const response = await getHeroData();
-      console.log("Hero data:", response.data);
-    } catch (error) {
-      console.error("Error fetching Hero data:", error);
-    }
-  };
-
-  fetchHeroData();
+  useEffect(() => {
+    fetchHeader();
+  }, []);
 
   useEffect(() => {
     if (isActive) {
@@ -124,20 +120,16 @@ const Header = ({ bannerImage }) => {
         <div className="logo-and-links-wrapper">
           <div className="navbar-logo">
             <Link href={"/"}>
-              <img src="/assets/logo.png" />
+              <img src={IMAGE_BASE_URL + headerLogo} />
             </Link>
           </div>
           <div className="navbar-links">
             <ul>
-              <li>
-                <Link href={"/blogs"}> BLOGS</Link>
-              </li>
-              <li>
-                <Link href={"/faqs"}> FAQs</Link>
-              </li>
-              <li>
-                <Link href={"/contactus"}> CONTACT US</Link>
-              </li>
+              {menuLinks.map((link, index) => (
+                <li key={index}>
+                  <Link href={link.url}>{link.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

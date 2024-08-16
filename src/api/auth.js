@@ -10,3 +10,4 @@ export const registerApi = (userInfo) => {
   console.log("RegisterAPI", userInfo, "RegisterAPI");
   return httpService.post("/auth/registration/", userInfo);
 };
+

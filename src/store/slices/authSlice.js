@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginApi, registerApi } from "../../api/auth";
+import { contactUsAPI } from "@/api/cms";
 
 // Thunks for async actions
 export const login = createAsyncThunk(
@@ -19,6 +20,18 @@ export const register = createAsyncThunk(
   async (userInfo, thunkAPI) => {
     try {
       const response = await registerApi(userInfo);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const contactUs = createAsyncThunk(
+  "cms/contact",
+  async (userInfo, thunkAPI) => {
+    try {
+      const response = await contactUsAPI(userInfo);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

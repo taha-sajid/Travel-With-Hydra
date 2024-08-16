@@ -5,7 +5,7 @@ import { FiMinusCircle } from "react-icons/fi";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const PaymentCard = ({ cardData }) => {
+const PaymentCard = ({ cardData, price }) => {
   const [applicantCount, setApplicantCount] = useState(1);
   const { cardHeading, isButton } = cardData;
 
@@ -21,9 +21,8 @@ const PaymentCard = ({ cardData }) => {
       setApplicantCount(applicantCount - 1);
     }
   };
-  const visaFees = 850;
-  const serviceFees = 40;
-  const totalAmount = visaFees * applicantCount + serviceFees;
+  const visaFees = price;
+  const totalAmount = visaFees * applicantCount;
   return (
     <div className={styles.applyNowContainer}>
       <div className={styles.applyNowCard}>
