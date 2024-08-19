@@ -8,6 +8,8 @@ const CountryCard = ({ destinations }) => {
   const [countryData, setCountryData] = useState([]);
   const [animate, setAnimate] = useState(false);
   const sectionRef = useRef(null);
+  console.log("destinations", destinations);
+  console.log("country data", countryData);
 
   // Fetch data for each country and store it in the state array
   const fetchCountryData = async () => {

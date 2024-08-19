@@ -27,18 +27,6 @@ export const register = createAsyncThunk(
   }
 );
 
-export const contactUs = createAsyncThunk(
-  "cms/contact",
-  async (userInfo, thunkAPI) => {
-    try {
-      const response = await contactUsAPI(userInfo);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
 const authSlice = createSlice({
   name: "auth",
   initialState: {

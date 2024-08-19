@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import styles from "./ContactForm.module.css";
 import { contactUs } from "@/store/slices/authSlice";
 import { useDispatch } from "react-redux";
+import { contactUsAPI } from "@/api/cms";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,9 @@ const ContactForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        console.log("Form values:", values);
-        await dispatch(contactUs(values)).unwrap();
+        console.log("values", values);
+        const response = await contactUsAPI(values);
+        console.log("Form values:", response);
       } catch (error) {
         if (error.response && error.response.data) {
           console.error("Backend error:", error.response.data);
@@ -41,12 +43,11 @@ const ContactForm = () => {
   });
 
   const extractErrorMessages = (errors) => {
-    const messages = [];
+    const messages = [errors];
     Object.keys(errors).forEach((key) => {
       messages.push(errors[key]);
     });
     console.error("Extracted error messages:", messages);
-    // Here, you might want to set these messages to state to display them in the UI
   };
 
   return (

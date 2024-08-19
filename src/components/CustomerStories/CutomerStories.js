@@ -1,16 +1,29 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./CustomerStories.module.css";
+import { getCustomerStoriesData } from "@/api/cms";
+import { IMAGE_BASE_URL } from "@/api/config";
 
-const Slider = () => {
+const CustomerStories = () => {
+  const [CustomerStories, setCustomerStories] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false); // State to track if the video is playing
   const sliderRef = useRef(null);
+  const videoRefs = useRef([]); // Array of refs for each video element
 
-  const images = [
-    "/assets/customerSlider1.png",
-    "/assets/customerSlider2.png",
-    "/assets/customerSlider3.png",
-  ];
+  const fetchCustomerStoriesData = async () => {
+    try {
+      const response = await getCustomerStoriesData();
+      console.log("customer stories data:", response.data);
+      setCustomerStories(response.data);
+    } catch (error) {
+      console.error("Error fetching customer stories data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCustomerStoriesData();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,28 +47,79 @@ const Slider = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const currentVideoRef = videoRefs.current[currentIndex];
+    if (currentVideoRef) {
+      currentVideoRef.addEventListener("play", handleVideoPlay);
+      currentVideoRef.addEventListener("pause", handleVideoPause);
+      currentVideoRef.addEventListener("ended", handleVideoPause); // Handle video end
+
+      return () => {
+        if (currentVideoRef) {
+          currentVideoRef.removeEventListener("play", handleVideoPlay);
+          currentVideoRef.removeEventListener("pause", handleVideoPause);
+          currentVideoRef.removeEventListener("ended", handleVideoPause);
+        }
+      };
+    }
+  }, [currentIndex, isPlaying]);
+
   const prevSlide = () => {
+    if (videoRefs.current[currentIndex]) {
+      videoRefs.current[currentIndex].pause(); // Pause video on slide change
+    }
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+      (prevIndex) =>
+        (prevIndex - 1 + CustomerStories.length) % CustomerStories.length
     );
+    setIsPlaying(false); // Reset play state
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    if (videoRefs.current[currentIndex]) {
+      videoRefs.current[currentIndex].pause(); // Pause video on slide change
+    }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % CustomerStories.length);
+    setIsPlaying(false); // Reset play state
   };
 
   const getSlideClass = (index) => {
     const relativeIndex =
-      (index - currentIndex + images.length) % images.length;
+      (index - currentIndex + CustomerStories.length) % CustomerStories.length;
     switch (relativeIndex) {
       case 0:
-        return styles.prevSlide;
-      case 1:
         return styles.centerSlide;
+      case 1:
+        return styles.prevSlide;
       case 2:
         return styles.nextSlide;
       default:
         return styles.hiddenSlide;
+    }
+  };
+
+  const handlePlayButtonClick = () => {
+    const currentVideoRef = videoRefs.current[currentIndex];
+    if (currentVideoRef) {
+      currentVideoRef.play(); // Play the video for the current slide
+      setIsPlaying(true); // Update state to indicate the video is playing
+      currentVideoRef.controls = true; // Show controls when video is playing
+    }
+  };
+
+  const handleVideoPlay = () => {
+    setIsPlaying(true); // Update state when the video starts playing
+    const currentVideoRef = videoRefs.current[currentIndex];
+    if (currentVideoRef) {
+      currentVideoRef.controls = true; // Show controls when video is playing
+    }
+  };
+
+  const handleVideoPause = () => {
+    setIsPlaying(false); // Update state when the video is paused or ends
+    const currentVideoRef = videoRefs.current[currentIndex];
+    if (currentVideoRef) {
+      currentVideoRef.controls = false; // Hide controls when video is paused
     }
   };
 
@@ -74,29 +138,37 @@ const Slider = () => {
       </p>
       <div className={styles.sliderContainer}>
         <div className={styles.slides}>
-          {images.map((src, index) => (
+          {CustomerStories.map((story, index) => (
             <div
               key={index}
               className={`${styles.slide} ${getSlideClass(index)}`}
             >
-              <img
-                src={src}
-                alt={`Slide ${index + 1}`}
+              <video
+                ref={(el) => (videoRefs.current[index] = el)} // Assign each video element to its ref
+                src={IMAGE_BASE_URL + story.testimonial_video}
+                preload="auto"
+                controls={isPlaying && index === currentIndex} // Show controls only when playing
                 className={styles.slideImage}
+                poster={IMAGE_BASE_URL + story.thumbnail}
               />
+              {getSlideClass(index) === styles.centerSlide &&
+                !isPlaying && ( // Show button only on center slide and when not playing
+                  <img
+                    src="/assets/videoButton.png"
+                    className={styles.videoButtonIcon}
+                    onClick={handlePlayButtonClick} // Attach the click event
+                    alt="Play Video"
+                  />
+                )}
             </div>
           ))}
-          <img
-            src="/assets/videoButton.png"
-            className={styles.videoButtonIcon}
-          />
         </div>
         <div className={styles.navigationButtons}>
           <button onClick={prevSlide}>
-            <img src="/assets/leftArrow.png" />
+            <img src="/assets/leftArrow.png" alt="Previous Slide" />
           </button>
           <button onClick={nextSlide}>
-            <img src="/assets/rightArrow.png" />
+            <img src="/assets/rightArrow.png" alt="Next Slide" />
           </button>
         </div>
       </div>
@@ -104,4 +176,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default CustomerStories;

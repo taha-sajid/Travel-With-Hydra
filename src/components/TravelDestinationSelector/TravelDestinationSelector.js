@@ -5,7 +5,8 @@ import CountrySelector from "../CountrySelector/CountrySelector";
 import {
   getResidentData,
   getCitizenshipData,
-  getCountryData,
+  getResidentCountries,
+  getCitizenshipCountries,
 } from "@/api/visa";
 import CountryCard from "../CountryCard/CountryCard";
 
@@ -14,26 +15,45 @@ const TravelDestinationSelector = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [animate, setAnimate] = useState(false);
   const containerRef = useRef(null);
+
+  const [residentCountriesList, setResidentCountriesList] = useState([]);
+  const [citizenshipCountriesList, setCitizenshipCountriesList] = useState([]);
+
   const [selectedResident, setSelectedResident] = useState("");
   const [selectedCitizenship, setSelectedCitizenship] = useState("");
 
-  const [mergedVisaData, setMergedVisaData] = useState({
-    traditional_visas: [],
-    evisas: [],
-    visa_free: [],
-  });
- 
+  const [destinations, setDestinations] = useState([]);
+
+  const fetchCitizenshipCountriesList = async () => {
+    try {
+      const response = await getCitizenshipCountries();
+      console.log("Citizenship countries list data:", response.data.countries);
+      setCitizenshipCountriesList(response.data.countries);
+    } catch (error) {
+      console.error("Error fetching Citizenship countries list data:", error);
+    }
+  };
+
+  const fetchResidentCountriesList = async () => {
+    try {
+      const response = await getResidentCountries();
+      console.log("Resident countries list data:", response.data.countries);
+      setResidentCountriesList(response.data.countries);
+    } catch (error) {
+      console.error("Error fetching Resident countries list data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchResidentCountriesList();
+    fetchCitizenshipCountriesList();
+  }, []);
 
   const fetchResidentCountry = async (country) => {
     try {
-      setMergedVisaData({
-        traditional_visas: [],
-        evisas: [],
-        visa_free: [],
-      });
       const response = await getResidentData(country);
       console.log("Resident data:", response.data);
-      mergeVisaData(response.data, "resident");
+      return response.data;
     } catch (error) {
       console.error("Error fetching Resident data:", error);
     }
@@ -41,67 +61,59 @@ const TravelDestinationSelector = () => {
 
   const fetchCitizenshipCountry = async (country) => {
     try {
-      setMergedVisaData({
-        traditional_visas: [],
-        evisas: [],
-        visa_free: [],
-      });
       const response = await getCitizenshipData(country);
       console.log("Citizenship data:", response.data);
-      mergeVisaData(response.data, "citizenship");
+      return response.data;
     } catch (error) {
-      console.error("Error fetching citizenship data:", error);
+      console.error("Error fetching Citizenship data:", error);
     }
   };
+  const updateVisaData = (residentData, citizenshipData) => {
+    const combinedData = [
+      ...residentData.traditional_visas.map((visa) => ({
+        ...visa,
+        visa_type: "traditional",
+      })),
+      ...residentData.evisas.map((visa) => ({
+        ...visa,
+        visa_type: "e_visa",
+      })),
+      ...residentData.visa_free.map((visa) => ({
+        ...visa,
+        visa_type: "visa_free",
+      })),
+      ...citizenshipData.traditional_visas.map((visa) => ({
+        ...visa,
+        visa_type: "traditional",
+      })),
+      ...citizenshipData.evisas.map((visa) => ({
+        ...visa,
+        visa_type: "e_visa",
+      })),
+      ...citizenshipData.visa_free.map((visa) => ({
+        ...visa,
+        visa_type: "visa_free",
+      })),
+    ];
 
-  const mergeVisaData = (data, source) => {
-    setMergedVisaData((prevData) => {
-      const traditionalCountries = new Set(
-        prevData.traditional_visas.map((visa) => visa.destination_country)
-      );
-      const evisaCountries = new Set(
-        prevData.evisas.map((visa) => visa.destination_country)
-      );
-      const visaFreeCountries = new Set(
-        prevData.visa_free.map((visa) => visa.destination_country)
-      );
-
-      const mergedTraditionalVisas = [
-        ...prevData.traditional_visas,
-        ...data.traditional_visas.filter(
-          (visa) => !traditionalCountries.has(visa.destination_country)
-        ),
-      ];
-
-      const mergedEVisas = [
-        ...prevData.evisas,
-        ...data.evisas.filter(
-          (visa) => !evisaCountries.has(visa.destination_country)
-        ),
-      ];
-
-      const mergedVisaFree = [
-        ...prevData.visa_free,
-        ...data.visa_free.filter(
-          (visa) => !visaFreeCountries.has(visa.destination_country)
-        ),
-      ];
-
-      return {
-        traditional_visas: mergedTraditionalVisas,
-        evisas: mergedEVisas,
-        visa_free: mergedVisaFree,
-      };
-    });
+    console.log("combinedData", combinedData);
+    setDestinations(combinedData);
   };
 
   useEffect(() => {
-    if (selectedResident) {
-      fetchResidentCountry(selectedResident.name);
-    }
-    if (selectedCitizenship) {
-      fetchCitizenshipCountry(selectedCitizenship.name);
-    }
+    const fetchAndMergeVisaData = async () => {
+      if (selectedResident && selectedCitizenship) {
+        const residentData = await fetchResidentCountry(selectedResident.name);
+        const citizenshipData = await fetchCitizenshipCountry(
+          selectedCitizenship.name
+        );
+        if (residentData && citizenshipData) {
+          updateVisaData(residentData, citizenshipData);
+        }
+      }
+    };
+
+    fetchAndMergeVisaData();
   }, [selectedResident, selectedCitizenship]);
 
   const handleResidentSelect = (Resident) => {
@@ -138,25 +150,32 @@ const TravelDestinationSelector = () => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredDestinations = (() => {
-    if (activeFilter === "all") {
-      return [
-        ...mergedVisaData.traditional_visas,
-        ...mergedVisaData.evisas,
-        ...mergedVisaData.visa_free,
-      ].filter((destination) =>
-        destination.destination_country
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase())
-      );
-    }
+  // UNIQUE DESTINATIONS
+  const removeDuplicates = (destinations) => {
+    const uniqueDestinations = destinations.filter(
+      (destination, index, self) =>
+        index ===
+        self.findIndex(
+          (t) => t.destination_country === destination.destination_country
+        )
+    );
 
-    return mergedVisaData[`${activeFilter}`].filter((destination) =>
+    return uniqueDestinations;
+  };
+
+  const uniqueDestinations = removeDuplicates(destinations);
+  console.log("uniqueDestinations", uniqueDestinations);
+
+  const filteredDestinations = uniqueDestinations
+    .filter((destination) => {
+      if (activeFilter === "all") return true;
+      return destination.visa_type.toLowerCase().includes(activeFilter);
+    })
+    .filter((destination) =>
       destination.destination_country
         .toLowerCase()
         .includes(searchQuery.toLowerCase())
     );
-  })();
 
   useEffect(() => {
     console.log("Filtered Destinations Updated:", filteredDestinations);
@@ -182,10 +201,12 @@ const TravelDestinationSelector = () => {
             <CountrySelector
               onCitizenshipSelect={handleCitizenshipSelect}
               heading={"Citizenship"}
+              countries={citizenshipCountriesList}
             />
             <CountrySelector
               onResidentSelect={handleResidentSelect}
               heading={"Resident"}
+              countries={residentCountriesList}
             />
           </div>
         </div>
@@ -201,16 +222,16 @@ const TravelDestinationSelector = () => {
         </div>
         <div className={`${style.visa_category}`}>
           <button
-            className={activeFilter === "traditional_visas" ? style.active : ""}
-            onClick={() => handleFilterClick("traditional_visas")}
+            className={activeFilter === "traditional" ? style.active : ""}
+            onClick={() => handleFilterClick("traditional")}
           >
             Traditional Visa
           </button>
         </div>
         <div className={`${style.visa_category}`}>
           <button
-            className={activeFilter === "evisas" ? style.active : ""}
-            onClick={() => handleFilterClick("evisas")}
+            className={activeFilter === "e_visa" ? style.active : ""}
+            onClick={() => handleFilterClick("e_visa")}
           >
             E-Visa
           </button>

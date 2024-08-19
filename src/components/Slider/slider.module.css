@@ -42,6 +42,7 @@
 
 .carousel_card_container {
   position: relative;
+  cursor: pointer;
 }
 
 .carousel_card_container h3 {
@@ -53,8 +54,7 @@
 }
 .carousel_card_container img {
   border-radius: 1.042vw;
-  max-height: 16.823vw;
-  height: 100%;
+  height: 16.823vw;
   width: 100%;
 }
 
@@ -71,10 +71,6 @@
 .carousel_btn_container button svg {
   width: 100%;
 }
-
-
-
-
 
 /* Media queries for mobile screens */
 @media screen and (max-width: 768px) {

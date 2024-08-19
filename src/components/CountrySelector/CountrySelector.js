@@ -1,24 +1,14 @@
+import { IMAGE_BASE_URL } from "@/api/config";
 import React, { useState, useEffect, useRef } from "react";
-// import "./styles.css"; // Import your CSS file here
-
-const countries = [
-  { name: "United Kingdom", flag: "/assets/flags/uk.png" },
-  { name: "Germany", flag: "/assets/flags/de.png" },
-  { name: "Romania", flag: "/assets/flags/ro.png" },
-  { name: "India", flag: "/assets/flags/in.png" },
-  { name: "Pakistan", flag: "/assets/flags/pk.png" },
-  { name: "Bangladesh", flag: "/assets/flags/bd.png" },
-  { name: "Iran", flag: "/assets/flags/ir.png" },
-  { name: "China", flag: "/assets/flags/cn.png" },
-];
 
 const CountrySelector = ({
   onCitizenshipSelect,
   onResidentSelect,
   heading,
+  countries = [], // Default to an empty array if countries is undefined
 }) => {
-  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
-  const [confirmedCountry, setConfirmedCountry] = useState(countries[0]);
+  const [selectedCountry, setSelectedCountry] = useState(countries[0] || {}); // Use an empty object as a fallback
+  const [confirmedCountry, setConfirmedCountry] = useState(countries[0] || {});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -93,6 +83,13 @@ const CountrySelector = ({
   }, []);
 
   useEffect(() => {
+    if (countries.length > 0) {
+      setSelectedCountry(countries[0]);
+      setConfirmedCountry(countries[0]);
+    }
+  }, [countries]);
+
+  useEffect(() => {
     if (onCitizenshipSelect) onCitizenshipSelect(confirmedCountry);
     if (onResidentSelect) onResidentSelect(confirmedCountry);
   }, [confirmedCountry, onCitizenshipSelect, onResidentSelect]);
@@ -117,7 +114,11 @@ const CountrySelector = ({
     >
       <div ref={dropdownRef} className="my-avatar">
         <button onClick={toggleDropdown} className="avatar-button">
-          <img src={confirmedCountry.flag} alt="Avatar" className="avatar" />
+          <img
+            src={IMAGE_BASE_URL + (confirmedCountry.flag || "")}
+            alt="Avatar"
+            className="avatar"
+          />
         </button>
         {isDropdownOpen && (
           <div className="dropdown-menu">
@@ -131,11 +132,13 @@ const CountrySelector = ({
             <div ref={countrySelectorRef} className="dropdown-country-selector">
               <div className="selected-country" onClick={toggleCountrySelector}>
                 <img
-                  src={selectedCountry.flag}
-                  alt={selectedCountry.name}
+                  src={IMAGE_BASE_URL + selectedCountry.flag || ""}
+                  alt={selectedCountry.name || ""}
                   className="country-flag"
                 />
-                <span className="country-name">{selectedCountry.name}</span>
+                <span className="country-name">
+                  {selectedCountry.name || ""}
+                </span>
                 <span
                   className={`dropdown-arrow ${
                     isCountrySelectorOpen ? "open" : ""
@@ -155,7 +158,7 @@ const CountrySelector = ({
                         onClick={() => handleSelectCountry(country)}
                       >
                         <img
-                          src={country.flag}
+                          src={IMAGE_BASE_URL + country.flag}
                           alt={country.name}
                           className="country-flag"
                         />

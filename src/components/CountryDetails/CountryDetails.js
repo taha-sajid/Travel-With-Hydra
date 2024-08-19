@@ -139,7 +139,6 @@
 import styles from "./CountryDetails.module.css";
 import PaymentCard from "../PaymentCard/PaymentCard";
 import { useEffect, useState } from "react";
-import { getCountryData } from "@/api/visa";
 
 const cardData = {
   cardHeading: "Apply Now",

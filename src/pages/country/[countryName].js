@@ -12,16 +12,25 @@ const blogsCardData = {
   heading: "Related Blogs",
   shortDescription: "Explore our latest blogs from our active users",
 };
+
+function capitalizeFirstLetter(text) {
+  if (!text) return text; // Handle empty strings or null/undefined
+  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}
+
 const index = () => {
   const [countryDetails, setCountryDetails] = useState(null);
 
+  console.log("countryDetails", countryDetails);
   const router = useRouter();
   const { countryName } = router.query;
   const pathname = router.pathname;
   console.log(pathname);
   const fetchCountry = async (country) => {
+    console.log("this is country", country);
+    const countryName = capitalizeFirstLetter(country);
     try {
-      const response = await getCountryData("Afghanistan");
+      const response = await getCountryData(countryName);
       console.log("country data:", response.data);
       setCountryDetails(response.data);
     } catch (error) {

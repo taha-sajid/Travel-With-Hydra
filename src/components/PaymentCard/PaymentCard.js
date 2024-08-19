@@ -53,7 +53,7 @@ const PaymentCard = ({ cardData, price }) => {
               <img src="/assets/visaIcon.png" /> <p> Visa Fees</p>
             </span>
             <span>
-              ${visaFees}x{applicantCount}
+              ${parseFloat(visaFees)}x{applicantCount}
             </span>
           </div>
         </div>
@@ -62,7 +62,7 @@ const PaymentCard = ({ cardData, price }) => {
           style={isPayment ? { marginBottom: 0 } : {}}
         >
           <span>Total Amount</span>
-          <span>${totalAmount}</span>
+          <span>$ {parseFloat(totalAmount)}</span>
         </div>
         {isButton && (
           <Link href={"/visaapplicationform"}>

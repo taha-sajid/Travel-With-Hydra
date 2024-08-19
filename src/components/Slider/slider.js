@@ -1,6 +1,5 @@
-"use client";
-
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import style from "./slider.module.css";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -12,10 +11,38 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const slider = () => {
+import { IMAGE_BASE_URL } from "@/api/config";
+import { getAllCountryData } from "@/api/visa";
+
+const Slider = () => {
+  const router = useRouter();
   const [animationComplete, setAnimationComplete] = useState(false);
+  const [allCountryData, setAllCountryData] = useState([]);
 
   const carouselContentRef = useRef(null);
+
+  const fetchAllCountryData = async () => {
+    try {
+      const response = await getAllCountryData();
+      console.log("get all countries data:", response.data);
+
+      if (response.data && Array.isArray(response.data.countries)) {
+        setAllCountryData(response.data.countries);
+      } else {
+        console.error("Unexpected data format:", response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching get all countries data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllCountryData();
+  }, []);
+
+  useEffect(() => {
+    console.log("Customer stories", allCountryData);
+  }, [allCountryData]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,6 +67,7 @@ const slider = () => {
       }
     };
   }, []);
+
   useEffect(() => {
     const handleAnimationEnd = () => {
       setAnimationComplete(true);
@@ -61,17 +89,30 @@ const slider = () => {
       };
     }
   }, []);
+
   useEffect(() => {
     if (animationComplete && carouselContentRef.current) {
       carouselContentRef.current.classList.remove(style.carousel_content);
     }
   }, [animationComplete]);
 
+  // Handle card click to navigate to the specific country route
+  const handleCardClick = (event, countryName) => {
+    const encodedCountryName = encodeURIComponent(countryName);
+    const url = `/country/${encodedCountryName}`;
+
+    if (event.ctrlKey || event.metaKey) {
+      window.open(url, "_blank");
+    } else {
+      router.push(url);
+    }
+  };
+
   return (
     <div className={style.slider_section_container}>
       <div className={`${style.slider_container}`}>
         <div className={`${style.slider_heading}`}>
-          <h1> Top Travel Destinations</h1>
+          <h1>Top Travel Destinations</h1>
         </div>
         <Carousel
           plugins={[
@@ -85,15 +126,23 @@ const slider = () => {
             ref={carouselContentRef}
             className={`${style.carousel_content} sm: -ml-2 md:-ml-4`}
           >
-            {Array.from({ length: 5 }).map((_, index) => (
+            {allCountryData.map((country, index) => (
               <CarouselItem
                 key={index}
-                className={`${style.carousel_item}w-full md:basis-1/2 lg:basis-1/3`}
+                className={`${style.carousel_item} w-full md:basis-1/2 lg:basis-1/3`}
               >
-                <div className="p-1">
+                <div
+                  className="p-1"
+                  onClick={(event) =>
+                    handleCardClick(event, country.country_name)
+                  }
+                >
                   <div className={`${style.carousel_card_container}`}>
-                    <img src="./assets/slider.png" />
-                    <h3>Bali, Indonesia</h3>
+                    <img
+                      src={IMAGE_BASE_URL + country.banner}
+                      alt={country.country_name}
+                    />
+                    <h3>{country.country_name}</h3>
                   </div>
                 </div>
               </CarouselItem>
@@ -109,4 +158,4 @@ const slider = () => {
   );
 };
 
-export default slider;
+export default Slider;

@@ -12,8 +12,8 @@ export const getCategoriesData = () => {
   return httpService.get("/cms/categories");
 };
 
-export const contactUsAPI = () => {
-  return httpService.post("/cms/contact");
+export const contactUsAPI = (values) => {
+  return httpService.post("/cms/contact/", values);
 };
 
 export const getCustomerStoriesData = () => {

@@ -270,3 +270,7 @@ div.x:after {
     transform: rotate(1turn);
   }
 }
+
+video::-webkit-media-controls {
+  /* display: none !important; */
+}
