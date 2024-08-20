@@ -79,13 +79,22 @@ const CountryCard = ({ destinations }) => {
                 <p>Get On</p>
                 <p>20.5.2024</p>
               </div>
-              <div className={`${style.card_price}`}>
-                <h4>
-                  {parseFloat(data.country.price_per_person)}$
-                  <span>/Person</span>
-                </h4>
-                <button className="btn-primary">Apply Now</button>
-              </div>
+              {data.country.visa_type !== 'visa_free' ? (
+                <div className={`${style.card_price}`}>
+                  <h4>
+                    {parseFloat(data.country.price_per_person)}$
+                    <span>/Person</span>
+                  </h4>
+                    <button className="btn-primary">Apply Now</button>
+                </div>
+              ): 
+                <div className={`${style.card_price}`}>
+                    <h4>
+                      Visa Free
+                    </h4>
+                    <button className="btn-primary">View Details</button>
+                </div>
+              }
             </div>
           </Link>
         ))}
