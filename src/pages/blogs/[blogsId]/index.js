@@ -8,11 +8,11 @@ import Header from "@/components/Header/header";
 const page = () => {
   const router = useRouter();
   const { blogsId } = router.query;
-
+  console.log("object", blogsId);
   return (
     <div>
       <Header />
-      <BlogDetailsContainer />
+      <BlogDetailsContainer blogsId={blogsId}/>
       <div className={styles.footer}>
         <Footer />
       </div>

@@ -4,8 +4,8 @@ export const getBlogsData = () => {
   return httpService.get("/cms/blogs");
 };
 
-export const getBlogDetailData = () => {
-  return httpService.get("/cms/blogs/{id}");
+export const getBlogDetailData = (id) => {
+  return httpService.get(`/cms/blogs/${id}`);
 };
 
 export const getCategoriesData = () => {

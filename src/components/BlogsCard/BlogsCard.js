@@ -137,6 +137,13 @@ const BlogsCard = ({ cardData }) => {
     fetchBlogs();
   }, [router.pathname]);
 
+  const handleButtonClick = (id) => {
+    console.log("logged");
+    router.push(`/blogs/${id}`);
+  };
+
+  console.log("blogs", blogs);
+
   return (
     <div
       className={`${styles.Blogs_section_container} blogs-container`}
@@ -184,13 +191,12 @@ const BlogsCard = ({ cardData }) => {
                   </span>
                 </div>
                 <h3>{blog.title}</h3>
-                <p>{blog.description}</p>
-                <Link href={"/blogs/abc"}>
-                  <button>
-                    Read Full Post
-                    <i className="fa fa-arrow-up" aria-hidden="true"></i>
-                  </button>
-                </Link>
+                <p>{blog.excerpt}</p>
+
+                <button onClick={() => handleButtonClick(blog.id)}>
+                  Read Full Post
+                  <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                </button>
               </div>
             </div>
           ))}
@@ -218,13 +224,12 @@ const BlogsCard = ({ cardData }) => {
                     </span>
                   </div>
                   <h3>{blog.title}</h3>
-                  <p>{blog.description}</p>
-                  <Link href={"/blogs/abc"}>
-                    <button>
-                      Read Full Post
-                      <i className="fa fa-arrow-up" aria-hidden="true"></i>
-                    </button>
-                  </Link>
+                  <p>{blog.excerpt}</p>
+
+                  <button onClick={() => handleButtonClick(blog.id)}>
+                    Read Full Post
+                    <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                  </button>
                 </div>
               </div>
             ))}
