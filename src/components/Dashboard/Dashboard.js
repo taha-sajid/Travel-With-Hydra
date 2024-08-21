@@ -8,13 +8,15 @@ import { TfiWorld } from "react-icons/tfi";
 import { MdRemoveRedEye } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { getMyApplications } from "@/api/visa";
-import { useEffect } from "react";
+import { useAuthToken } from "@/api/customHooks";
+
 
 const Dashboard = () => {
+  const token = useAuthToken();
   const fetchAllApplications = async () => {
     try {
-      const response = await getMyApplications();
-      console.log("get all applications:", response.data);
+      const response = await getMyApplications(token);
+      console.log("get all applications:");
 
       if (response.data && Array.isArray(response.data)) {
         setApplications(response.data);
@@ -22,7 +24,7 @@ const Dashboard = () => {
         console.error("Unexpected data format:", response.data);
       }
     } catch (error) {
-      console.error("Error fetching get all countries data:", error);
+      console.error("Error fetching get all applications data:", error);
     }
   };
 
