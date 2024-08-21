@@ -128,6 +128,23 @@
     0px 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
+.wishlistButton {
+  font-family: "LatoBold";
+  background: #42a7c3;
+  color: white;
+  font-size: 1.042vw;
+  border: none;
+  padding-top: 0.833vw;
+  padding-bottom: 1.198vw;
+  border-radius: 1.042vw;
+  cursor: pointer;
+  line-height: 1.25vw;
+  width: 100%;
+  box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.1),
+    0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-top: 2vw;
+}
+
 @media screen and (max-width: 768px) {
   .applyNowContainer {
     max-width: none;
@@ -184,6 +201,12 @@
   .startApplicationButton {
     font-size: 0.6rem;
     margin-top: 0.5rem;
+    padding: 0.5rem 2rem;
+    width: 90%;
+  }
+  .wishlistButton{
+    font-size: 0.6rem;
+    margin-top: 1.5rem;
     padding: 0.5rem 2rem;
     width: 90%;
   }

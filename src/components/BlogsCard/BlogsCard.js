@@ -153,7 +153,7 @@ const BlogsCard = ({ cardData }) => {
         </div>
         {isHomePage && (
           <div className={styles.blogsButton}>
-            <button className={`${styles.btn_primary}`}>View All</button>
+            <Link href={'/blogs'} className={`${styles.btn_primary}`}>View All</Link>
           </div>
         )}
       </div>
@@ -176,7 +176,7 @@ const BlogsCard = ({ cardData }) => {
               <div className={styles.card_head}>
                 <img src={IMAGE_BASE_URL + blog.image} alt={blog.title} />
                 <div className={styles.card_tag}>
-                  <span>{blog.country}</span>
+                  <span>{blog.category.name}</span>
                   <span>
                     {/* {isValid(new Date(blog.date))
                       ? format(new Date(blog.date), "MMM dd, yyyy")

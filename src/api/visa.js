@@ -23,3 +23,13 @@ export const getCitizenshipCountries = () => {
 export const getResidentCountries = () => {
   return httpService.get(`/visa/resident-country`);
 };
+
+export const getMyApplications = () => {
+  const token = localStorage.getItem("token");
+
+  return httpService.get(`/visa/my-applications`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

@@ -5,8 +5,10 @@ import styles from "./ContactForm.module.css";
 import { contactUs } from "@/store/slices/authSlice";
 import { useDispatch } from "react-redux";
 import { contactUsAPI } from "@/api/cms";
+import { useState } from "react";
 
 const ContactForm = () => {
+  const [submissionMessage, setSubmissionMessage] = useState("")
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -31,6 +33,8 @@ const ContactForm = () => {
         console.log("values", values);
         const response = await contactUsAPI(values);
         console.log("Form values:", response);
+        formik.resetForm()
+        setSubmissionMessage("Thank you for your message! We will get back to you shortly.");
       } catch (error) {
         if (error.response && error.response.data) {
           console.error("Backend error:", error.response.data);
@@ -139,6 +143,11 @@ const ContactForm = () => {
         <button type="submit" className={styles.submitButton}>
           Send
         </button>
+      {submissionMessage && (
+        <div className={styles.submissionMessage}>
+          {submissionMessage}
+        </div>
+      )}
       </form>
     </div>
   );
