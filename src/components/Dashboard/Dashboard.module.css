@@ -57,7 +57,7 @@
   font-weight: 400;
   margin-bottom: 0.885vw;
 }
-.submitted {
+.pending {
   background-color: #ffb80133;
   color: #ffb801;
   padding: 0.104vw 1.719vw;
@@ -69,6 +69,13 @@
   background-color: #00990033;
   padding: 0.17vw 1.719vw;
   color: #009900;
+  border-radius: 3rem;
+}
+
+.rejected {
+  background-color: #ebbdbd;
+  padding: 0.17vw 1.719vw;
+  color: #ad0404;
   border-radius: 3rem;
 }
 .table td {
@@ -90,7 +97,8 @@
 }
 .table tr td:nth-child(1) {
   width: 4.688vw;
-  text-align: center;
+  text-align: left;
+  padding-left: 1vw;
 }
 .table tr td:nth-child(2) {
   width: 12.969vw;

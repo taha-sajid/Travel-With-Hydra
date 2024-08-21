@@ -106,6 +106,12 @@
   background-color: rgba(66, 167, 195, 1);
 }
 
+.submissionMessage{
+  font-size: 0.938vw;
+  color: #009900;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .contactFormContainer {
     flex-direction: column;

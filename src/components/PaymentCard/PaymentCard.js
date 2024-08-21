@@ -4,7 +4,7 @@ import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
-const PaymentCard = ({ cardData, price }) => {
+const PaymentCard = ({ cardData, price, active }) => {
   const [applicantCount, setApplicantCount] = useState(1);
   const { cardHeading, isButton } = cardData;
 
@@ -38,6 +38,8 @@ const PaymentCard = ({ cardData, price }) => {
   return (
     <div className={styles.applyNowContainer}>
       <div className={styles.applyNowCard}>
+        {active && (
+        <>
         <h2>{cardHeading}</h2>
         <div className={styles.applicantFormGroup}>
           <div className={styles.inputGroup}>
@@ -75,14 +77,23 @@ const PaymentCard = ({ cardData, price }) => {
           <span>Total Amount</span>
           <span>$ {parseFloat(totalAmount)}</span>
         </div>
-        {isButton && (
-          <button
-            className={styles.startApplicationButton}
-            onClick={handleClick}
-          >
-            Start Application
-          </button>
+        </>
         )}
+        {active ? (
+        <>
+          {isButton && (
+            <Link href={"/visaapplicationform"}>
+              <button className={styles.startApplicationButton}>
+                Start Application
+              </button>
+            </Link>
+          )}
+        </>
+      ) : (
+        <button className={styles.wishlistButton}>
+          Add to Wishlist
+        </button>
+      )}
       </div>
     </div>
   );

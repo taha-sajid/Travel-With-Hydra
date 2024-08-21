@@ -26,7 +26,7 @@ const HeroSectionOther = ({ bannerImage }) => {
     } else if (isContactUs) {
       setHeroImage("/assets/contact-us.png");
     } else if (isBlogPage) {
-      setHeroImage("/assets/blogHeroImage.png");
+      setHeroImage("/assets/BlogHeroImage.png");
     }
   }, [bannerImage]);
   console.log("bannerImage", bannerImage);

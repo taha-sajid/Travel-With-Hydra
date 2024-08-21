@@ -88,11 +88,10 @@
 }
 
 .hero-section-heading h1 {
-  font-size: 7.5vw;
+  font-size: 7.0vw;
   color: #42a7c3;
   line-height: 8.333vw;
   font-family: "Prototype";
-  text-transform: uppercase;
 }
 
 .hero-section-heading p {

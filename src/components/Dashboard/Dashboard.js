@@ -7,43 +7,53 @@ import { GrMapLocation } from "react-icons/gr";
 import { TfiWorld } from "react-icons/tfi";
 import { MdRemoveRedEye } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { getMyApplications } from "@/api/visa";
+import { useEffect } from "react";
 
 const Dashboard = () => {
-  const [applications, setApplications] = useState([
-    {
-      id: 1,
-      country: "Portugal",
-      submissionDate: "",
-    },
-    {
-      id: 2,
-      country: "Portugal",
-      submissionDate: "04/21/2024",
-      status: "Submitted",
-    },
-    { id: 3, country: "Portugal", submissionDate: "", status: "" },
-    {
-      id: 4,
-      country: "Portugal",
-      submissionDate: "04/21/2024",
-      status: "Approved",
-    },
-  ]);
+  const fetchAllApplications = async () => {
+    try {
+      const response = await getMyApplications();
+      console.log("get all applications:", response.data);
+
+      if (response.data && Array.isArray(response.data)) {
+        setApplications(response.data);
+      } else {
+        console.error("Unexpected data format:", response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching get all countries data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllApplications();
+  }, []);
+
+  const [applications, setApplications] = useState([]);
   const authState = useSelector((state) => state.auth);
 
   const {
-    username,
     citizenship_country,
     email,
     mobile_number,
     resident_country,
+    full_name
   } = authState.user || {};
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.sidebar}>
         <div className={styles.userInfo}>
-          <h3>{username}</h3>
+          <h3>{full_name}</h3>
           <p>
             <span>
               <IoMdMail />
@@ -83,11 +93,11 @@ const Dashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {applications.map((app) => (
-              <tr key={app.id}>
-                <td>{app.id}</td>
-                <td>{app.country}</td>
-                <td>{app.submissionDate}</td>
+            {applications.map((app, index) => (
+              <tr key={index}>
+                <td>{index+1}</td>
+                <td>{app.country_name}</td>
+                <td>{formatDate(app.application_date)}</td>
                 <td>
                   <span className={styles[app.status?.toLowerCase()]}>
                     {app.status}
@@ -98,12 +108,12 @@ const Dashboard = () => {
                     <button onClick={() => handleView(app.id)}>
                       <MdRemoveRedEye className={styles.eyeIcon} />
                     </button>
-                    <button onClick={() => handleEdit(app.id)}>
+                    {/* <button onClick={() => handleEdit(app.id)}>
                       <img
                         src="/assets/penIcon.png"
                         className={styles.editIcon}
                       />
-                    </button>
+                    </button> */}
                   </div>
                 </td>
               </tr>
