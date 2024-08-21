@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginApi, registerApi } from "../../api/auth";
-import { contactUsAPI } from "@/api/cms";
-
+import { submitVisaApplicationFormApi } from "@/api/visa";
+import httpService from "@/api/httpService";
 // Thunks for async actions
+
 export const login = createAsyncThunk(
   "auth/login",
   async (credentials, thunkAPI) => {
     try {
       const response = await loginApi(credentials);
-      return response.data;
+      return response.data; // Return the response data directly
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -27,20 +28,44 @@ export const register = createAsyncThunk(
   }
 );
 
+// Thunk for submitting visa application form
+
+export const submitVisaApplication = createAsyncThunk(
+  "auth/submitVisaApplication",
+  async (visaFormInfo, thunkAPI) => {
+    try {
+      console.log("visaFormInfo from authSlice", visaFormInfo);
+
+      const response = await submitVisaApplicationFormApi(visaFormInfo);
+      return response.data;
+    } catch (error) {
+      // Ensure error.response and error.response.data are properly handled
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
     token: null,
+    refreshToken: null, // Add refresh token to the initialState
     status: "idle",
     error: null,
+    currentCountryForms: null, // To manage currentCountry forms
   },
   reducers: {
     logout: (state) => {
       state.user = null;
       state.token = null;
+      state.refreshToken = null; // Clear refresh token on logout
       state.status = "idle";
       state.error = null;
+      state.currentCountry = null;
+    },
+    setCurrentCountryForms: (state, action) => {
+      state.currentCountryForms = action.payload; // Set the forms data
     },
   },
   extraReducers: (builder) => {
@@ -50,8 +75,10 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.user; // Store user info
+        state.token = action.payload.access; // Store access token
+        state.refreshToken = action.payload.refresh; // Store refresh token
+        state.currentCountry = action.payload.user.resident_country; // Optionally set currentCountry
       })
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";
@@ -62,16 +89,27 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log(action.payload.user, "logged user data");
         state.user = action.payload.user;
         state.token = action.payload.token;
       })
       .addCase(register.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+      })
+      .addCase(submitVisaApplication.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(submitVisaApplication.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.currentCountryForms = action.payload.currentCountryForms;
+        // Handle successful form submission (e.g., clear form data or show a success message)
+      })
+      .addCase(submitVisaApplication.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
       });
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setCurrentCountryForms } = authSlice.actions;
 export default authSlice.reducer;

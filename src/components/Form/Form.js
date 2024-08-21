@@ -45,7 +45,7 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
       [id]: value,
     }));
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {             
     e.preventDefault();
     setIsLoading(true);
     setIsError(null);

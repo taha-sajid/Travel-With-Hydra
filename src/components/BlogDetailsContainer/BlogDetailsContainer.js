@@ -14,7 +14,7 @@ const BlogDetailsContainer = () => {
             diam leo.
           </h1>
         </div>
-        <div className={styles.blogDescription}>
+        <div className={styles.blogDescription}>  
           <h1>Introduction</h1>
           <p className={styles.paragraph}>
             Mi tincidunt elit, id quisque ligula ac diam, amet. Vel etiam

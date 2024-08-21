@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
 import httpService from "./httpService";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { useAuthToken } from "./customHooks";
 
 export const getCitizenshipData = (citizenshipCountry) => {
   return httpService.get(`/visa/citizenship-country/${citizenshipCountry}/`);
@@ -22,4 +25,19 @@ export const getCitizenshipCountries = () => {
 
 export const getResidentCountries = () => {
   return httpService.get(`/visa/resident-country`);
+};
+
+export const submitVisaApplicationFormApi = (visaFormInfo) => {
+  console.log("visaFormInfo from visa.js", visaFormInfo);
+  const token = useAuthToken();
+
+  return httpService.post(
+    `/visa/submit-application-form/`,
+    JSON.stringify(visaFormInfo),
+    {
+      headers: {  
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };

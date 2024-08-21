@@ -46,13 +46,13 @@ const index = () => {
 
   if (!countryDetails) return <p>Loading...</p>;
 
-  const { country } = countryDetails;
-  console.log("object", country.banner);
+  const { country, forms } = countryDetails;
+  console.log("object", country, countryDetails);
   return (
     <div>
       <Header bannerImage={country.banner} />
       <div className={styles.countryDetailsContainer}>
-        <CountryDetails country={country} />
+        <CountryDetails country={country} forms={forms} />
       </div>
       <div className={styles.blogsCardContainer}>
         <BlogsCard cardData={blogsCardData} />

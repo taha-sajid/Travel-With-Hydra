@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Dashboard.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoMdMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import { GrMapLocation } from "react-icons/gr";
@@ -38,6 +38,7 @@ const Dashboard = () => {
     mobile_number,
     resident_country,
   } = authState.user || {};
+
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.sidebar}>

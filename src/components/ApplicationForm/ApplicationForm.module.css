@@ -5,7 +5,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  /* height: 110vh; */
 }
 .visaApplicationFormContainer {
   background-image: url("/assets/glassCard.png");
@@ -176,10 +176,18 @@
   top: 2vw;
   font-size: 0.833vw;
 }
-
-.animatedProgressBar .active1 {
+.animatedProgressBar .active {
   background: linear-gradient(
     226.29deg,
+    rgba(59, 226, 205, 0.6) -0.17%,
+    rgba(51, 175, 212, 0.6) 93.89%
+  );
+  transition: all 0.3s ease-in-out;
+}
+/* 
+.animatedProgressBar .active1 {
+  background: linear-gradient(
+    226.29deg,  
     rgba(59, 226, 205, 0.6) -0.17%,
     rgba(51, 175, 212, 0.6) 93.89%
   );
@@ -214,7 +222,7 @@
   );
   width: 100%;
   transition: all 0.3s ease-in-out;
-}
+} */
 
 /* Animated ProgressBar End */
 
@@ -319,6 +327,24 @@
   font-weight: 400;
 }
 
+.visaApplicationForm input[type="text"],
+.visaApplicationForm input[type="date"],
+.visaApplicationForm input[type="number"]{
+  background: linear-gradient(
+    91.91deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.4) 100.82%
+  );
+  padding: 0.8vw;
+  outline: none;
+  border-radius: 0.5vw;
+  max-width: 52.5vw;
+  width: 100%;
+  font-size: 1.042vw;
+}
+.visaApplicationForm input::placeholder {
+  color: black;
+}
 @media screen and (max-width: 768px) {
   .applicationFormContainer {
     padding: 0rem 1.5rem;
@@ -466,11 +492,18 @@
     max-width: 60vw;
   }
   .greetingsContainer h2 {
-    font-size: 0.8rem;
+    font-size: 0.8rem;  
   }
   .greetingsContainer p {
     margin-top: 0.5rem;
     font-size: 0.5rem;
     font-weight: 400;
   }
+  
+.visaApplicationForm input[type="text"],
+.visaApplicationForm input[type="date"],
+.visaApplicationForm input[type="number"]{
+  font-size: .5rem;
+  padding: .3rem .5rem;
+}
 }

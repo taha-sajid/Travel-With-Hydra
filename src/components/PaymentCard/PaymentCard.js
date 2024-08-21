@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import styles from "./PaymentCard.module.css";
-import { FiPlusCircle } from "react-icons/fi";
-import { FiMinusCircle } from "react-icons/fi";
+import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import { useRouter } from "next/router";
-import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const PaymentCard = ({ cardData, price }) => {
   const [applicantCount, setApplicantCount] = useState(1);
   const { cardHeading, isButton } = cardData;
+
+  const authState = useSelector((state) => state.auth);
+  const { user, status } = authState;
 
   const router = useRouter();
   const isPayment = router.pathname === "/payment";
@@ -21,8 +23,18 @@ const PaymentCard = ({ cardData, price }) => {
       setApplicantCount(applicantCount - 1);
     }
   };
+
   const visaFees = price;
   const totalAmount = visaFees * applicantCount;
+
+  const handleClick = () => {
+    if (user && status === "succeeded") {
+      router.push("/visaapplicationform");
+    } else {
+      router.push("/login");
+    }
+  };
+
   return (
     <div className={styles.applyNowContainer}>
       <div className={styles.applyNowCard}>
@@ -37,9 +49,7 @@ const PaymentCard = ({ cardData, price }) => {
               onClick={handleDecrement}
               className={styles.counterIcon}
             />
-
             <p className={styles.applicantCount}>{applicantCount}</p>
-
             <FiPlusCircle
               onClick={handleIncrement}
               className={styles.counterIcon}
@@ -50,10 +60,11 @@ const PaymentCard = ({ cardData, price }) => {
           <label>Price</label>
           <div className={styles.priceDetails}>
             <span>
-              <img src="/assets/visaIcon.png" /> <p> Visa Fees</p>
+              <img src="/assets/visaIcon.png" alt="Visa icon" />{" "}
+              <p> Visa Fees</p>
             </span>
             <span>
-              ${parseFloat(visaFees)}x{applicantCount}
+              ${parseFloat(visaFees)} x {applicantCount}
             </span>
           </div>
         </div>
@@ -65,11 +76,12 @@ const PaymentCard = ({ cardData, price }) => {
           <span>$ {parseFloat(totalAmount)}</span>
         </div>
         {isButton && (
-          <Link href={"/visaapplicationform"}>
-            <button className={styles.startApplicationButton}>
-              Start Application
-            </button>
-          </Link>
+          <button
+            className={styles.startApplicationButton}
+            onClick={handleClick}
+          >
+            Start Application
+          </button>
         )}
       </div>
     </div>

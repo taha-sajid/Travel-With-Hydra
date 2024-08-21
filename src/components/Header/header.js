@@ -103,7 +103,7 @@ const Header = ({ bannerImage }) => {
   const headerClass2 =
     isCountryDetailsPage || isFAQsPage || isBlogPage || isContactUsPage
       ? "hero-section-other-header-container"
-      : "";
+      : ""; 
 
   return (
     <div
