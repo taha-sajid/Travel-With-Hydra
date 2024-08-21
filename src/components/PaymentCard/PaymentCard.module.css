@@ -144,7 +144,23 @@
     0px 4px 6px -1px rgba(0, 0, 0, 0.1);
     margin-top: 2vw;
 }
-
+.disabled{
+  background: #515151;
+  color: white;
+  font-size: 1.042vw;
+  border: none;
+  padding-top: 0.833vw;
+  padding-bottom: 1.198vw;
+  border-radius: 1.042vw;
+  cursor: pointer;
+  line-height: 1.25vw;
+  width: 100%;
+  box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.1),
+    0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-top: 2vw;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 @media screen and (max-width: 768px) {
   .applyNowContainer {
     max-width: none;

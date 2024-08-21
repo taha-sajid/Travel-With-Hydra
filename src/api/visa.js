@@ -50,3 +50,20 @@ export const getMyApplications = (token) => {
     },
   });
 };
+
+export const getMyWishlist = (token) => {
+
+  return httpService.get(`/visa/wishlist/`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const addToWishlist = (token, name) => {
+  return httpService.post(`/visa/wishlist/`, { country:name }, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

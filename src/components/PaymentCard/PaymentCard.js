@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./PaymentCard.module.css";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Link from "next/link";
+import { getMyWishlist, addToWishlist } from "@/api/visa";
+import { useAuthToken } from "@/api/customHooks";
 
-const PaymentCard = ({ cardData, price, active }) => {
+
+
+const PaymentCard = ({ cardData, price, active, name }) => {
   const [applicantCount, setApplicantCount] = useState(1);
   const { cardHeading, isButton } = cardData;
 
@@ -13,6 +18,41 @@ const PaymentCard = ({ cardData, price, active }) => {
 
   const router = useRouter();
   const isPayment = router.pathname === "/payment";
+  const [wishlist, setWishlist] = useState([]);
+
+  const token = useAuthToken();
+  const fetchWishlist = async () => {
+    try {
+      const response = await getMyWishlist(token);
+
+      if (response.data && Array.isArray(response.data)) {
+        setWishlist(response.data);
+        console.log("wishlist", response.data);
+      } else {
+        console.error("Unexpected data format:", response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching get all applications data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchWishlist();
+  }, []);
+
+  const isCountryInWishlist = (country) => {
+    return wishlist.some(item => item.country === country);
+  };
+  const isDisabled = isCountryInWishlist(name);
+
+  const handleWishlist = async () => {
+    try {
+      const response = await addToWishlist(token, name);
+      console.log("wishlist", response);
+      fetchWishlist();
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
+    }
+  };
 
   const handleIncrement = () => {
     setApplicantCount(applicantCount + 1);
@@ -90,7 +130,7 @@ const PaymentCard = ({ cardData, price, active }) => {
           )}
         </>
       ) : (
-        <button className={styles.wishlistButton}>
+        <button className={`${styles.wishlistButton} ${isDisabled ? styles.disabled : ''}`} disabled={isDisabled} onClick={handleWishlist}>
           Add to Wishlist
         </button>
       )}
