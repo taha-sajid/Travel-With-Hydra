@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./FilterSelector.module.css";
+import { getAllCountryData } from "@/api/visa";
+
 
 const Filter = () => {
+  const [countries, setCountries] = useState([]);
+
+  // Function to fetch countries from API and update state
+  const fetchAllCountryData = async () => {
+    try {
+      const response = await getAllCountryData();
+      console.log("get all countries data:", response.data);
+
+      if (response.data && Array.isArray(response.data.countries)) {
+        setCountries(response.data.countries); // Set country data
+      } else {
+        console.error("Unexpected data format:", response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching get all countries data:", error);
+    }
+  };
+
+  // UseEffect to fetch data when the component mounts
+  useEffect(() => {
+    fetchAllCountryData();
+  }, []);
+
   return (
     <div className={styles.dropdown}>
-      {/* Filter by: */}
       <input
         type="checkbox"
         className={styles.dropdownSwitch}
@@ -18,27 +42,21 @@ const Filter = () => {
           </li>
           <li>
             <ul className={styles.dropdownSelect}>
-              <li
-                className={`${styles.dropdownSelectOption} ${styles.active}`}
-                role="United Kingdom"
-              >
-                United Kingdom
-              </li>
-              <li className={styles.dropdownSelectOption} role="Portugal">
-                Portugal
-              </li>
-              <li className={styles.dropdownSelectOption} role="Denmark">
-                Denmark
-              </li>
-              <li className={styles.dropdownSelectOption} role="Morocco">
-                Morocco
-              </li>
-              <li className={styles.dropdownSelectOption} role="Australia">
-                Australia
-              </li>
-              <li className={styles.dropdownSelectOption} role="Scotland">
-                Scotland
-              </li>
+              {countries.length > 0 ? (
+                countries.map((country, index) => (
+                  <li
+                    key={index}
+                    className={`${styles.dropdownSelectOption} ${index === 0 ? styles.active : ''}`}
+                    role={country.country_name}
+                  >
+                    {country.country_name}
+                  </li>
+                ))
+              ) : (
+                <li className={styles.dropdownSelectOption}>
+                  No countries available
+                </li>
+              )}
             </ul>
           </li>
         </ul>

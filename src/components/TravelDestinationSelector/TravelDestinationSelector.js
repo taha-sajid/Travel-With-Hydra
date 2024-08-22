@@ -152,16 +152,30 @@ const TravelDestinationSelector = () => {
 
   // UNIQUE DESTINATIONS
   const removeDuplicates = (destinations) => {
-    const uniqueDestinations = destinations.filter(
-      (destination, index, self) =>
-        index ===
-        self.findIndex(
-          (t) => t.destination_country === destination.destination_country
-        )
-    );
-
+    const priority = {
+      visa_free: 1,
+      e_visa: 2,
+      traditional: 3,
+    };
+  
+    const uniqueDestinations = destinations.reduce((acc, destination) => {
+      const existingDestination = acc.find(
+        (d) => d.destination_country === destination.destination_country
+      );
+  
+      if (!existingDestination) {
+        acc.push(destination);
+      } else if (priority[destination.visa_type] < priority[existingDestination.visa_type]) {
+        const index = acc.indexOf(existingDestination);
+        acc[index] = destination;
+      }
+  
+      return acc;
+    }, []);
+  
     return uniqueDestinations;
   };
+  
 
   const uniqueDestinations = removeDuplicates(destinations);
   console.log("uniqueDestinations", uniqueDestinations);

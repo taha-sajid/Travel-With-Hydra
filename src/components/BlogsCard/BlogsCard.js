@@ -183,7 +183,7 @@ const BlogsCard = ({ cardData }) => {
               <div className={styles.card_head}>
                 <img src={IMAGE_BASE_URL + blog.image} alt={blog.title} />
                 <div className={styles.card_tag}>
-                  <span>{blog.category.name}</span>
+                  <span>{blog.category}</span>
                   <span>
                     {/* {isValid(new Date(blog.date))
                       ? format(new Date(blog.date), "MMM dd, yyyy")

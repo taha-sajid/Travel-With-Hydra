@@ -16,17 +16,25 @@ const CountryCard = ({ destinations }) => {
     try {
       const allCountryData = await Promise.all(
         destinations.map(async (destination) => {
-          const response = await getCountryData(
-            destination.destination_country
-          );
-          return response.data; // Assuming response.data contains the country data
+          try {
+            const response = await getCountryData(destination.destination_country);
+            return response.data ? response.data : null; // Return null if data is not available
+          } catch (error) {
+            console.error(`Error fetching data for ${destination.destination_country}:`, error);
+            return null; // Return null on error
+          }
         })
       );
-      setCountryData(allCountryData);
+  
+      // Filter out any null responses before setting the state
+      const filteredCountryData = allCountryData.filter((data) => data !== null);
+      setCountryData(filteredCountryData);
+      console.log("filteredCountryData", filteredCountryData);
     } catch (error) {
       console.error("Error fetching country data:", error);
     }
   };
+  
 
   useEffect(() => {
     fetchCountryData(); // Fetch data whenever destinations change
@@ -62,44 +70,47 @@ const CountryCard = ({ destinations }) => {
       }`}
     >
       <div className={`${style.cards_container}`}>
-        {countryData.map((data, index) => (
-          <Link
-            href={`/country/${data.country.country_name.toLowerCase()}`}
-            key={index}
-          >
-            <div className={style.card}>
-              <h3>{data.country.country_name}</h3>
-              <div className={`${style.card_image}`}>
-                <img
-                  src={IMAGE_BASE_URL + data.country.banner}
-                  alt={data.country.country_name}
-                />
-              </div>
-              <div className={`${style.card_date}`}>
-                <p>Get On</p>
-                <p>20.5.2024</p>
-              </div>
-              {data.country.visa_type !== 'visa_free' ? (
-                <div className={`${style.card_price}`}>
-                  <h4>
-                    {parseFloat(data.country.price_per_person)}$
-                    <span>/Person</span>
-                  </h4>
-                    <button className="btn-primary">Apply Now</button>
-                </div>
-              ): 
-                <div className={`${style.card_price}`}>
-                    <h4>
-                      Visa Free
-                    </h4>
-                    <button className="btn-primary">View Details</button>
-                </div>
-              }
+  {countryData.map((data, index) => {
+    const destination = destinations.find(
+      (dest) => dest.destination_country === data.country.country_name
+    );
+    
+    return (
+      <Link
+        href={`/country/${data.country.country_name.toLowerCase()}`}
+        key={index}
+      >
+        <div className={style.card}>
+          <h3>{data.country.country_name}</h3>
+          <div className={`${style.card_image}`}>
+            <img
+              src={IMAGE_BASE_URL + data.country.banner}
+              alt={data.country.country_name}
+            />
+          </div>
+          <div className={`${style.card_date}`}>
+            {/* Add date info here if needed */}
+          </div>
+          {destination && destination.visa_type !== 'visa_free' ? (
+            <div className={`${style.card_price}`}>
+              <h4>
+                {parseFloat(data.country.price_per_person)}$
+                <span>/Person</span>
+              </h4>
+              <button className="btn-primary">Apply Now</button>
             </div>
-          </Link>
-        ))}
-      </div>
-      <button className="btn-primary">See More</button>
+          ) : (
+            <div className={`${style.card_price}`}>
+              <h4>Visa Free</h4>
+              <button className="btn-primary">View Details</button>
+            </div>
+          )}
+        </div>
+      </Link>
+    );
+  })}
+</div>
+
     </div>
   );
 };

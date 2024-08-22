@@ -22,7 +22,7 @@
   width: 100%;
   width: calc(100% + 2.5vw);
   margin-top: 2.188vw;
-  padding: 0 9.115vw;
+  padding: 2vw 9.115vw;
 }
 .cards_container a {
   flex: 1 1 calc(25% - 2.5vw);
