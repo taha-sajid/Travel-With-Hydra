@@ -9,9 +9,10 @@ import { useRouter } from "next/router";
 const ApplicationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [currentCountryFormsLength, setCurrentCountryFormsLength] = useState(0);
-  const [numberOfApplicants, setNumberOfApplicants] = useState(2);
+  const [numberOfApplicants, setNumberOfApplicants] = useState(1);
   const [currentForm, setCurrentForm] = useState(1);
   const [allFormsData, setAllFormsData] = useState([]);
+  const [uploadedFileName, setUploadedFileName] = useState("");
 
   const applicantsCount = useSelector((state) => state.visa.applicantsCount);
   useEffect(() => {
@@ -41,6 +42,7 @@ const ApplicationForm = () => {
   }, [currentCountryForms]);
 
   const handleNextClick = () => {
+    setUploadedFileName("");
     console.log("clicked");
 
     if (currentStep < currentCountryFormsLength) {
@@ -63,6 +65,7 @@ const ApplicationForm = () => {
   const handlePreviousClick = () => {
     if (currentStep > 1) {
       setCurrentStep((prevStep) => prevStep - 1);
+      setUploadedFileName("")
     }
   };
 
@@ -142,6 +145,7 @@ const ApplicationForm = () => {
           </h1>
 
           {currentForm !== numberOfApplicants + 1 && (
+            <>
             <div className={styles.progressBarContainer}>
               <div className={styles.progressBar}>
                 {Array.from({ length: numberOfApplicants }, (_, index) => (
@@ -154,8 +158,7 @@ const ApplicationForm = () => {
                 ))}
               </div>
             </div>
-          )}
-
+            
           <div className={styles.animatedProgressBar}>
             <p className={styles.stepIndicator}>
               {currentStep}/{currentCountryFormsLength + 1}
@@ -163,11 +166,13 @@ const ApplicationForm = () => {
             <div
               className={styles.active}
               style={{ width: `${completedSteps}%` }}
-            >
+              >
               <img src="/assets/planeIcon.png" alt="Plane Icon" />
               <p className={styles.completedPercentage}>{completedSteps}%</p>
             </div>
           </div>
+          </>
+            )}
 
           {currentStep <= currentCountryFormsLength && (
             <>
@@ -212,22 +217,31 @@ const ApplicationForm = () => {
               {currentCountryForms[currentStep - 1].field_type === "upload" && (
                 <label className={styles.uploadContainer} htmlFor="personImage">
                   <img src="/assets/uploadIcon.png" className={styles.icon} />
-                  <span className={styles.uploadLabel}>
+                  {uploadedFileName ? (
+                    <p className={styles.uploadLabel}>Uploaded: {uploadedFileName}</p>
+                  ):(
+                    <span className={styles.uploadLabel}>
                     Upload or drag file here
                   </span>
+                  )}
                   <input
                     type="file"
                     id="personImage"
                     className={styles.uploadInput}
-                    onChange={(e) =>
-                      handleInputChange(
-                        currentCountryForms[currentStep - 1].field_label,
-                        e.target.files[0]
-                      )
-                    }
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      if (file) {
+                        setUploadedFileName(file.name);
+                        handleInputChange(
+                          currentCountryForms[currentStep - 1].field_label,
+                          file
+                        );
+                      }
+                    }}
                   />
                 </label>
               )}
+
 
               {currentCountryForms[currentStep - 1].field_type === "date" && (
                 <input
@@ -266,7 +280,7 @@ const ApplicationForm = () => {
             </>
           )}
 
-          {/* {currentForm === numberOfApplicants + 1 && (
+          {currentForm === numberOfApplicants + 1 && (
             <>
               <img src="/assets/done.gif" className={styles.doneIcon} />
 
@@ -278,7 +292,7 @@ const ApplicationForm = () => {
                 </p>
               </div>
             </>
-          )} */}
+          )}
 
           <div
             className={`${styles.btnContainer} ${
@@ -287,7 +301,7 @@ const ApplicationForm = () => {
                 : ""
             }`}
           >
-            <button onClick={handlePreviousClick}>Previous</button>
+            {currentForm !== numberOfApplicants + 1 && (<button onClick={handlePreviousClick}>Previous</button>)}
             {currentStep < currentCountryFormsLength + 1 ? (
               <button onClick={handleNextClick}>Next</button>
             ) : (
@@ -295,7 +309,7 @@ const ApplicationForm = () => {
             )}
           </div>
 
-          <button onClick={handleExit}>resident_country
+          <button onClick={handleExit}>
             <div className={`${styles.exitBtnContainer}`}>
               <span className={styles.icon}>
                 <IoIosCloseCircle />

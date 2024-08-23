@@ -80,11 +80,6 @@ const Payment = () => {
           PAY NOW
         </button>
       </div>
-      <div className={styles.paymentCardContainer}>
-        <div className={styles.cartContainer}>
-          <PaymentCard cardData={cardData} />
-        </div>
-      </div>
     </main>
   );
 };

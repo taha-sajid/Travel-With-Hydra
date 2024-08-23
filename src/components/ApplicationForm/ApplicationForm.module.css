@@ -34,6 +34,22 @@
   align-items: center;
   position: relative;
 }
+.visaApplicationForm input{
+  background: linear-gradient(
+    91.91deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.4) 100.82%
+  );
+  box-shadow: 0px 1px 2px 0px #00000040;
+  max-width: 52.5vw;
+  width: 100%;
+  color: black;
+  border-radius: 1.563vw;
+  font-size: 1.042vw;
+  padding: 1.354vw 2.292vw;
+  outline: none;
+  resize: none;
+}
 .visaApplicationForm textarea {
   background: linear-gradient(
     91.91deg,

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "./PaymentCard.module.css";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { getCitizenshipData, getResidentData, getMyWishlist, addToWishlist } from "@/api/visa";
 import { useAuthToken } from "@/api/customHooks";
+import { setApplicantsCount } from "@/store/slices/visaSlice";
 
 const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
   const [applicantCount, setApplicantCount] = useState(1);
@@ -21,6 +22,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
   const [wishlist, setWishlist] = useState([]);
 
   const token = useAuthToken();
+  const dispatch = useDispatch();
 
   const fetchWishlist = async () => {
     try {
@@ -192,11 +194,9 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
         {(active && highestPriorityVisaType === visa_type) || (!token) ? (
           <>
             {isButton && (
-              <Link href={token ? "/visaapplicationform" : "/login"}>
-                <button className={styles.startApplicationButton}>
+                <button className={styles.startApplicationButton} onClick={handleClick}>
                   Start application
                 </button>
-              </Link>
             )}
           </>
         ) : highestPriorityVisaType === 'visa_free' ? (
