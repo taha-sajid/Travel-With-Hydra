@@ -150,7 +150,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
   return (
     
     <div className={styles.applyNowContainer}>
-      {authState.user.resident_country !== 'United Kingdom' ? (
+      {authState.user && authState.user.resident_country !== 'United Kingdom' ? (
         <button
         className={`${styles.wishlistButton} ${isDisabled ? styles.disabled : ''}`}
         disabled={isDisabled}
@@ -160,7 +160,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
       </button>
       ): (
       <div className={styles.applyNowCard}>
-        {(active && highestPriorityVisaType === visa_type) && (
+        {((active && highestPriorityVisaType === visa_type) || !token) && (
           <>
             <h2>{cardHeading}</h2>
             <div className={styles.applicantFormGroup}>

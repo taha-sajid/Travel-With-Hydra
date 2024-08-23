@@ -85,8 +85,7 @@ const   BlogsCard = ({ cardData }) => {
   const router = useRouter();
   const isHomePage = router.pathname === "/";
   const isBlogPage = router.pathname === "/blogs";
-  const isCountryDetailsPage = router.pathname === "/countrydetails";
-
+  const isCountryDetailsPage = router.pathname.split("/")[1]==="country";
   // SLICK SLIDER CONFIGURATION
   const settings = {
     dots: false,
@@ -216,7 +215,7 @@ const   BlogsCard = ({ cardData }) => {
                 <div className={styles.card_head}>
                   <img src={IMAGE_BASE_URL + blog.image} alt={blog.title} />
                   <div className={styles.card_tag}>
-                    <span>{blog.country}</span>
+                    <span>{blog.category}</span>
                     <span>
                       {/* {isValid(new Date(blog.date))
                         ? format(new Date(blog.date), "MMM dd, yyyy")

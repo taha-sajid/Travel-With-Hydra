@@ -20,7 +20,9 @@ const ApplicationForm = () => {
   console.log("number of applicants count", applicantsCount);
 
   const router = useRouter();
-
+  const handleExit = () => {
+    router.back();  // This sends the user to the previous page
+  };
   const dispatch = useDispatch();
   const currentCountryForms = useSelector(
     (state) => state.auth.currentCountryForms
@@ -264,7 +266,7 @@ const ApplicationForm = () => {
             </>
           )}
 
-          {currentForm === numberOfApplicants + 1 && (
+          {/* {currentForm === numberOfApplicants + 1 && (
             <>
               <img src="/assets/done.gif" className={styles.doneIcon} />
 
@@ -276,7 +278,7 @@ const ApplicationForm = () => {
                 </p>
               </div>
             </>
-          )}
+          )} */}
 
           <div
             className={`${styles.btnContainer} ${
@@ -293,14 +295,14 @@ const ApplicationForm = () => {
             )}
           </div>
 
-          <Link href={"/"}>
+          <button onClick={handleExit}>resident_country
             <div className={`${styles.exitBtnContainer}`}>
               <span className={styles.icon}>
                 <IoIosCloseCircle />
               </span>
               <p>Exit</p>
             </div>
-          </Link>
+          </button>
         </div>
       </div>
     </div>
