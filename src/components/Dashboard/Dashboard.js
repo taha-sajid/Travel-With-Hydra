@@ -83,7 +83,9 @@ const Dashboard = () => {
       </div>
       <div className={styles.mainContent}>
         <h2>Visa Applications</h2>
-        <table className={styles.table}>
+        {applications && applications.length > 0 ? (
+
+          <table className={styles.table}>
           <thead>
             <tr>
               <th>#</th>
@@ -121,6 +123,9 @@ const Dashboard = () => {
             ))}
           </tbody>
         </table>
+        ) : (
+          <p>No applications found</p>
+        )}
       </div>
     </div>
   );

@@ -161,6 +161,13 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+.visaFreeText{
+  font-size: 1.042vw;
+  padding-top: 1.833vw;
+
+}
+
 @media screen and (max-width: 768px) {
   .applyNowContainer {
     max-width: none;

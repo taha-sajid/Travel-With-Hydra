@@ -14,8 +14,12 @@ const blogsCardData = {
 };
 
 function capitalizeFirstLetter(text) {
-  if (!text) return text; // Handle empty strings or null/undefined
-  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  if (!text) return text;
+  
+  return text
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize first letter of each word
+    .join(' ');
 }
 
 const index = () => {

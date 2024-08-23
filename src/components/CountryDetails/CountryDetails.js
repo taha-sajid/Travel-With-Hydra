@@ -34,15 +34,7 @@ const CountryDetails = ({ country, forms }) => {
           <h1>{country.country_name}</h1>
           <p>{country.description}</p>
         </div>
-        {country.visa_type !== "visa_free" && (
-          <PaymentCard
-            cardData={cardData}
-            price={country.price_per_person}
-            active={country.active}
-            name={country.country_name}
-            visa_type={country.visa_type}
-          />
-        )}
+          <PaymentCard cardData={cardData} price={country.price_per_person} active={country.active} name={country.country_name} visa_type={country.visa_type} />
       </div>
     </div>
   );

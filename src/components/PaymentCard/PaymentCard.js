@@ -148,9 +148,10 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
   }, [name, residentVisaType, citizenshipVisaType]);
 
   return (
+    
     <div className={styles.applyNowContainer}>
       <div className={styles.applyNowCard}>
-        {active && highestPriorityVisaType === visa_type && (
+        {(active && highestPriorityVisaType === visa_type) || (!token) && (
           <>
             <h2>{cardHeading}</h2>
             <div className={styles.applicantFormGroup}>
@@ -179,16 +180,20 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
             </div>
           </>
         )}
-        {active && highestPriorityVisaType === visa_type ? (
+        {(active && highestPriorityVisaType === visa_type) || (!token) ? (
           <>
             {isButton && (
-              <Link href={"/visaapplicationform"}>
+              <Link href={isLoggedIn ? "/visaapplicationform" : "/login"}>
                 <button className={styles.startApplicationButton}>
                   Start Application
                 </button>
               </Link>
             )}
           </>
+        ) : highestPriorityVisaType === 'visa_free' ? (
+          <p className={styles.visaFreeText}>
+            This Country is Visa Free for you.
+          </p>
         ) : (
           <button
             className={`${styles.wishlistButton} ${isDisabled ? styles.disabled : ''}`}
@@ -198,6 +203,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
             Add to Wishlist
           </button>
         )}
+
       </div>
     </div>
   );
