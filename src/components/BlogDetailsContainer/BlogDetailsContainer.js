@@ -36,15 +36,7 @@ const BlogDetailsContainer = ({ blogsId }) => {
           <h1>{blogData.title}</h1>
         </div>
         <div className={styles.blogDescription}>
-          <h1>Introduction</h1>
           <p className={styles.paragraph}>{blogData.content}</p>
-          {/*
-          <p className={styles.highlightedText}</p>
-          
-          <p className={styles.intendedParagraph}></p>
-         */}
-          <h2 className={styles.headerConclusion}>Conclusion</h2>
-          <p className={styles.paragraph}>{blogData.excerpt}</p>
         </div>
       </div>
       <span className={styles.bottomLine}></span>

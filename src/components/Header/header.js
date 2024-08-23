@@ -103,7 +103,7 @@ const Header = ({ bannerImage }) => {
   const headerClass2 =
     isCountryDetailsPage || isFAQsPage || isBlogPage || isContactUsPage
       ? "hero-section-other-header-container"
-      : ""; 
+      : "";
 
   return (
     <div
@@ -130,6 +130,11 @@ const Header = ({ bannerImage }) => {
                   <Link href={link.url}>{link.label}</Link>
                 </li>
               ))}
+              {isLoggedIn && (
+                <li>
+                <Link href="/dashboard">DASHBOARD</Link>
+              </li>
+              )}
             </ul>
           </div>
         </div>

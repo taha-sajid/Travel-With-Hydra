@@ -97,8 +97,9 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
           <h2 className={styles.loginTitle}>{formTitle}</h2>
           <p className={styles.loginSubtitle}>{formSubtitle}</p>
           <form className={styles.loginForm} onSubmit={handleSubmit}>
-            {fields.map((field) => {
+          {fields.map((field) => {
               const IconComponent = iconComponents[field.icon];
+
               return (
                 <div
                   className={`${styles.loginField} ${
@@ -111,19 +112,35 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
                   </label>
                   <div className={styles.loginInputWrapper}>
                     <div className={styles.inputFieldIcon}>
-                      {IconComponent && (
-                        <IconComponent className={styles.loginIcon} />
-                      )}
+                      {IconComponent && <IconComponent className={styles.loginIcon} />}
                     </div>
-                    <input
-                      type={field.type}
-                      id={field.id}
-                      className={styles.loginInput}
-                      placeholder={field.placeholder}
-                      required={field.required}
-                      value={formValues[field.id]}
-                      onChange={handleInputChange}
-                    />
+                    
+                    {field.type === "select" ? (
+                      <select
+                        id={field.id}
+                        className={styles.loginSelect}
+                        required={field.required}
+                        value={formValues[field.id]}
+                        onChange={handleInputChange}
+                      >
+                        <option value="">Select {field.label}</option>
+                        {field.options.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        type={field.type}
+                        id={field.id}
+                        className={styles.loginInput}
+                        placeholder={field.placeholder}
+                        required={field.required}
+                        value={formValues[field.id]}
+                        onChange={handleInputChange}
+                      />
+                    )}
                   </div>
                 </div>
               );
