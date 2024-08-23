@@ -27,23 +27,17 @@ export const getResidentCountries = () => {
   return httpService.get(`/visa/resident-country`);
 };
 
-export const submitVisaApplicationFormApi = (visaFormInfo) => {
-  console.log("visaFormInfo from visa.js", visaFormInfo);
-  const token = useAuthToken();
+export const submitVisaApplicationFormApi = (visaFormInfo, token) => {
+  console.log("visaFormInfo and token from visa.js", visaFormInfo, token);
 
-  return httpService.post(
-    `/visa/submit-application-form/`,
-    JSON.stringify(visaFormInfo),
-    {
-      headers: {  
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  return httpService.post(`/visa/submit-application-form/`, visaFormInfo, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const getMyApplications = (token) => {
-
   return httpService.get(`/visa/my-applications/`, {
     headers: {
       Authorization: `Bearer ${token}`,

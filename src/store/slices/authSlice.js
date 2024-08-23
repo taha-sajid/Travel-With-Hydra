@@ -29,17 +29,16 @@ export const register = createAsyncThunk(
 );
 
 // Thunk for submitting visa application form
-
 export const submitVisaApplication = createAsyncThunk(
   "auth/submitVisaApplication",
-  async (visaFormInfo, thunkAPI) => {
+  async ({ visaFormInfo, token }, thunkAPI) => {
     try {
       console.log("visaFormInfo from authSlice", visaFormInfo);
+      console.log("Token inside submitVisaApplication", token);
 
-      const response = await submitVisaApplicationFormApi(visaFormInfo);
+      const response = await submitVisaApplicationFormApi(visaFormInfo, token);
       return response.data;
     } catch (error) {
-      // Ensure error.response and error.response.data are properly handled
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -53,7 +52,7 @@ const authSlice = createSlice({
     refreshToken: null, // Add refresh token to the initialState
     status: "idle",
     error: null,
-    currentCountryForms: null, // To manage currentCountry forms
+    currentCountryForms: null , // To manage currentCountry forms
   },
   reducers: {
     logout: (state) => {

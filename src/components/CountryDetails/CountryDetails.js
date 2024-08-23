@@ -5,6 +5,7 @@ import { setCurrentCountryForms } from "@/store/slices/authSlice";
 
 import PaymentCard from "../PaymentCard/PaymentCard";
 import styles from "./CountryDetails.module.css";
+import { setCountryName, setVisaType } from "@/store/slices/visaSlice";
 
 const cardData = {
   cardHeading: "Apply Now",
@@ -14,6 +15,11 @@ const cardData = {
 const CountryDetails = ({ country, forms }) => {
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
+
+  dispatch(setCountryName(country.country_name));
+
+  // Update the visa_type
+  dispatch(setVisaType(country.visa_type));
 
   useEffect(() => {
     dispatch(setCurrentCountryForms(forms)); // Dispatch action to set forms
@@ -28,8 +34,14 @@ const CountryDetails = ({ country, forms }) => {
           <h1>{country.country_name}</h1>
           <p>{country.description}</p>
         </div>
-        { country.visa_type !== 'visa_free' && (
-          <PaymentCard cardData={cardData} price={country.price_per_person} active={country.active} name={country.country_name} visa_type={country.visa_type} />
+        {country.visa_type !== "visa_free" && (
+          <PaymentCard
+            cardData={cardData}
+            price={country.price_per_person}
+            active={country.active}
+            name={country.country_name}
+            visa_type={country.visa_type}
+          />
         )}
       </div>
     </div>

@@ -5,7 +5,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* height: 110vh; */
+  min-height: 100vh;
 }
 .visaApplicationFormContainer {
   background-image: url("/assets/glassCard.png");
@@ -65,14 +65,15 @@
   justify-content: center;
   margin-top: 1.563vw;
   margin-bottom: 1.25vw;
+  max-width: 30.833vw;
 }
 .progressBar {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  gap: 10vw;
   counter-reset: step;
   width: 100%;
-  width: 30.833vw;
+  width: max-content;
   margin-bottom: 1.25vw;
   z-index: 1;
 }
@@ -329,7 +330,7 @@
 
 .visaApplicationForm input[type="text"],
 .visaApplicationForm input[type="date"],
-.visaApplicationForm input[type="number"]{
+.visaApplicationForm input[type="number"] {
   background: linear-gradient(
     91.91deg,
     rgba(255, 255, 255, 0.6) 0%,
@@ -492,18 +493,18 @@
     max-width: 60vw;
   }
   .greetingsContainer h2 {
-    font-size: 0.8rem;  
+    font-size: 0.8rem;
   }
   .greetingsContainer p {
     margin-top: 0.5rem;
     font-size: 0.5rem;
     font-weight: 400;
   }
-  
-.visaApplicationForm input[type="text"],
-.visaApplicationForm input[type="date"],
-.visaApplicationForm input[type="number"]{
-  font-size: .5rem;
-  padding: .3rem .5rem;
-}
+
+  .visaApplicationForm input[type="text"],
+  .visaApplicationForm input[type="date"],
+  .visaApplicationForm input[type="number"] {
+    font-size: 0.5rem;
+    padding: 0.3rem 0.5rem;
+  }
 }

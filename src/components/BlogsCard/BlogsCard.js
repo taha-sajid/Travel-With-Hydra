@@ -73,7 +73,7 @@ const blogsData = [
   },
 ];
 
-const BlogsCard = ({ cardData }) => {
+const   BlogsCard = ({ cardData }) => {
   const { heading, shortDescription } = cardData;
   // const [blogsData, setBlogsData] = useState([]);
 

@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import { getMyApplications } from "@/api/visa";
 import { useAuthToken } from "@/api/customHooks";
 
-
 const Dashboard = () => {
   const token = useAuthToken();
   const fetchAllApplications = async () => {
@@ -40,15 +39,15 @@ const Dashboard = () => {
     email,
     mobile_number,
     resident_country,
-    full_name
+    full_name,
   } = authState.user || {};
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
   return (
@@ -97,7 +96,7 @@ const Dashboard = () => {
           <tbody>
             {applications.map((app, index) => (
               <tr key={index}>
-                <td>{index+1}</td>
+                <td>{index + 1}</td>
                 <td>{app.country_name}</td>
                 <td>{formatDate(app.application_date)}</td>
                 <td>

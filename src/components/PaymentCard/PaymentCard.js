@@ -69,6 +69,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
 
   const handleClick = () => {
     if (user && status === "succeeded") {
+      dispatch(setApplicantsCount(applicantCount));
       router.push("/visaapplicationform");
     } else {
       router.push("/login");
