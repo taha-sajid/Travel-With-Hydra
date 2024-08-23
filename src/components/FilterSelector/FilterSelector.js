@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import styles from "./FilterSelector.module.css";
 import { getAllCountryData } from "@/api/visa";
 
-
-const Filter = () => {
+const Filter = ({ onCountrySelect }) => { // Accept callback as prop
   const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("Country");
 
   // Function to fetch countries from API and update state
   const fetchAllCountryData = async () => {
@@ -27,6 +27,16 @@ const Filter = () => {
     fetchAllCountryData();
   }, []);
 
+  // Function to handle selecting a country
+  const handleCountrySelect = (countryName) => {
+    if (countryName === null) {
+      setSelectedCountry("All");
+    } else {
+    setSelectedCountry(countryName);
+    }
+    onCountrySelect(countryName); 
+  };
+
   return (
     <div className={styles.dropdown}>
       <input
@@ -36,27 +46,36 @@ const Filter = () => {
         hidden
       />
       <label htmlFor="filter-switch" className={styles.dropdownOptionsFilter}>
-        <ul className={styles.dropdownFilter} role="listbox" tabIndex="-1">
-          <li className={styles.dropdownFilterSelected} aria-selected="true">
-            Country
+        <ul className={styles.dropdownFilterSelected} role="listbox" tabIndex="-1">
+          <li aria-selected="true">
+            {selectedCountry}
           </li>
           <li>
-            <ul className={styles.dropdownSelect}>
-              {countries.length > 0 ? (
-                countries.map((country, index) => (
-                  <li
-                    key={index}
-                    className={`${styles.dropdownSelectOption} ${index === 0 ? styles.active : ''}`}
-                    role={country.country_name}
-                  >
-                    {country.country_name}
-                  </li>
-                ))
-              ) : (
-                <li className={styles.dropdownSelectOption}>
-                  No countries available
+          <ul className={styles.dropdownSelect}>
+            {/* Static "All" option */}
+            <li
+              className={`${styles.dropdownSelectOption} ${selectedCountry === "All" ? styles.active : ''}`}
+              onClick={() => handleCountrySelect(null)}
+            >
+              All
+            </li>
+
+            {/* Dynamically generated country options */}
+            {countries.length > 0 ? (
+              countries.map((country, index) => (
+                <li
+                  key={index}
+                  className={`${styles.dropdownSelectOption} ${selectedCountry === country.country_name ? styles.active : ''}`}
+                  onClick={() => handleCountrySelect(country.country_name)}
+                >
+                  {country.country_name}
                 </li>
-              )}
+              ))
+            ) : (
+              <li className={styles.dropdownSelectOption}>
+                No countries available
+              </li>
+            )}
             </ul>
           </li>
         </ul>

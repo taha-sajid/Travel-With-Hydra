@@ -59,7 +59,7 @@ const index = () => {
         <CountryDetails country={country} forms={forms} />
       </div>
       <div className={styles.blogsCardContainer}>
-        <BlogsCard cardData={blogsCardData} />
+        <BlogsCard cardData={blogsCardData} country={country.country_name} />
       </div>
       <Footer />
     </div>

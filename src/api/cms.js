@@ -1,11 +1,14 @@
 import httpService from "./httpService";
 
-export const getBlogsData = () => {
+export const getBlogsData = (category) => {
+  if (category) {
+  return httpService.get(`/cms/blogs/${category}`);
+  }
   return httpService.get("/cms/blogs");
 };
 
 export const getBlogDetailData = (id) => {
-  return httpService.get(`/cms/blogs/${id}`);
+  return httpService.get(`/cms/blog-detail/${id}`);
 };
 
 export const getCategoriesData = () => {

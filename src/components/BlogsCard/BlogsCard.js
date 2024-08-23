@@ -16,70 +16,20 @@ import Link from "next/link";
 import { getBlogsData } from "@/api/cms";
 import { API_BASE_URL, IMAGE_BASE_URL } from "@/api/config";
 
-const blogsData = [
-  {
-    id: 1,
-    country: "France",
-    date: "2023-02-27",
-    title: "A Wonderful Journey to France",
-    description:
-      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
-    image: "/assets/blogscard.png",
-  },
-  {
-    id: 2,
-    country: "Italy",
-    date: "2023-02-27",
-    title: "A Wonderful Journey to Italy",
-    description:
-      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
-    image: "/assets/blogscard.png",
-  },
-  {
-    id: 3,
-    country: "Italy",
-    date: "2023-02-27",
-    title: "A Wonderful Journey to Italy",
-    description:
-      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
-    image: "/assets/blogscard.png",
-  },
-  {
-    id: 4,
-    country: "Italy",
-    date: "2023-02-27",
-    title: "A Wonderful Journey to Italy",
-    description:
-      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
-    image: "/assets/blogscard.png",
-  },
-  {
-    id: 5,
-    country: "Italy",
-    date: "2023-02-27",
-    title: "A Wonderful Journey to Italy",
-    description:
-      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
-    image: "/assets/blogscard.png",
-  },
-  {
-    id: 6,
-    country: "Italy",
-    date: "2023-02-27",
-    title: "A Wonderful Journey to Italy",
-    description:
-      "I had always been interested in spirituality, so I decided to take a year-long journey to India to explore various religious practices and traditions.",
-    image: "/assets/blogscard.png",
-  },
-];
-
-const   BlogsCard = ({ cardData }) => {
+const   BlogsCard = ({ cardData, country }) => {
   const { heading, shortDescription } = cardData;
   // const [blogsData, setBlogsData] = useState([]);
 
-  // COMPONENTS STATE
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [blogs, setBlogs] = useState([]);
   const sliderRef = useRef(null);
+
+  // Function to handle country selection
+  const handleCountryChange = (countryName) => {
+    setSelectedCountry(countryName);
+  };
+
+  // COMPONENTS STATE
 
   // CHECKING ROUTES
   const router = useRouter();
@@ -122,7 +72,7 @@ const   BlogsCard = ({ cardData }) => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await getBlogsData();
+        const response = await getBlogsData(country ? country : selectedCountry);
         console.log("Blogs data:", response.data);
         if (isHomePage) {
           setBlogs(response.data.slice(0, 2));
@@ -134,7 +84,7 @@ const   BlogsCard = ({ cardData }) => {
       }
     };
     fetchBlogs();
-  }, [router.pathname]);
+  }, [router.pathname, selectedCountry]);
 
   const handleButtonClick = (id) => {
     console.log("logged");
@@ -166,12 +116,13 @@ const   BlogsCard = ({ cardData }) => {
 
       {isBlogPage && (
         <div className={styles.filterSelector}>
-          <p>Filter By:</p> <FilterSelector />
+          <p>Filter By:</p> <FilterSelector onCountrySelect={handleCountryChange} />
         </div>
       )}
 
       {!isCountryDetailsPage && (
         <div className={styles.Blogs_card_container}>
+          {blogs.length === 0 && <p>No blogs available</p>}
           {blogs.map((blog) => (
             <div
               key={blog.id}
