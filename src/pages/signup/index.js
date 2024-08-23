@@ -1,9 +1,24 @@
 import Form from "@/components/Form/Form";
 import Header from "@/components/Header/header";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./signup.module.css";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const index = () => {
+  const router = useRouter();
+  const authState = useSelector((state) => state.auth);
+
+  const isLoggedIn = authState.status === "succeeded" && authState.user !== null;
+
+
+  useEffect(() => {
+    // Redirect to login page if not logged in
+    if (isLoggedIn) {
+      router.push("/");
+    }
+  }, [isLoggedIn, router]);
+
   const countries = [
     { value: "Afghanistan", label: "Afghanistan" },
     { value: "Albania", label: "Albania" },
@@ -275,9 +290,11 @@ const index = () => {
       <div>
         <Header />
       </div>
-      <div className={styles.form}>
+      {!isLoggedIn && (
+        <div className={styles.form}>
         <Form {...formData} />
       </div>
+      )}
     </div>
   );
 };

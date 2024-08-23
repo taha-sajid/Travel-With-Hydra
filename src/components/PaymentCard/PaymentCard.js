@@ -160,7 +160,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
       </button>
       ): (
       <div className={styles.applyNowCard}>
-        {(active && highestPriorityVisaType === visa_type) || (!token) && (
+        {(active && highestPriorityVisaType === visa_type) && (
           <>
             <h2>{cardHeading}</h2>
             <div className={styles.applicantFormGroup}>
@@ -194,7 +194,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
             {isButton && (
               <Link href={token ? "/visaapplicationform" : "/login"}>
                 <button className={styles.startApplicationButton}>
-                  Start Application
+                  Start application
                 </button>
               </Link>
             )}
