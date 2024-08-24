@@ -21,12 +21,12 @@ const Footer = () => {
           </span>
           <p>Follow us on social media</p>
           <div className={styles.social_icons}>
-            <i class="fa fa-facebook-square" aria-hidden="true"></i>
-            <i class="fa fa-facebook-square" aria-hidden="true"></i>
-            <i class="fa fa-facebook-square" aria-hidden="true"></i>
-            <i class="fa fa-facebook-square" aria-hidden="true"></i>
-            <i class="fa fa-facebook-square" aria-hidden="true"></i>
-            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            <i className="fa fa-facebook-square" aria-hidden="true"></i>
+            <i className="fa fa-facebook-square" aria-hidden="true"></i>
+            <i className="fa fa-facebook-square" aria-hidden="true"></i>
+            <i className="fa fa-facebook-square" aria-hidden="true"></i>
+            <i className="fa fa-facebook-square" aria-hidden="true"></i>
+            <i className="fa fa-facebook-square" aria-hidden="true"></i>
           </div>
         </div>
       </div>

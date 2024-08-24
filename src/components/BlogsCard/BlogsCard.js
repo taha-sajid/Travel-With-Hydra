@@ -1,51 +1,36 @@
-// REACT HOOKS IMPORT
 import React, { useState, useRef, useEffect } from "react";
-import { format, isValid } from "date-fns";
 import { useRouter } from "next/router";
-
-// COMPONENTS IMPORT
-import styles from "./BlogsCard.module.css";
-import FilterSelector from "../FilterSelector/FilterSelector";
-import { PrevArrow, NextArrow } from "../LeftRightArrow/LeftRightArrow";
-
-// SLICK SLIDER IMPORT
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Link from "next/link";
+import styles from "./BlogsCard.module.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { getBlogsData } from "@/api/cms";
-import { API_BASE_URL, IMAGE_BASE_URL } from "@/api/config";
+import { IMAGE_BASE_URL } from "@/api/config";
+import { PrevArrow, NextArrow } from "../LeftRightArrow/LeftRightArrow";
+import FilterSelector from "../FilterSelector/FilterSelector"; // Import your filter
 
-const   BlogsCard = ({ cardData, country }) => {
+const BlogsCard = ({ cardData, country }) => {
   const { heading, shortDescription } = cardData;
-  // const [blogsData, setBlogsData] = useState([]);
-
-  const [selectedCountry, setSelectedCountry] = useState("");
   const [blogs, setBlogs] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(country || "");
   const sliderRef = useRef(null);
-
-  // Function to handle country selection
-  const handleCountryChange = (countryName) => {
-    setSelectedCountry(countryName);
-  };
-
-  // COMPONENTS STATE
-
-  // CHECKING ROUTES
   const router = useRouter();
+
   const isHomePage = router.pathname === "/";
   const isBlogPage = router.pathname === "/blogs";
-  const isCountryDetailsPage = router.pathname.split("/")[1]==="country";
-  // SLICK SLIDER CONFIGURATION
+  const isCountryDetailsPage = router.pathname.split("/")[1] === "country";
+
+  // Slider Settings
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: blogs.length > 1,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: Math.min(2, blogs.length),
     slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "-17",
-    autoplay: true,
+    centerMode: blogs.length > 1,
+    centerPadding: "-17px",
+    autoplay: blogs.length > 1, // Only autoplay if more than 1 blog
     autoplaySpeed: 2500,
     responsive: [
       {
@@ -58,138 +43,112 @@ const   BlogsCard = ({ cardData, country }) => {
     ],
   };
 
-  // HANDLING PREVIOUS AND NEXT BUTTON OF SLIDER
   const goToPrev = () => sliderRef.current.slickPrev();
   const goToNext = () => sliderRef.current.slickNext();
 
-  useEffect(() => {
-    require("slick-carousel/slick/slick.min.js");
-  }, []);
+  const handleCountryChange = (countryName) => {
+    setSelectedCountry(countryName);
+  };
 
-  // useEffect(() => {}, [router.pathname]);
-
-  // API CALL
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await getBlogsData(country ? country : selectedCountry);
-        console.log("Blogs data:", response.data);
+        const response = await getBlogsData(selectedCountry || country);
         if (isHomePage) {
           setBlogs(response.data.slice(0, 2));
         } else {
           setBlogs(response.data);
         }
       } catch (error) {
-        console.error("Error fetching Blogs data:", error);
+        console.error("Error fetching blogs data:", error);
       }
     };
+
     fetchBlogs();
-  }, [router.pathname, selectedCountry]);
+  }, [selectedCountry, country]);
 
   const handleButtonClick = (id) => {
-    console.log("logged");
     router.push(`/blogs/${id}`);
   };
 
-  console.log("blogs", blogs);
-
   return (
-    <div
-      className={`${styles.Blogs_section_container} blogs-container`}
-      style={!isHomePage ? { marginTop: 0 } : {}}
-    >
-      <div
-        className={`${styles.Blogs_section_heading} ${
-          isHomePage && styles.marginBottom
-        }`}
-      >
-        <div className={isHomePage && styles.BlogsHeading}>
-          <h1>{heading}</h1>
-          <p>{shortDescription}</p>
-        </div>
+    <div className={styles.Blogs_section_container}>
+      {/* Heading Section */}
+      <div className={`${styles.Blogs_section_heading}`}>
+        <h1>{heading}</h1>
+        <p>{shortDescription}</p>
         {isHomePage && (
           <div className={styles.blogsButton}>
-            <Link href={'/blogs'} className={`${styles.btn_primary}`}>View All</Link>
+            <Link href="/blogs" className={styles.btn_primary}>
+              View All
+            </Link>
           </div>
         )}
       </div>
 
+      {/* Filter Selector */}
       {isBlogPage && (
         <div className={styles.filterSelector}>
-          <p>Filter By:</p> <FilterSelector onCountrySelect={handleCountryChange} />
+          <p>Filter By:</p>
+          <FilterSelector onCountrySelect={handleCountryChange} />
         </div>
       )}
 
+      {/* Blog Cards */}
       {!isCountryDetailsPage && (
         <div className={styles.Blogs_card_container}>
-          {blogs.length === 0 && <p>No blogs available</p>}
-          {blogs.map((blog) => (
-            <div
-              key={blog.id}
-              className={`${styles.Blogs_card} ${
-                isHomePage && styles.homePage
-              }`}
-            >
-              <div className={styles.card_head}>
-                <img src={IMAGE_BASE_URL + blog.image} alt={blog.title} />
-                <div className={styles.card_tag}>
-                  <span>{blog.category}</span>
-                  <span>
-                    {/* {isValid(new Date(blog.date))
-                      ? format(new Date(blog.date), "MMM dd, yyyy")
-                      : "Date not available"} */}
-                  </span>
-                </div>
-                <h3>{blog.title}</h3>
-                <p>{blog.excerpt}</p>
-
-                <button onClick={() => handleButtonClick(blog.id)}>
-                  Read Full Post
-                  <i className="fa fa-arrow-up" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* SLICK SLIDER */}
-      {isCountryDetailsPage && blogs.length !== 0 ? (
-        <div className={styles.sliderContainer}>
-          <Slider
-            className={styles.Blogs_card_container}
-            {...settings}
-            ref={sliderRef}
-          >
-            {blogs.map((blog) => (
+          {blogs.length === 0 ? (
+            <p>No blogs available</p>
+          ) : (
+            blogs.map((blog) => (
               <div key={blog.id} className={styles.Blogs_card}>
                 <div className={styles.card_head}>
-                  <img src={IMAGE_BASE_URL + blog.image} alt={blog.title} />
+                  <img src={`${IMAGE_BASE_URL}${blog.image}`} alt={blog.title} />
                   <div className={styles.card_tag}>
                     <span>{blog.category}</span>
-                    <span>
-                      {/* {isValid(new Date(blog.date))
-                        ? format(new Date(blog.date), "MMM dd, yyyy")
-                        : "Date not available"} */}
-                    </span>
                   </div>
                   <h3>{blog.title}</h3>
                   <p>{blog.excerpt}</p>
-
                   <button onClick={() => handleButtonClick(blog.id)}>
                     Read Full Post
-                    <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      )}
+
+      {/* Slider Section */}
+      {isCountryDetailsPage && blogs.length > 0 ? (
+        <div className={styles.sliderContainer}>
+          <Slider {...settings} ref={sliderRef}>
+            {blogs.map((blog) => (
+              <div key={blog.id} className={styles.Blogs_card}>
+                <div className={styles.card_head}>
+                  <img src={`${IMAGE_BASE_URL}${blog.image}`} alt={blog.title} />
+                  <div className={styles.card_tag}>
+                    <span>{blog.category}</span>
+                  </div>
+                  <h3>{blog.title}</h3>
+                  <p>{blog.excerpt}</p>
+                  <button onClick={() => handleButtonClick(blog.id)}>
+                    Read Full Post
                   </button>
                 </div>
               </div>
             ))}
           </Slider>
-          <div className={styles.sliderButtons}>
-            <PrevArrow onClick={goToPrev} />
-            <NextArrow onClick={goToNext} />
-          </div>
+          {blogs.length > 1 && (
+            <div className={styles.sliderButtons}>
+              <PrevArrow onClick={goToPrev} />
+              <NextArrow onClick={goToNext} />
+            </div>
+          )}
         </div>
-      ):(<p>No blogs available for this country</p>)}
+      ) : (
+        isCountryDetailsPage && <p>No blogs available for this country</p>
+      )}
     </div>
   );
 };

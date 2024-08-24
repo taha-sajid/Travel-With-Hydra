@@ -267,8 +267,16 @@
     90deg,
     rgba(255, 255, 255, 0.8) 0%,
     rgba(255, 255, 255, 0.4) 100%
-  );
+    );
+    color: black;
 }
+
+.btnContainer button:hover {
+  background: #ffffff;
+  color: black;
+  transition: 0.3s all ease-in-out;
+}
+
 .btnContainerDone {
   justify-content: center;
 }

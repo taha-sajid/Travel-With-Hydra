@@ -5,10 +5,10 @@ const CountrySelector = ({
   onCitizenshipSelect,
   onResidentSelect,
   heading,
-  countries = [], // Default to an empty array if countries is undefined
+  countries = [],
 }) => {
-  const [selectedCountry, setSelectedCountry] = useState(countries[0] || {}); // Use an empty object as a fallback
-  const [confirmedCountry, setConfirmedCountry] = useState(countries[0] || {});
+  const [selectedCountry, setSelectedCountry] = useState({});
+  const [confirmedCountry, setConfirmedCountry] = useState({});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -17,6 +17,17 @@ const CountrySelector = ({
   const countrySelectorRef = useRef(null);
   const dropdownRef = useRef(null);
   const observerRef = useRef(null);
+
+  // Save selected country to localStorage
+  const saveCountryToLocalStorage = (key, country) => {
+    localStorage.setItem(key, JSON.stringify(country));
+  };
+
+  // Load country from localStorage
+  const loadCountryFromLocalStorage = (key) => {
+    const savedCountry = localStorage.getItem(key);
+    return savedCountry ? JSON.parse(savedCountry) : null;
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -83,11 +94,15 @@ const CountrySelector = ({
   }, []);
 
   useEffect(() => {
-    if (countries.length > 0) {
+    const savedCountry = loadCountryFromLocalStorage(heading);
+    if (savedCountry) {
+      setSelectedCountry(savedCountry);
+      setConfirmedCountry(savedCountry);
+    } else if (countries.length > 0) {
       setSelectedCountry(countries[0]);
       setConfirmedCountry(countries[0]);
     }
-  }, [countries]);
+  }, [countries, heading]);
 
   useEffect(() => {
     if (onCitizenshipSelect) onCitizenshipSelect(confirmedCountry);
@@ -97,6 +112,9 @@ const CountrySelector = ({
   const handleConfirm = () => {
     setConfirmedCountry(selectedCountry);
     setIsDropdownOpen(false);
+
+    // Save the confirmed country to localStorage
+    saveCountryToLocalStorage(heading, selectedCountry);
 
     if (heading === "Citizenship" && onCitizenshipSelect) {
       onCitizenshipSelect(selectedCountry); // Ensure this is called with the selectedCountry

@@ -44,7 +44,16 @@ const ApplicationForm = () => {
   const handleNextClick = () => {
     setUploadedFileName("");
     console.log("clicked");
-
+  
+    // Validation check for required fields
+    const currentFormFields = currentCountryForms[currentStep - 1];
+    const isRequiredFieldMissing = currentFormFields.required && !formData[currentFormFields.field_label];
+  
+    if (isRequiredFieldMissing) {
+      alert("This field is required.");
+      return;
+    }
+  
     if (currentStep < currentCountryFormsLength) {
       setCurrentStep((prevStep) => prevStep + 1);
       console.log("logged");
@@ -58,9 +67,9 @@ const ApplicationForm = () => {
       setFormData({});
       setCurrentForm(numberOfApplicants + 1);
       setCurrentStep((prevStep) => prevStep + 1);
-
     }
   };
+  
 
   const handlePreviousClick = () => {
     if (currentStep > 1) {
@@ -128,7 +137,7 @@ const ApplicationForm = () => {
   };
 
   const completedSteps = Math.floor(
-    (currentStep / (currentCountryFormsLength + 1)) * 100
+    (currentStep / (currentCountryFormsLength)) * 100
   );
 
   return (
@@ -161,7 +170,7 @@ const ApplicationForm = () => {
             
           <div className={styles.animatedProgressBar}>
             <p className={styles.stepIndicator}>
-              {currentStep}/{currentCountryFormsLength + 1}
+              {currentStep}/{currentCountryFormsLength}
             </p>
             <div
               className={styles.active}
@@ -193,6 +202,7 @@ const ApplicationForm = () => {
                       e.target.value
                     )
                   }
+                  required={currentCountryForms[currentStep - 1].required}
                 />
               )}
 
@@ -211,6 +221,7 @@ const ApplicationForm = () => {
                       e.target.value
                     )
                   }
+                  required={currentCountryForms[currentStep - 1].required}
                 ></textarea>
               )}
 
@@ -238,6 +249,7 @@ const ApplicationForm = () => {
                         );
                       }
                     }}
+                    required={currentCountryForms[currentStep - 1].required}
                   />
                 </label>
               )}
@@ -257,6 +269,7 @@ const ApplicationForm = () => {
                       e.target.value
                     )
                   }
+                  required={currentCountryForms[currentStep - 1].required}
                 />
               )}
 
@@ -275,6 +288,7 @@ const ApplicationForm = () => {
                       e.target.value
                     )
                   }
+                  required={currentCountryForms[currentStep - 1].required}
                 />
               )}
             </>

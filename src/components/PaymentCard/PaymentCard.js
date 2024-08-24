@@ -200,9 +200,9 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
             )}
           </>
         ) : highestPriorityVisaType === 'visa_free' ? (
-          <p className={styles.visaFreeText}>
+          <button className={styles.visaFreeText}>
             This Country is Visa Free for you.
-          </p>
+          </button>
         ) : (
           <button
             className={`${styles.wishlistButton} ${isDisabled ? styles.disabled : ''}`}
