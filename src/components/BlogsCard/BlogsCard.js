@@ -154,7 +154,7 @@ const   BlogsCard = ({ cardData, country }) => {
       )}
 
       {/* SLICK SLIDER */}
-      {isCountryDetailsPage && (
+      {isCountryDetailsPage && blogs.length !== 0 ? (
         <div className={styles.sliderContainer}>
           <Slider
             className={styles.Blogs_card_container}
@@ -189,7 +189,7 @@ const   BlogsCard = ({ cardData, country }) => {
             <NextArrow onClick={goToNext} />
           </div>
         </div>
-      )}
+      ):(<p>No blogs available for this country</p>)}
     </div>
   );
 };
