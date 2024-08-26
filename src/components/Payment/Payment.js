@@ -23,7 +23,6 @@ const PaymentForm = () => {
   const formUUID = useSelector((state) => state.visa.generateUUID);
   // Async function to fetch payment intent
   const createPaymentIntent = async (price, uuid) => {
-    console.log(0, price, uuid);
     try {
       const response = await axios.post(
         `${API_BASE_URL}/visa/create-payment-intent/`,

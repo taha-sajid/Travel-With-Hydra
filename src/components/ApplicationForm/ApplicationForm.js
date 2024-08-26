@@ -31,6 +31,7 @@ const ApplicationForm = () => {
   const token = useSelector((state) => state.auth.token);
   const countryName = useSelector((state) => state.visa.country_name);
   const visaType = useSelector((state) => state.visa.visa_type);
+  const formUUID = useSelector((state) => state.visa.generateUUID);
 
   const [formData, setFormData] = useState({});
 
@@ -105,6 +106,7 @@ const ApplicationForm = () => {
         country_name: countryName,
         user: 4,
         visa_type: visaType,
+        form_id: formUUID, 
         responses: responses,
         files: files,
       };
