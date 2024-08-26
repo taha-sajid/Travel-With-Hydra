@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { getCitizenshipData, getResidentData, getMyWishlist, addToWishlist } from "@/api/visa";
 import { useAuthToken } from "@/api/customHooks";
-import { setApplicantsCount } from "@/store/slices/visaSlice";
+import { setApplicantsCount, setTotalPrice, setUUID  } from "@/store/slices/visaSlice";
+import { v4 as uuidv4 } from 'uuid';
 
 const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
   const [applicantCount, setApplicantCount] = useState(1);
@@ -69,9 +70,17 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
   const visaFees = price;
   const totalAmount = visaFees * applicantCount;
 
+  const generateUUID = () => {
+    const newUUID = uuidv4();
+    console.log("Generated UUID:", newUUID);
+    return newUUID;
+  };
   const handleClick = () => {
     if (user && status === "succeeded") {
+      const uuid = generateUUID();
       dispatch(setApplicantsCount(applicantCount));
+      dispatch(setTotalPrice(totalAmount));
+      dispatch(setUUID(uuid));
       router.push("/visaapplicationform");
     } else {
       router.push("/login");

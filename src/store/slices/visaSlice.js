@@ -7,6 +7,8 @@ const visaSlice = createSlice({
     visa_type: null,
     user: null, 
     applicantsCount: null,
+    totalPrice: null,
+    generateUUID: null,
   },
   reducers: {
     setCountryName: (state, action) => {
@@ -21,6 +23,12 @@ const visaSlice = createSlice({
     setApplicantsCount: (state, action) => {
       state.applicantsCount = action.payload;
     },
+    setTotalPrice: (state, action) => {
+      state.totalPrice = action.payload;
+    },
+    setUUID : (state, action) => {
+      state.generateUUID = action.payload;
+    },
     clearVisaData: (state) => {
       state.country_name = null;
       state.visa_type = null;
@@ -33,7 +41,9 @@ export const {
   setCountryName,
   setVisaType,
   setVisaUser,
-  setApplicantsCount  ,
+  setApplicantsCount,
+  setTotalPrice,
+  setUUID,
   clearVisaData,
 } = visaSlice.actions;
 export default visaSlice.reducer;

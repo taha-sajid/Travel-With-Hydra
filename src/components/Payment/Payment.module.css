@@ -100,7 +100,7 @@
 .accordionItemDescription .formGroup label {
   font-size: 0.833vw;
   font-weight: 500;
-  margin-bottom: 0.417vw;
+  margin: 1vw 0vw;
 }
 .accordionItemDescription p {
   padding: 10px;
@@ -121,6 +121,7 @@
   width: 100%;
   font-size: 0.833vw;
   padding: 0.833vw 0vw;
+  margin-top: 2vw;
 }
 .formGroup input {
   border: 1px solid #e3e8ef;

@@ -18,7 +18,6 @@ const ApplicationForm = () => {
   useEffect(() => {
     setNumberOfApplicants(applicantsCount);
   }, []);
-  console.log("number of applicants count", applicantsCount);
 
   const router = useRouter();
   const handleExit = () => {
