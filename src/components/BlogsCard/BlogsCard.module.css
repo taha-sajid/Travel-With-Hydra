@@ -11,6 +11,9 @@
   justify-content: space-between;
   flex-direction: row;
   margin-bottom: 1vw;
+  align-items: center;
+  /* margin-bottom: 4.688vw; */
+  /* flex-direction: column; */
 }
 .BlogsHeading {
   width: 80%;
@@ -59,7 +62,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 2.604vw;
   font-size: 1.042vw;
   gap: 1.042vw;
 }
@@ -77,6 +79,7 @@
   flex-wrap: wrap;
   gap: 3.75vw;
   transition: transform 0.5s ease;
+  margin-top: 4.688vw;
 }
 
 .Blogs_card {
@@ -213,6 +216,8 @@
   }
   .card_head img {
     border-radius: 0.8rem;
+    max-height: none;
+    height: 13rem;
   }
   .card_tag {
     margin-top: 0.5rem;

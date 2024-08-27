@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import "./header.css";
 import Link from "next/link";
@@ -17,6 +17,7 @@ const Header = ({ bannerImage }) => {
   const [isActive, setIsActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [menuLinks, setMenuLinks] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
   const [headerLogo, setHeaderLogo] = useState("");
 
   const router = useRouter();
@@ -34,6 +35,8 @@ const Header = ({ bannerImage }) => {
   const isFAQsPage = router.pathname === "/faqs";
   const isContactUsPage = router.pathname === "/contactus";
 
+  const dropdownRef = useRef(null);
+
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
 
@@ -46,16 +49,44 @@ const Header = ({ bannerImage }) => {
 
   const handleAuthClick = async () => {
     if (isLoggedIn) {
-      setLoading(true);
-      dispatch(logout());
-      await router.push("/");
-      setLoading(false);
+      setShowDropdown((prev) => !prev);
     } else {
       setLoading(true);
       await router.push("/login");
       setLoading(false);
     }
   };
+
+  const handleDropdownAction = async (action) => {
+    setShowDropdown(false); // Hide the dropdown after an action
+    switch (action) {
+      case "viewProfile":
+        await router.push("/dashboard");
+        break;
+      case "resetPassword":
+        await router.push("/newpassword");
+        break;
+      case "logout":
+        setLoading(true);
+        dispatch(logout());
+        await router.push("/");
+        setLoading(false);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const fetchHeader = async () => {
     try {
@@ -130,28 +161,40 @@ const Header = ({ bannerImage }) => {
                   <Link href={link.url}>{link.label}</Link>
                 </li>
               ))}
-              {isLoggedIn && (
-                <li>
-                <Link href="/dashboard">DASHBOARD</Link>
-              </li>
-              )}
             </ul>
           </div>
         </div>
-        {/* <div className="signInButtonContainer"> */}
-        <button className="btn-primary auth_btn" onClick={handleAuthClick}>
-          <span>
-            <FaUser className="icon" />
-            {loading ? (
-              <p>Loading...</p>
-            ) : isLoggedIn ? (
-              <p> Logout</p>
-            ) : (
-              <p> Login/Sign up</p>
-            )}
-          </span>
-        </button>
-        {/* </div> */}
+
+        <div className="signInButtonContainer">
+          <button
+            className="btn-primary auth_btn"
+            onClick={() => handleAuthClick()}
+          >
+            <span>
+              <FaUser className="icon" />
+              {loading ? (
+                <p>Loading...</p>
+              ) : isLoggedIn ? (
+                <>
+                  <p> {authState.user.full_name}</p>
+                </>
+              ) : (
+                <p> Login/Sign up</p>
+              )}
+            </span>
+          </button>
+          {isLoggedIn && showDropdown && (
+            <div className="avatar-dropdown" ref={dropdownRef}>
+              <p onClick={() => handleDropdownAction("viewProfile")}>
+                view profile
+              </p>
+              <p onClick={() => handleDropdownAction("resetPassword")}>
+                Reset password
+              </p>
+              <p onClick={() => handleDropdownAction("logout")}>Logout</p>
+            </div>
+          )}
+        </div>
       </nav>
       <div
         className={`hamburger animated-navbar ${isActive ? "active" : ""}`}

@@ -150,6 +150,10 @@
     padding: 0.5rem;
     padding-bottom: 0.8rem;
   }
+  .card_image{
+    max-width: none;
+    height: 6.2rem;
+  }
   .card h3 {
     font-size: 0.8rem;
   }

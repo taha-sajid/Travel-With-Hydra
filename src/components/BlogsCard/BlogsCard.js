@@ -75,9 +75,9 @@ const BlogsCard = ({ cardData, country }) => {
     <div className={styles.Blogs_section_container}>
       {/* Heading Section */}
       <div className={`${styles.Blogs_section_heading}`}>
-        <div>
-        <h1>{heading}</h1>
-        <p>{shortDescription}</p>
+        <div className={styles.blogsHeadingContent}>
+          <h1>{heading}</h1>
+          <p>{shortDescription}</p>
         </div>
         {isHomePage && (
           <div className={styles.blogsButton}>
@@ -105,7 +105,10 @@ const BlogsCard = ({ cardData, country }) => {
             blogs.map((blog) => (
               <div key={blog.id} className={styles.Blogs_card}>
                 <div className={styles.card_head}>
-                  <img src={`${IMAGE_BASE_URL}${blog.image}`} alt={blog.title} />
+                  <img
+                    src={`${IMAGE_BASE_URL}${blog.image}`}
+                    alt={blog.title}
+                  />
                   <div className={styles.card_tag}>
                     <span>{blog.category}</span>
                   </div>
@@ -128,7 +131,10 @@ const BlogsCard = ({ cardData, country }) => {
             {blogs.map((blog) => (
               <div key={blog.id} className={styles.Blogs_card}>
                 <div className={styles.card_head}>
-                  <img src={`${IMAGE_BASE_URL}${blog.image}`} alt={blog.title} />
+                  <img
+                    src={`${IMAGE_BASE_URL}${blog.image}`}
+                    alt={blog.title}
+                  />
                   <div className={styles.card_tag}>
                     <span>{blog.category}</span>
                   </div>
