@@ -65,11 +65,11 @@ const ContactForm = () => {
         <span>
           <p>
             <img src="/assets/phone.png" alt="Phone" />
-            +1611 111 1111
+            +446379048255
           </p>
           <p>
             <img src="/assets/mail.png" alt="Mail" />
-            info@flyhydra.com
+            info@travelwithhydra.com
           </p>
         </span>
       </div>

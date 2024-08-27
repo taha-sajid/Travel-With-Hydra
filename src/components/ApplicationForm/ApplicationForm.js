@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { submitVisaApplication } from "@/store/slices/authSlice";
 import { useRouter } from "next/router";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ApplicationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -50,7 +52,10 @@ const ApplicationForm = () => {
     const isRequiredFieldMissing = currentFormFields.required && !formData[currentFormFields.field_label];
   
     if (isRequiredFieldMissing) {
-      alert("This field is required.");
+      toast.error("This field is required", {
+        position: "top-center",  
+        autoClose: 1000,  
+      });
       return;
     }
   
@@ -142,6 +147,8 @@ const ApplicationForm = () => {
   );
 
   return (
+    <>
+    <ToastContainer />
     <div className={styles.applicationFormContainer}>
       <div className={styles.visaApplicationFormContainer}>
         <div className={styles.visaApplicationForm}>
@@ -335,6 +342,7 @@ const ApplicationForm = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

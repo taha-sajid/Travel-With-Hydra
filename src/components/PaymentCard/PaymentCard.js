@@ -224,6 +224,9 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
 
       </div>
       )}
+      <div style={{marginTop:"1.5vw"}}>
+      <p>Note: All applications are processed based on the citizenship and residency information you provided when creating your account.</p>
+      </div>
     </div>
   );
 };

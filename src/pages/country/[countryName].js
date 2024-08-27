@@ -10,7 +10,7 @@ import { getCountryData } from "@/api/visa";
 
 const blogsCardData = {
   heading: "Related Blogs",
-  shortDescription: "Explore our latest blogs from our active users",
+  shortDescription: "We have extensive information on visas for every country on the planet.",
 };
 
 function capitalizeFirstLetter(text) {

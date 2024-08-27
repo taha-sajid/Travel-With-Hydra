@@ -32,8 +32,7 @@ const WhyChooseUs = () => {
       <div className={`${style.right_container}`}>
         <h1>Why Choose Us</h1>
         <p>
-          Enjoy different experiences in every place you visit and discover new
-          and affordable adventures of course.
+        We provide the most streamlined alternative to the traditional cumbersome visa process.
         </p>
         <div className={`${style.card_container}`}>
           <div className={`${style.card}`}>
@@ -42,7 +41,7 @@ const WhyChooseUs = () => {
             </div>
             <div className={`${style.card_text}`}>
               <h3>Get in Touch</h3>
-              <p>Vitae donec pellentesque a aliquam et ultricies auctor. </p>
+              <p>Just fill a simplified form on our website.</p>
             </div>
           </div>
           <div className={`${style.card}`}>
@@ -51,7 +50,7 @@ const WhyChooseUs = () => {
             </div>
             <div className={`${style.card_text}`}>
               <h3>Get Your Visa</h3>
-              <p>Vitae donec pellentesque a aliquam et ultricies auctor. </p>
+              <p>Receive your e-visa in fastest time.</p>
             </div>
           </div>
           <div className={`${style.card}`}>
@@ -60,7 +59,7 @@ const WhyChooseUs = () => {
             </div>
             <div className={`${style.card_text}`}>
               <h3>Fly Away</h3>
-              <p>Vitae donec pellentesque a aliquam et ultricies auctor. </p>
+              <p>Make your travel dreams come true. </p>
             </div>
           </div>
         </div>

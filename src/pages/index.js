@@ -10,7 +10,7 @@ import styles from "./homepage.module.css";
 
 const blogsCardData = {
   heading: "Blogs",
-  shortDescription: "Explore our latest blogs from our active users",
+  shortDescription: "We have extensive information on visas for every country on the planet.",
 };
 
 const Page = () => {

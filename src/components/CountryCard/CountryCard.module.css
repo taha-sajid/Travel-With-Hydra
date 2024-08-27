@@ -3,12 +3,12 @@
 .cards_section_container.start-animation {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 1.5s ease-in-out, transform 3s ease-in-out;
+  transition: opacity 1.5s ease-in, transform 1s ease-in;
 }
 
 .cards_section_container {
   width: 100%;
-  transform: translateY(100%);
+  transform: translateY(50%);
   opacity: 0;
   overflow: hidden;
 }
@@ -86,7 +86,7 @@
 }
 
 .card_price h4 {
-  font-size: 1.25vw;
+  font-size: 1.0vw;
   font-weight: 400;
 }
 .cards_container a:first-child .card .card_price h4 span {
@@ -176,6 +176,21 @@
     margin-top: 1rem;
     font-size: 0.7rem;
     border-radius: 100rem;
+  }
+  .card_image {
+    overflow: hidden;
+    border-radius: 1.042vw;
+    width: 100%;
+    max-width: 100%;
+    height: 15.448vw;
+  }
+  .card img {
+    display: block;
+    border-radius: inherit;
+    transition: transform 0.8s ease-in-out;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }
 

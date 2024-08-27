@@ -101,7 +101,7 @@ const CountryCard = ({ destinations }) => {
             </div>
           ) : (
             <div className={`${style.card_price}`}>
-              <h4>Visa Free</h4>
+              <h4>Visa Free Access</h4>
               <button className="btn-primary">View Details</button>
             </div>
           )}

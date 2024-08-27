@@ -75,8 +75,10 @@ const BlogsCard = ({ cardData, country }) => {
     <div className={styles.Blogs_section_container}>
       {/* Heading Section */}
       <div className={`${styles.Blogs_section_heading}`}>
+        <div>
         <h1>{heading}</h1>
         <p>{shortDescription}</p>
+        </div>
         {isHomePage && (
           <div className={styles.blogsButton}>
             <Link href="/blogs" className={styles.btn_primary}>
@@ -147,7 +149,7 @@ const BlogsCard = ({ cardData, country }) => {
           )}
         </div>
       ) : (
-        isCountryDetailsPage && <p>No blogs available for this country</p>
+        isCountryDetailsPage && <p style={{marginTop:"2vw",}}>Unfortunately, we don't have any blog posts for this country at the moment. Stay tuned for updates!</p>
       )}
     </div>
   );

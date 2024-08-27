@@ -132,9 +132,7 @@ const CustomerStories = () => {
     >
       <h1>Customer Stories</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur. Orci lectus aliquam nunc
-        fringilla blandit id. At ut blandit in fermentum consectetur nisl
-        sagittis quis morbi.
+        Find out what our customers say about us.
       </p>
       <div className={styles.sliderContainer}>
         <div className={styles.slides}>

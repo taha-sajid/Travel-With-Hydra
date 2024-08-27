@@ -143,8 +143,7 @@ const CountrySelector = ({
             <div className="dropdown-heading">
               <h3>Confirm {heading}</h3>
               <p>
-                This determines your visa requirements, and where you can travel
-                visa-free.
+              This information helps us determine the type of visa you may need for traveling to different countries.
               </p>
             </div>
             <div ref={countrySelectorRef} className="dropdown-country-selector">
