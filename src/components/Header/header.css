@@ -66,10 +66,10 @@
   border: 0.104vw solid white;
   /* background-color: cadetblue; */
 }
-.signInButtonContainer {
+.auth_btn {
   position: relative;
 }
-.signInButtonContainer p {
+.auth_btn p {
   text-transform: capitalize;
 }
 .avatar-dropdown {
@@ -357,6 +357,14 @@
 
   .avatar-button {
     top: 2rem;
+  }
+  .avatar-dropdown {
+    top: 3rem;
+  }
+  .avatar-dropdown p {
+    font-size: 0.6rem;
+
+    padding: 0.3rem 1rem;
   }
   .navbar-links {
     display: none;

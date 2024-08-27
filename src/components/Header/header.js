@@ -165,7 +165,6 @@ const Header = ({ bannerImage }) => {
           </div>
         </div>
 
-        <div className="signInButtonContainer">
           <button
             className="btn-primary auth_btn"
             onClick={() => handleAuthClick()}
@@ -182,8 +181,7 @@ const Header = ({ bannerImage }) => {
                 <p> Login/Sign up</p>
               )}
             </span>
-          </button>
-          {isLoggedIn && showDropdown && (
+            {isLoggedIn && showDropdown && (
             <div className="avatar-dropdown" ref={dropdownRef}>
               <p onClick={() => handleDropdownAction("viewProfile")}>
                 view profile
@@ -194,7 +192,8 @@ const Header = ({ bannerImage }) => {
               <p onClick={() => handleDropdownAction("logout")}>Logout</p>
             </div>
           )}
-        </div>
+          </button>
+         
       </nav>
       <div
         className={`hamburger animated-navbar ${isActive ? "active" : ""}`}
