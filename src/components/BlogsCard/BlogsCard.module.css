@@ -263,4 +263,7 @@
   .sliderButtons {
     gap: 1.3rem;
   }
+  .blogsHeadingContent{
+    width: 70%;
+  }
 }
