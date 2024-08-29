@@ -22,6 +22,7 @@ const iconComponents = {
 };
 
 const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
+  console.log("formType", formType);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
 

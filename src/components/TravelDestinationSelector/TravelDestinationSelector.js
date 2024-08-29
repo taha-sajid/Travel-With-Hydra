@@ -219,7 +219,7 @@ const TravelDestinationSelector = () => {
             />
             <CountrySelector
               onResidentSelect={handleResidentSelect}
-              heading={"Resident"}
+              heading={"Residency"}
               countries={residentCountriesList}
             />
           </div>

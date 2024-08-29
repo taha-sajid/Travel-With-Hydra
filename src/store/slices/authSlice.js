@@ -35,7 +35,7 @@ export const register = createAsyncThunk(
     try {
       const response = await registerApi(userInfo);
 
-      const token = response.data.token;
+      const token = response.data.access;
 
       // Parse token to extract expiration time
       const { exp } = JSON.parse(atob(token.split(".")[1]));
