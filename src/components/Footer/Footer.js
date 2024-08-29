@@ -16,7 +16,7 @@ const Footer = () => {
           </span>
           <p>Follow us on social media</p>
           <div className={styles.social_icons}>
-            <a href="https://facebook.com/travelwithydra" target="_blank">
+            <a href="https://www.facebook.com/share/cC4n6ttYo5MFCk3K/?mibextid=LQQJ4d" target="_blank">
             <i className="fa fa-facebook-square" aria-hidden="true"></i>
             </a>
             <a href="https://instagram.com/travelwithydra" target="_blank">

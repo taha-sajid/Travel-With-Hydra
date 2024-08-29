@@ -20,8 +20,8 @@ const index = () => {
   }, [isLoggedIn, router]);
   const formData = {
     formType: "login",
-    formTitle: "Login",
-    formSubtitle: "Welcome back! Log in to your account.",
+    formTitle: "Log In",
+    formSubtitle: "",
     fields: [
       {
         id: "email",
@@ -45,9 +45,9 @@ const index = () => {
       rememberText: "Remember Password",
       forgotText: "Forgot Password?",
       forgotLink: "/forgotpassword",
-      submitText: "SIGN IN",
+      submitText: "LOG IN",
       submitBtnLink: "/dashboard",
-      signUpText: "Didn't have an account?",
+      signUpText: "Don't have an account?",
       signUpLinkText: "Sign Up",
       signUpLink: "/signup",
     },

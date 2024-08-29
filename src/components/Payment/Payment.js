@@ -27,6 +27,7 @@ const PaymentForm = () => {
   
   useEffect(() => {
     if (!token || !formUUID || !applicantsPrice) {
+      console.error("Token, formUUID or applicantsPrice not found.", token, formUUID, applicantsPrice);
       router.push("/"); // Redirect to home page
     }
   }, [token, formUUID, applicantsPrice, router]);

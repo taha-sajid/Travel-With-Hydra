@@ -221,7 +221,7 @@ const index = () => {
   const formData = {
     formType: "signup",
     formTitle: "Sign Up",
-    formSubtitle: "Welcome back! Log in to your account.",
+    formSubtitle: "",
     fields: [
       {
         id: "full_name",
@@ -281,7 +281,7 @@ const index = () => {
       submitText: "SIGN UP",
       submitBtnLink: "/dashboard",
       signUpText: "Already have an account?",
-      signUpLinkText: "Login",
+      signUpLinkText: "Log In",
       signUpLink: "/login",
     },
   };

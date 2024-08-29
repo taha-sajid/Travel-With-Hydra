@@ -204,7 +204,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
           <>
             {isButton && (
                 <button className={styles.startApplicationButton} onClick={handleClick}>
-                  Start application
+                  Start Application
                 </button>
             )}
           </>
@@ -225,7 +225,7 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
       </div>
       )}
       <div style={{marginTop:"1.5vw"}}>
-      <p>Note: All applications are processed based on the citizenship and residency information you provided when creating your account.</p>
+      <p>Note: All applications are processed based on the citizenship and residency information provided when creating your account.</p>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import styles from "./newpassword.module.css";
 
 const index = () => {
   const formData = {
-    formTitle: "New Password",
+    formTitle: "Reset Password",
     fields: [
       {
         id: "NewPassword",
