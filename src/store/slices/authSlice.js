@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginApi, registerApi } from "../../api/auth";
 import { submitVisaApplicationFormApi } from "@/api/visa";
+import {
+  setTokenExpirationTimeout,
+  clearTokenExpirationTimeout,
+} from "../utils/tokenUtils";
+
 import httpService from "@/api/httpService";
 // Thunks for async actions
 
@@ -9,6 +14,14 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await loginApi(credentials);
+      const token = response.data.access;
+
+      // Parse token to extract expiration time
+      const { exp } = JSON.parse(atob(token.split(".")[1]));
+
+      // Set token expiration timeout
+      setTokenExpirationTimeout(thunkAPI.dispatch, exp);
+
       return response.data; // Return the response data directly
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -21,6 +34,15 @@ export const register = createAsyncThunk(
   async (userInfo, thunkAPI) => {
     try {
       const response = await registerApi(userInfo);
+
+      const token = response.data.token;
+
+      // Parse token to extract expiration time
+      const { exp } = JSON.parse(atob(token.split(".")[1]));
+
+      // Set token expiration timeout
+      setTokenExpirationTimeout(thunkAPI.dispatch, exp);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -52,7 +74,7 @@ const authSlice = createSlice({
     refreshToken: null, // Add refresh token to the initialState
     status: "idle",
     error: null,
-    currentCountryForms: null , // To manage currentCountry forms
+    currentCountryForms: null, // To manage currentCountry forms
   },
   reducers: {
     logout: (state) => {
@@ -62,6 +84,7 @@ const authSlice = createSlice({
       state.status = "idle";
       state.error = null;
       state.currentCountry = null;
+      clearTokenExpirationTimeout(); // Clear the expiration timeout on logout
     },
     setCurrentCountryForms: (state, action) => {
       state.currentCountryForms = action.payload; // Set the forms data
@@ -79,6 +102,7 @@ const authSlice = createSlice({
         state.refreshToken = action.payload.refresh; // Store refresh token
         state.currentCountry = action.payload.user.resident_country; // Optionally set currentCountry
       })
+
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;

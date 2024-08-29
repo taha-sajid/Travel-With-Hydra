@@ -131,6 +131,7 @@ const CountrySelector = ({
       }`}
     >
       <div ref={dropdownRef} className="my-avatar">
+        <p>Select {heading}</p>
         <button onClick={toggleDropdown} className="avatar-button">
           <img
             src={IMAGE_BASE_URL + (confirmedCountry.flag || "")}
@@ -143,7 +144,8 @@ const CountrySelector = ({
             <div className="dropdown-heading">
               <h3>Confirm {heading}</h3>
               <p>
-              This information helps us determine the type of visa you may need for traveling to different countries.
+                This information helps us determine the type of visa you may
+                need for traveling to different countries.
               </p>
             </div>
             <div ref={countrySelectorRef} className="dropdown-country-selector">

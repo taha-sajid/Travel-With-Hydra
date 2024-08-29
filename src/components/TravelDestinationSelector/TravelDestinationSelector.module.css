@@ -17,6 +17,7 @@
   width: 100%;
   max-width: 36.146vw;
   display: flex;
+  margin-right: 10vw;
   justify-content: center;
 }
 .countrySelectorSection {
@@ -31,10 +32,11 @@
   margin-left: 3vw;
   width: 6.5vw;
   display: flex;
+  gap: 2vw;
 }
 
 .travel_Destination_selector_container.start-animation .countrySelector {
-  margin-left: 0;
+  margin-left: 1.5rem;
   transition: 3s all ease-in-out;
 }
 
@@ -93,6 +95,7 @@
   }
   .countrySelectorContainer {
     max-width: 20rem;
+    margin-right: 5rem;
   }
   .countrySelector {
     width: 4rem;
@@ -107,6 +110,7 @@
     border-radius: 0.521rem;
     padding: 1rem 1rem;
   }
+  
 
   .travel_Destination_selector_container.start-animation .countrySelector {
     right: 0;

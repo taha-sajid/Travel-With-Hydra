@@ -7,13 +7,17 @@ import Header from "../components/Header/header";
 import BlogsCard from "@/components/BlogsCard/BlogsCard";
 import Footer from "@/components/Footer/Footer";
 import styles from "./homepage.module.css";
+import { useSelector } from "react-redux";
 
 const blogsCardData = {
   heading: "Blogs",
-  shortDescription: "We have extensive information on visas for every country on the planet.",
+  shortDescription:
+    "We have extensive information on visas for every country on the planet.",
 };
 
 const Page = () => {
+  const token = useSelector((state) => state.auth.token);
+  console.log("token", token);
   return (
     <div className="">
       <Header />

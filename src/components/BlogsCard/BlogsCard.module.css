@@ -186,9 +186,13 @@
 }
 @media (max-width: 768px) {
   .Blogs_section_heading {
-    gap: 1rem;
+    /* gap: 1rem; */
+    justify-content: space-between;
     margin-bottom: 1.5rem;
   }
+  .blogsHeadingContent {
+    width: 70%;
+   }
   .Blogs_section_heading .blogsButton button {
     width: max-content;
   }

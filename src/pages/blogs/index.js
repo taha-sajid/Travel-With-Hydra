@@ -7,7 +7,7 @@ import Footer from "@/components/Footer/Footer";
 const blogsCardData = {
   heading: "Blogs",
   shortDescription:
-    "Embark on unforgettable journeys with our travel blogs! Dive into expert tips, hidden gems, and inspiring stories that will fuel your wanderlust and guide your next adventure.",
+    "We have extensive information on visas for every country on the planet.",
 };
 const index = () => {
   return (
