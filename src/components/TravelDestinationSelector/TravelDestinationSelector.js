@@ -223,7 +223,7 @@ const TravelDestinationSelector = () => {
               countries={residentCountriesList}
             />
           </div>
-        </div>
+        </div> 
       </div>
       <div className={`${style.filter_container}`}>
         <div className={`${style.visa_category}`}>
