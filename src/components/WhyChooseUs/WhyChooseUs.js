@@ -27,10 +27,10 @@ const WhyChooseUs = () => {
   return (
     <div ref={sectionRef} className={`${style.why_choose_us}`}>
       <div className={`${style.left_container}`}>
-        <img src="./assets/why.jpg" />
+        <img src="./assets/why.jpeg" />
       </div>
       <div className={`${style.left_container_mob}`}>
-        <img src="./assets/upword.jpg" />
+        <img src="./assets/upward.jpg" />
       </div>
       <div className={`${style.right_container}`}>
         <h1>Why Choose Us</h1>
