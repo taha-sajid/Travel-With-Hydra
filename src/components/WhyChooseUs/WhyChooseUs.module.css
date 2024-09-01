@@ -134,6 +134,10 @@
   transition: transform 3s ease-in-out;
 }
 
+.left_container_mob{
+  display: none;
+}
+
 /* Media query for mobile screen sizes */
 @media (max-width: 768px) {
   .why_choose_us {
@@ -141,8 +145,13 @@
     justify-content: center;
   }
   .left_container {
+    display: none;
+  }
+
+  .left_container_mob {
     width: 100%;
     max-width: none;
+    display: block;
   }
   .right_container h1 {
     font-size: 1rem;

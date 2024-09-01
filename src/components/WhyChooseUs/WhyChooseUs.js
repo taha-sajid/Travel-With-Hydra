@@ -29,6 +29,9 @@ const WhyChooseUs = () => {
       <div className={`${style.left_container}`}>
         <img src="./assets/why.jpg" />
       </div>
+      <div className={`${style.left_container_mob}`}>
+        <img src="./assets/upword.jpg" />
+      </div>
       <div className={`${style.right_container}`}>
         <h1>Why Choose Us</h1>
         <p>

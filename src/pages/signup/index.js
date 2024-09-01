@@ -269,7 +269,7 @@ const index = () => {
       {
         id: "resident_country",
         type: "select",
-        label: "Country of Residency",
+        label: "Residency",
         placeholder: "Select Residency",
         required: true,
         options: countries,

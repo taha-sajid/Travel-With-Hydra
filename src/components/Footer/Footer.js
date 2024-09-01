@@ -11,8 +11,25 @@ const Footer = () => {
         <div className={styles.footer_section}>
           <h3>Stay Connected</h3>
           <span>
-            <p>Email: info@travelwithhydra.com</p>
-            <p>Phone: +446379048255</p>
+            <p>
+            <span>Email: </span>
+            <a href="mailto:info@travelwithhydra.com">
+              info@travelwithhydra.com
+            </a>
+            </p>
+            <p>
+            <span>Phone: </span>
+            <a href="tel:+446379048255">
+              +446379048255
+            </a>
+              </p>
+            <p>
+            <span>Whatsapp: </span>
+
+            <a href="https://wa.me/447379048255">
+              +446379048255
+            </a>
+              </p>
           </span>
           <p>Follow us on social media</p>
           <div className={styles.social_icons}>
