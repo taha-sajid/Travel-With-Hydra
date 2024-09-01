@@ -58,7 +58,9 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
   };
 
   const handleIncrement = () => {
-    setApplicantCount(applicantCount + 1);
+    if (applicantCount < 10){
+      setApplicantCount(applicantCount + 1);
+    }
   };
 
   const handleDecrement = () => {

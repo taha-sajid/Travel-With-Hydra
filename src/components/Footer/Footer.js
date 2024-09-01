@@ -23,13 +23,13 @@ const Footer = () => {
               +446379048255
             </a>
               </p>
-            <p>
+            {/* <p>
             <span>Whatsapp: </span>
 
             <a href="https://wa.me/447379048255">
               +446379048255
             </a>
-              </p>
+              </p> */}
           </span>
           <p>Follow us on social media</p>
           <div className={styles.social_icons}>
@@ -38,6 +38,9 @@ const Footer = () => {
             </a>
             <a href="https://instagram.com/travelwithydra" target="_blank">
             <i className="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/447379048255" target="_blank">
+            <i className="fa fa-whatsapp" aria-hidden="true"></i>
             </a>
           </div>
         </div>

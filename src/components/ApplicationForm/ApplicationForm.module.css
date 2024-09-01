@@ -86,7 +86,7 @@
 .progressBar {
   position: relative;
   display: flex;
-  gap: 10vw;
+  gap: 4vw;
   counter-reset: step;
   width: 100%;
   width: max-content;
@@ -416,9 +416,10 @@
   .progressBarContainer {
     margin-top: 0rem;
     margin-bottom: 1.5rem;
+    width: 6.8vw;
   }
   .progressBar {
-    width: 55.833vw;
+    width: 70.833vw;
     margin-bottom: none;
   }
 
