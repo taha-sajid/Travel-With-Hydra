@@ -9,7 +9,7 @@ const index = () => {
     formType: "newpassword",
     fields: [
       {
-        id: "NewPassword",
+        id: "new_password1",
         type: "password",
         label: "New Password",
         placeholder: "Password",
@@ -17,7 +17,7 @@ const index = () => {
         icon: "LuEyeOff",
       },
       {
-        id: "Confirm Password",
+        id: "new_password2",
         type: "password",
         label: "Confirm Password",
         placeholder: "Password",

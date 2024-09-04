@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import styles from "./Form.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { login, register } from "@/store/slices/authSlice";
+import { login, register, changePassword, logout } from "@/store/slices/authSlice";
 
 import { FiMail } from "react-icons/fi";
 import { LuEyeOff } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
 import { GrMapLocation } from "react-icons/gr";
 import { TfiWorld } from "react-icons/tfi";
+import { useAuthToken } from "@/api/customHooks";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -22,7 +23,9 @@ const iconComponents = {
 };
 
 const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
+  const token = useAuthToken();
   console.log("formType", formType);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
 
@@ -69,6 +72,11 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
         console.log("signup formValues", formData);
         await dispatch(register(formData)).unwrap();
         router.push("/dashboard");
+      }
+      else if (formType === "newpassword") {
+        await dispatch(changePassword({passwords: formData, token})).unwrap();
+        dispatch(logout());
+        await router.push("/");
       }
     } catch (error) {
       console.error("An error occurred:", error);
