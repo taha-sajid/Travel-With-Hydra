@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Form.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { login, register, changePassword, logout } from "@/store/slices/authSlice";
+import { login, register, changePassword, forgotPassword, logout } from "@/store/slices/authSlice";
 
 import { FiMail } from "react-icons/fi";
 import { LuEyeOff } from "react-icons/lu";
@@ -77,6 +77,13 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
         await dispatch(changePassword({passwords: formData, token})).unwrap();
         dispatch(logout());
         await router.push("/");
+      }
+      else if (formType === "forgotpassword") {
+        await dispatch(forgotPassword(formData)).unwrap();
+        extractErrorMessages("Password reset e-mail has been sent to your email.");
+        setTimeout(() => {
+          router.push("/login");
+        }, 1000);
       }
     } catch (error) {
       console.error("An error occurred:", error);

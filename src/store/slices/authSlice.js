@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginApi, registerApi, changePasswordApi } from "../../api/auth";
+import { loginApi, registerApi, changePasswordApi, forgotPasswordApi } from "../../api/auth";
 import { submitVisaApplicationFormApi } from "@/api/visa";
 import {
   setTokenExpirationTimeout,
@@ -61,6 +61,19 @@ export const changePassword = createAsyncThunk(
     }
   }
 );
+
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async (email, thunkAPI) => {
+    try {
+      const response = await forgotPasswordApi(email);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 
 // Thunk for submitting visa application form
 export const submitVisaApplication = createAsyncThunk(

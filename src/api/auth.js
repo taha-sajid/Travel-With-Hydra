@@ -18,3 +18,7 @@ export const changePasswordApi = ({ passwords, token }) => {
     },
   });
 };
+
+export const forgotPasswordApi = (email) => {
+  return httpService.post("/auth/password/reset/", email);
+};
