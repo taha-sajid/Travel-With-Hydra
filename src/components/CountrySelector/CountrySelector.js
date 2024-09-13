@@ -13,6 +13,7 @@ const CountrySelector = ({
   const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isAnimated, setIsAnimated] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const countrySelectorRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -123,6 +124,11 @@ const CountrySelector = ({
     }
   };
 
+  // Filter countries based on search query
+  const filteredCountries = countries.filter((country) =>
+    country.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div
       ref={observerRef}
@@ -167,23 +173,33 @@ const CountrySelector = ({
                 </span>
               </div>
               {isCountrySelectorOpen && (
-                <div className="country-list">
-                  {countries
-                    .filter((country) => country.name !== selectedCountry.name)
-                    .map((country, index) => (
-                      <div
-                        key={index}
-                        className="country-item"
-                        onClick={() => handleSelectCountry(country)}
-                      >
-                        <img
-                          src={IMAGE_BASE_URL + country.flag}
-                          alt={country.name}
-                          className="country-flag"
-                        />
-                        <span className="country-name">{country.name}</span>
-                      </div>
-                    ))}
+                <div className="country-search-list">
+                  {/* Search Input Field */}
+                  <input
+                    type="text"
+                    placeholder="Search Country..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
+                  />
+                  <div className="country-list">
+                    {filteredCountries
+                      .filter((country) => country.name !== selectedCountry.name)
+                      .map((country, index) => (
+                        <div
+                          key={index}
+                          className="country-item"
+                          onClick={() => handleSelectCountry(country)}
+                        >
+                          <img
+                            src={IMAGE_BASE_URL + country.flag}
+                            alt={country.name}
+                            className="country-flag"
+                          />
+                          <span className="country-name">{country.name}</span>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               )}
             </div>
