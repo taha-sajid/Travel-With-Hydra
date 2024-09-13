@@ -24,7 +24,7 @@ const HeroSectionOther = ({ bannerImage }) => {
     if (isFAQsPage || isCountryDetailsPage) {
       setHeroImage(IMAGE_BASE_URL + bannerImage);
     } else if (isContactUs) {
-      setHeroImage("/assets/contact-us.png");
+      setHeroImage("/assets/contact-us.jpg");
     } else if (isBlogPage) {
       setHeroImage("/assets/BlogHeroImage.png");
     }
@@ -42,7 +42,7 @@ const HeroSectionOther = ({ bannerImage }) => {
           <div className={styles.header_section}>
             <div className={styles.hero_section_container}>
               {/* <img src="/assets/BlogHeroImage.png" alt="Banner Image" /> */}
-              <img src={heroImage} alt="Banner Image" />
+              <img style={{objectFit:"cover"}} src={heroImage} alt="Banner Image" />
               <div
                 className={
                   isContactUs ? styles.overlayWhite : styles.overlayBlack
