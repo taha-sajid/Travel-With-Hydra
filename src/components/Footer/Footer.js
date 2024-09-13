@@ -13,8 +13,8 @@ const Footer = () => {
           <span>
             <p>
             <span>Email: </span>
-            <a href="mailto:info@travelwithhydra.com">
-              info@travelwithhydra.com
+            <a href="mailto:info@travelwithydra.com">
+              info@travelwithydra.com
             </a>
             </p>
             <p>

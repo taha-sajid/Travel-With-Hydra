@@ -69,7 +69,7 @@ const ContactForm = () => {
           </p>
           <p>
             <img src="/assets/mail.png" alt="Mail" />
-            info@travelwithhydra.com
+            info@travelwithydra.com
           </p>
         </span>
       </div>

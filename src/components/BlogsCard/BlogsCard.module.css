@@ -79,7 +79,7 @@
   flex-wrap: wrap;
   gap: 3.75vw;
   transition: transform 0.5s ease;
-  margin-top: 4.688vw;
+  margin-top: 1.688vw;
 }
 
 .Blogs_card {
@@ -201,6 +201,10 @@
   }
   .Blogs_section_heading .blogsButton button {
     width: max-content;
+  }
+  .blogsButton{
+    width: 35%;
+    text-align: right;
   }
   .Blogs_section_heading h1 {
     font-size: 1rem;
