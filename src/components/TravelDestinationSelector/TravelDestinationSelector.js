@@ -28,21 +28,53 @@ const TravelDestinationSelector = () => {
     try {
       const response = await getCitizenshipCountries();
       console.log("Citizenship countries list data:", response.data.countries);
-      setCitizenshipCountriesList(response.data.countries);
+  
+      if (response.data && Array.isArray(response.data.countries)) {
+        // Extract the countries array and sort it by country_name
+        const sortedCountries = response.data.countries.sort((a, b) => {
+          const nameA = a.name.toUpperCase(); // For case-insensitive comparison
+          const nameB = b.name.toUpperCase(); // For case-insensitive comparison
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+  
+        // Set the sorted country data
+        setCitizenshipCountriesList(sortedCountries);
+      } else {
+        console.error("Unexpected data format:", response.data);
+      }
     } catch (error) {
       console.error("Error fetching Citizenship countries list data:", error);
     }
   };
+  
 
   const fetchResidentCountriesList = async () => {
     try {
       const response = await getResidentCountries();
       console.log("Resident countries list data:", response.data.countries);
-      setResidentCountriesList(response.data.countries);
+  
+      if (response.data && Array.isArray(response.data.countries)) {
+        // Extract the countries array and sort it by country_name
+        const sortedCountries = response.data.countries.sort((a, b) => {
+          const nameA = a.name.toUpperCase(); // For case-insensitive comparison
+          const nameB = b.name.toUpperCase(); // For case-insensitive comparison
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+  
+        // Set the sorted country data
+        setResidentCountriesList(sortedCountries);
+      } else {
+        console.error("Unexpected data format:", response.data);
+      }
     } catch (error) {
       console.error("Error fetching Resident countries list data:", error);
     }
   };
+  
 
   useEffect(() => {
     fetchResidentCountriesList();

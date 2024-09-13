@@ -100,7 +100,7 @@ const BlogsCard = ({ cardData, country }) => {
       {!isCountryDetailsPage && (
         <div className={styles.Blogs_card_container}>
           {blogs.length === 0 ? (
-            <p>No blogs available</p>
+            <p className={styles.noBlog} >Unfortunately, we don't have any blog posts at the moment. Stay tuned for updates!</p>
           ) : (
             blogs.map((blog) => (
               <div key={blog.id} className={styles.Blogs_card}>
@@ -155,7 +155,7 @@ const BlogsCard = ({ cardData, country }) => {
           )}
         </div>
       ) : (
-        isCountryDetailsPage && <p style={{marginTop:"2vw",}}>Unfortunately, we don't have any blog posts for this country at the moment. Stay tuned for updates!</p>
+        isCountryDetailsPage && <p style={{marginTop:"2vw",}} className={styles.noBlog}>Unfortunately, we don't have any blog posts for this country at the moment. Stay tuned for updates!</p>
       )}
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Form.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { login, register, changePassword, forgotPassword, logout } from "@/store/slices/authSlice";
+import { login, register, changePassword, forgotPassword, resetPassword, logout } from "@/store/slices/authSlice";
 
 import { FiMail } from "react-icons/fi";
 import { LuEyeOff } from "react-icons/lu";
@@ -23,17 +23,17 @@ const iconComponents = {
 };
 
 const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
-  const token = useAuthToken();
-  console.log("formType", formType);
-
+  const AuthToken = useAuthToken();
+  
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
 
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
-
+  
   const router = useRouter();
-
+  const { uid, token } = router.query
+  console.log("formType", uid);
   const [formValues, setFormValues] = useState(() => {
     const initialValues = {};
     fields.forEach((field) => {
@@ -74,9 +74,20 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
         router.push("/dashboard");
       }
       else if (formType === "newpassword") {
-        await dispatch(changePassword({passwords: formData, token})).unwrap();
-        dispatch(logout());
-        await router.push("/");
+        if(token){
+          await dispatch(resetPassword({passwords: formData, token, uid})).unwrap();
+          setTimeout(() => {
+            router.push("/login");
+          }, 1000);
+        }
+        else if (AuthToken){
+          await dispatch(changePassword({passwords: formData, AuthToken})).unwrap();
+          dispatch(logout());
+          await router.push("/");
+        }
+        else{
+          extractErrorMessages("Somehting went wrong, please try later");
+        }
       }
       else if (formType === "forgotpassword") {
         await dispatch(forgotPassword(formData)).unwrap();
@@ -101,7 +112,7 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
     setIsError(messages);
   };
 
-  console.log("authState", authState);
+  console.log("resetTtoken=========", token);
 
   return (
     <div className={styles.formContainer}>

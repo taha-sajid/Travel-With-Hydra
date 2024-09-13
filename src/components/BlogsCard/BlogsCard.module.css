@@ -184,15 +184,21 @@
 .sliderContainer {
   margin-top: 4.688vw;
 }
+.noBlog{
+  font-family: "Urbanist";
+  color: rgba(64, 64, 64, 1);
+  font-size: 1.25vw;
+  font-weight: 500;
+}
 @media (max-width: 768px) {
+  .noBlog{
+    font-size: 0.6rem;
+  }
   .Blogs_section_heading {
     /* gap: 1rem; */
     justify-content: space-between;
     margin-bottom: 1.5rem;
   }
-  .blogsHeadingContent {
-    width: 70%;
-   }
   .Blogs_section_heading .blogsButton button {
     width: max-content;
   }
@@ -268,6 +274,6 @@
     gap: 1.3rem;
   }
   .blogsHeadingContent{
-    width: 70%;
+    width: 100%;
   }
 }

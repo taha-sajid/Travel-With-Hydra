@@ -11,9 +11,19 @@ const Filter = ({ onCountrySelect }) => { // Accept callback as prop
     try {
       const response = await getAllCountryData();
       console.log("get all countries data:", response.data);
-
+  
       if (response.data && Array.isArray(response.data.countries)) {
-        setCountries(response.data.countries); // Set country data
+        // Extract the countries array and sort it by country_name
+        const sortedCountries = response.data.countries.sort((a, b) => {
+          const nameA = a.country_name.toUpperCase(); // For case-insensitive comparison
+          const nameB = b.country_name.toUpperCase(); // For case-insensitive comparison
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+  
+        // Set the sorted country data
+        setCountries(sortedCountries);
       } else {
         console.error("Unexpected data format:", response.data);
       }
@@ -21,6 +31,7 @@ const Filter = ({ onCountrySelect }) => { // Accept callback as prop
       console.error("Error fetching get all countries data:", error);
     }
   };
+  
 
   // UseEffect to fetch data when the component mounts
   useEffect(() => {
