@@ -94,7 +94,7 @@ const CountryCard = ({ destinations }) => {
           {destination && destination.visa_type !== 'visa_free' ? (
             <div className={`${style.card_price}`}>
               <h4>
-                {parseFloat(data.country.price_per_person)}$
+                {parseFloat(data.country.price_per_person)}£
                 <span>/Person</span>
               </h4>
               <button className="btn-primary">Apply Now</button>

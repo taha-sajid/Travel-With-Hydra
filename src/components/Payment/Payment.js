@@ -197,7 +197,7 @@ const Payment = () => {
             </div>
             <div className={stylesP.totalAmount}>
               <span>Total Amount</span>
-              <span>$ {parseFloat(applicantsPrice)}</span>
+              <span>£ {parseFloat(applicantsPrice)}</span>
             </div>
           </div>
         </div>

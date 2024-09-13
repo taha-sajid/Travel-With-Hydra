@@ -193,12 +193,12 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
                 <span>
                   <img src="/assets/visaIcon.png" alt="Visa icon" /> <p> Visa Fees</p>
                 </span>
-                <span>${parseFloat(visaFees)} x {applicantCount}</span>
+                <span>£{parseFloat(visaFees)} x {applicantCount}</span>
               </div>
             </div>
             <div className={styles.totalAmount} style={isPayment ? { marginBottom: 0 } : {}}>
               <span>Total Amount</span>
-              <span>$ {parseFloat(totalAmount)}</span>
+              <span>£ {parseFloat(totalAmount)}</span>
             </div>
           </>
         )}
