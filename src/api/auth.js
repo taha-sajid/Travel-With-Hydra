@@ -31,5 +31,5 @@ export const resetPasswordApi = ({ passwords, token, uid }) => {
 
 
 export const forgotPasswordApi = (email) => {
-  return httpService.post("/auth/password/reset/", email);
+  return httpService.post("/auth/reset-password-confirm/", email);
 };
