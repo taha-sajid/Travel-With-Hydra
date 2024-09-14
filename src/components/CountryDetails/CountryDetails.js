@@ -6,6 +6,8 @@ import { setCurrentCountryForms } from "@/store/slices/authSlice";
 import PaymentCard from "../PaymentCard/PaymentCard";
 import styles from "./CountryDetails.module.css";
 import { setCountryName, setVisaType } from "@/store/slices/visaSlice";
+import parse from 'html-react-parser';
+
 
 const cardData = {
   cardHeading: "Apply Now",
@@ -32,7 +34,7 @@ const CountryDetails = ({ country, forms }) => {
       <div className={styles.countryDetailsContainer}>
         <div className={styles.countryDescription}>
           <h1>{country.country_name}</h1>
-          <p>{country.description}</p>
+          <p>{parse(country.description_rich)}</p>
         </div>
           <PaymentCard cardData={cardData} price={country.price_per_person} active={country.active} name={country.country_name} visa_type={country.visa_type} />
       </div>
