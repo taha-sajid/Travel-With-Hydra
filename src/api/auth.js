@@ -21,7 +21,7 @@ export const changePasswordApi = ({ passwords, token }) => {
 
 export const resetPasswordApi = ({ passwords, token, uid }) => {
   debugger;
-  return httpService.post("/auth/password/reset/confirm/", {
+  return httpService.post("/auth/reset-password-confirm/", {
     uid,
     token,
     new_password1: passwords.new_password1,
@@ -31,5 +31,5 @@ export const resetPasswordApi = ({ passwords, token, uid }) => {
 
 
 export const forgotPasswordApi = (email) => {
-  return httpService.post("/auth/reset-password-confirm/", email);
+  return httpService.post("/auth/password/reset/", email);
 };
