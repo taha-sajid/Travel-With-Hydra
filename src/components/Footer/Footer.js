@@ -17,12 +17,12 @@ const Footer = () => {
               info@travelwithydra.com
             </a>
             </p>
-            <p>
+            {/* <p>
             <span>Phone: </span>
             <a href="tel:+446379048255">
               +446379048255
             </a>
-              </p>
+              </p> */}
             {/* <p>
             <span>Whatsapp: </span>
 

@@ -63,10 +63,10 @@ const ContactForm = () => {
           to us at:
         </p>
         <span>
-          <p>
+          {/* <p>
             <img src="/assets/phone.png" alt="Phone" />
             +446379048255
-          </p>
+          </p> */}
           <p>
             <img src="/assets/mail.png" alt="Mail" />
             info@travelwithydra.com

@@ -31,6 +31,7 @@ const ApplicationForm = () => {
   );
 
   const token = useSelector((state) => state.auth.token);
+  const user_id = useSelector((state) => state.auth.user.pk)
   const countryName = useSelector((state) => state.visa.country_name);
   const visaType = useSelector((state) => state.visa.visa_type);
   const formUUID = useSelector((state) => state.visa.generateUUID);
@@ -109,7 +110,7 @@ const ApplicationForm = () => {
 
       const payload = {
         country_name: countryName,
-        user: 4,
+        user: user_id,
         visa_type: visaType,
         form_id: formUUID, 
         responses: responses,
