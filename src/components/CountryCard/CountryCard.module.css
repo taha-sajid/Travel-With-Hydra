@@ -3,7 +3,7 @@
 .cards_section_container.start-animation {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 1.5s ease-in, transform 1s ease-in;
+  /* transition: opacity 1.5s ease-in, transform 1s ease-in; */
 }
 
 .cards_section_container {
@@ -23,6 +23,7 @@
   width: calc(100% + 2.5vw);
   margin-top: 2.188vw;
   padding: 2vw 9.115vw;
+  justify-content: center;
 }
 .cards_container a {
   flex: 1 1 calc(25% - 2.5vw);
@@ -33,6 +34,7 @@
   text-align: center;
   margin-bottom: 1.25vw;
   font-weight: 500;
+  height: 3vw;
 }
 .card {
   padding: 1.667vw;
@@ -140,6 +142,9 @@
 }
 
 @media (max-width: 768px) {
+  .cards_container h3 {
+     height: 40px;
+  }
   .cards_container a {
     flex: 1 1 calc(33.33% - 2.5vw);
     max-width: calc(33.33% - 2.5vw);

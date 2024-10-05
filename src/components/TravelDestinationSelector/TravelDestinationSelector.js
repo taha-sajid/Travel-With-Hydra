@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import style from "./TravelDestinationSelector.module.css";
 import CountrySelector from "../CountrySelector/CountrySelector";
+import ClipLoader from "react-spinners/ClipLoader";
+
 import {
   getResidentData,
   getCitizenshipData,

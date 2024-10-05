@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./BlogDetailsContainer.module.css";
 import { getBlogDetailData } from "@/api/cms";
 import { IMAGE_BASE_URL } from "@/api/config";
+import parse from 'html-react-parser';
 
 const BlogDetailsContainer = ({ blogsId }) => {
   console.log("blogsId", blogsId);
@@ -36,7 +37,7 @@ const BlogDetailsContainer = ({ blogsId }) => {
           <h1>{blogData.title}</h1>
         </div>
         <div className={styles.blogDescription}>
-          <p className={styles.paragraph}>{blogData.content}</p>
+          {parse(blogData.content_rich)}
         </div>
       </div>
       <span className={styles.bottomLine}></span>
