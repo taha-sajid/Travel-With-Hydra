@@ -1,3 +1,9 @@
+.formGroup>#ardHolderName {
+  border: 2px solid black;
+}
+.StripeElement--empty{
+  border: 2px solid black;
+}
 .paymentContainer {
   display: flex;
 }
@@ -176,7 +182,7 @@
     padding: 0rem 1rem;
   }
   .accordionItemDescription .formGroup label {
-    font-size: 0.55rem;
+    font-size: 0.75rem;
   }
   .formGroup {
     margin-bottom: 0.4rem;

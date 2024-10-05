@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 import styles from "./Payment.module.css";
 import stylesP from "../PaymentCard/PaymentCard.module.css";
@@ -11,6 +12,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { border, Card } from "@chakra-ui/react";
 
 // Initialize Stripe
 const stripePromise = loadStripe("pk_test_51LhnXOCFr7YV6lJdn0mC7Yv71iGkqw0hXgzM2NqVMSGFfZBMvHh1fSO9F1WEsy8OQvucQQYFfraR1q1MwtTzMvxm00w9puB5ee");
@@ -121,6 +123,7 @@ const PaymentForm = () => {
           <label htmlFor="cardHolderName">Card holder name</label>
           <input
             type="text"
+            style={{ border: "1px solid #000", borderRadius: "5px", padding: "10px" }}
             id="cardHolderName"
             placeholder="Ex. Jane Cooper"
             value={cardHolderName}
@@ -128,8 +131,25 @@ const PaymentForm = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label>Card Details</label>
-          <CardElement className={styles.cardElement} />
+          <label>Card Number</label>
+          <div style={{ border: "1px solid black", padding: "10px", borderRadius: "5px" }}>
+            <CardNumberElement />
+          </div>
+          <div style={{display: "flex", marginTop:"10px"}}>
+            <div style={{display: "block", width: "50%" , margin: "0px 5px"}}>
+          <label>Card Expiry</label>
+          <div style={{ border: "1px solid black", padding: "10px", borderRadius: "5px" }}>
+            <CardExpiryElement />
+          </div>
+            </div>
+          <div style={{display: "block" ,width: "50%" , margin: "0px 5px"}}>
+          <label>Card CVV</label>
+          <div style={{ border: "1px solid black", padding: "10px", borderRadius: "5px" }}>
+            <CardCvcElement />
+          </div>
+          </div>
+          </div>
+
         </div>
         <button type="submit" disabled={!stripe || isLoading} className={styles.payNowButton}>
           {isLoading ? "Processing..." : "PAY NOW"}
