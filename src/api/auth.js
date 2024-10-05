@@ -11,10 +11,10 @@ export const registerApi = (userInfo) => {
   return httpService.post("/auth/registration/", userInfo);   
 };
 
-export const changePasswordApi = ({ passwords, token }) => {
+export const changePasswordApi = ({ passwords, AuthToken }) => {
   return httpService.post("/auth/password/change/", passwords, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${AuthToken}`,
     },
   });
 };

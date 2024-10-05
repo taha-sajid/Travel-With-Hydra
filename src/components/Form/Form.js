@@ -80,6 +80,7 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
           }, 1000);
         }
         else if (AuthToken){
+          console.log("AuthToken", AuthToken);
           await dispatch(changePassword({passwords: formData, AuthToken})).unwrap();
           dispatch(logout());
           await router.push("/");

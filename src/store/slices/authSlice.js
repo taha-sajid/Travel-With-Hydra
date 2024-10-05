@@ -52,9 +52,9 @@ export const register = createAsyncThunk(
 
 export const changePassword = createAsyncThunk(
   "auth/changePassword",
-  async ({passwords, token}, thunkAPI) => {
+  async ({passwords, AuthToken}, thunkAPI) => {
     try {
-      const response = await changePasswordApi({passwords, token});
+      const response = await changePasswordApi({passwords, AuthToken});
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
