@@ -65,13 +65,12 @@ const Form = ({ formType, formTitle, formSubtitle, fields, options }) => {
 
     try {
       if (formType === "login") {
-        console.log("login formValues", formData);
         await dispatch(login(formData)).unwrap();
-        router.push("/dashboard");
+        const redirect = router.query.redirect || "/dashboard";
+        router.push(redirect);
       } else if (formType === "signup") {
         console.log("signup formValues", formData);
         await dispatch(register(formData)).unwrap();
-        router.push("/dashboard");
       }
       else if (formType === "newpassword") {
         if(token){

@@ -85,9 +85,12 @@ const PaymentCard = ({ cardData, price, active, name, visa_type }) => {
       dispatch(setUUID(uuid));
       router.push("/visaapplicationform");
     } else {
-      router.push("/login");
+      // Save the current path in the query string
+      const currentPath = router.asPath;
+      router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
     }
   };
+  
 
   useEffect(() => {
     const visaPriorities = {

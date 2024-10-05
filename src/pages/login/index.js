@@ -14,9 +14,9 @@ const index = () => {
 
   useEffect(() => {
     // Redirect to login page if not logged in
-    if (isLoggedIn) {
-      router.push("/");
-    }
+    // if (isLoggedIn) {
+    //   router.push("/");
+    // }
   }, [isLoggedIn, router]);
   const formData = {
     formType: "login",

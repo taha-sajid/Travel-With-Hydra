@@ -5,39 +5,45 @@ import { IMAGE_BASE_URL } from "@/api/config";
 import parse from 'html-react-parser';
 
 const BlogDetailsContainer = ({ blogsId }) => {
-  console.log("blogsId", blogsId);
-  const [blogData, setBlogData] = useState([]);
+  const [blogData, setBlogData] = useState(null); // Initialize as null or an empty object
+  const [loading, setLoading] = useState(true); // Loading state
 
   const fetchBlogDetailsData = async () => {
     try {
       const response = await getBlogDetailData(blogsId);
-      const data = response.data;
-      setBlogData(data);
-      console.log("Header Data", response.data);
+      setBlogData(response.data);
+      setLoading(false); // Set loading to false when data is fetched
     } catch (error) {
-      console.error("Error fetching header data:", error);
+      console.error("Error fetching blog data:", error);
+      setLoading(false); // Also set loading to false on error
     }
   };
-  console.log("BlogData from countryDetails page", blogData);
-  useEffect(() => {
-    console.log("Data fetch sucessfully");
-  }, [blogData]);
 
   useEffect(() => {
     fetchBlogDetailsData();
-  }, []);
+  }, [blogsId]);
+
+  // Return a loading spinner or a message while fetching data
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  // If no blog data, return null or some message
+  if (!blogData) {
+    return <div>No blog data available</div>;
+  }
 
   return (
     <div className={styles.blogDetailsContainer}>
       <div className={styles.blogImage}>
-        <img src={IMAGE_BASE_URL + blogData.image} />
+        <img src={IMAGE_BASE_URL + blogData?.image} alt={blogData?.title} />
       </div>
       <div className={styles.blogBody}>
         <div className={styles.blogHeading}>
-          <h1>{blogData.title}</h1>
+          <h1>{blogData?.title}</h1>
         </div>
         <div className={styles.blogDescription}>
-          {parse(blogData.content_rich)}
+          {parse(blogData?.content_rich || "")}
         </div>
       </div>
       <span className={styles.bottomLine}></span>
