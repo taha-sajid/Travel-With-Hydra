@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { border, Card } from "@chakra-ui/react";
 
 // Initialize Stripe
-const stripePromise = loadStripe("pk_test_51LhnXOCFr7YV6lJdn0mC7Yv71iGkqw0hXgzM2NqVMSGFfZBMvHh1fSO9F1WEsy8OQvucQQYFfraR1q1MwtTzMvxm00w9puB5ee");
+const stripePromise = loadStripe("pk_live_51Omk0LAr7IvRXZiHo1y0c35dvMDrcAElP5VabLOFCy4wxjia2jfu3zo2sbJ8LcU0c1uwiHgwQBU7K4Q62gMIIBCe00bZWqsFPS");
 
 const PaymentForm = () => {
   const token = useAuthToken();
@@ -71,7 +71,7 @@ const PaymentForm = () => {
       const price = applicantsPrice;
       const uuid = formUUID;
       const client_secret = await createPaymentIntent(price, uuid);
-      const cardElement = elements.getElement(CardElement);
+      const cardElement = elements.getElement(CardNumberElement);
 
       const { error, paymentIntent } = await stripe.confirmCardPayment(client_secret, {
         payment_method: {
