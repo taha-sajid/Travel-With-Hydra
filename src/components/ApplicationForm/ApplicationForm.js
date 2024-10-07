@@ -15,13 +15,29 @@ const ApplicationForm = () => {
   const [currentForm, setCurrentForm] = useState(1);
   const [allFormsData, setAllFormsData] = useState([]);
   const [uploadedFileName, setUploadedFileName] = useState("");
+  const router = useRouter();
 
   const applicantsCount = useSelector((state) => state.visa.applicantsCount);
   useEffect(() => {
+    if(!applicantsCount){
+      router.back();
+    }
     setNumberOfApplicants(applicantsCount);
   }, []);
 
-  const router = useRouter();
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; // Display a confirmation dialog
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   const handleExit = () => {
     router.back();  // This sends the user to the previous page
   };
