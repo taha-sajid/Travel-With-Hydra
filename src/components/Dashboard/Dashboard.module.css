@@ -78,6 +78,12 @@
   color: #ad0404;
   border-radius: 3rem;
 }
+.with_embassy{
+  background-color: #efe2b6;
+  padding: 0.17vw 1.719vw;
+  color: #8b6c10;
+  border-radius: 3rem;
+}
 .table td {
   border: 0.052vw solid #e6eaee;
   font-size: 0.833vw;

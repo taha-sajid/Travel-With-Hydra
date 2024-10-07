@@ -120,7 +120,7 @@ const Dashboard = () => {
                   <td>{app.country_name}</td>
                   <td>{formatDate(app.application_date)}</td>
                   <td>
-                    <span className={styles[app.status?.toLowerCase()]}>
+                    <span className={styles[app.status?.toLowerCase().replace(" ", "_")]}>
                       {app.status}
                     </span>
                   </td>
