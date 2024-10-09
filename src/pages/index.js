@@ -24,7 +24,7 @@ const Page = () => {
       <Slider />
       <TravelDestinationSelector />
       <WhyChooseUs />
-      <CustomerStories />
+      {/* <CustomerStories /> */}
       <div className={styles.BlogsCardContainer}>
         <BlogsCard cardData={blogsCardData} />
       </div>

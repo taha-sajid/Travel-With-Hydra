@@ -18,7 +18,15 @@ function capitalizeFirstLetter(text) {
   
   return text
     .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize first letter of each word
+    .map(word => {
+      if (word.toLowerCase() === 'and') {
+        return word.toLowerCase(); // Keep "and" lowercase
+      }
+      return word
+        .split('-') // Split the word by hyphen
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()) // Capitalize first letter of each part
+        .join('-'); // Rejoin with hyphen
+    })
     .join(' ');
 }
 
