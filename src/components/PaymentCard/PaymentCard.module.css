@@ -181,6 +181,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .visaFreeText{
+    font-size: 0.6rem;
+  }
   .applyNowContainer {
     max-width: none;
     margin-top: 2rem;

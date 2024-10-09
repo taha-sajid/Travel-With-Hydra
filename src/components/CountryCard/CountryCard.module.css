@@ -26,15 +26,14 @@
   justify-content: center;
 }
 .cards_container a {
-  flex: 1 1 calc(25% - 2.5vw);
-  max-width: calc(25% - 2.5vw);
+  flex: 1 1 calc(33% - 5.5vw);
+  max-width: calc(33% - 5.5vw);
 }
 .cards_container h3 {
   font-size: 1.25vw;
   text-align: center;
   margin-bottom: 1.25vw;
   font-weight: 500;
-  height: 3vw;
 }
 .card {
   padding: 1.667vw;
@@ -44,6 +43,10 @@
   width: 18.594vw;
   width: 100%;
   transition: 0.8s all ease-in-out;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 .card_image {
   overflow: hidden;
@@ -78,6 +81,7 @@
   justify-content: space-between;
   font-family: "Poppins";
   transition: all 0.8s ease-in-out;
+  width: 100%;
 }
 .card_price button {
   padding: 0.417vw 0.768vw;

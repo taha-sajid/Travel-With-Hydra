@@ -68,7 +68,7 @@
 }
 .my-avatar > p {
   position: absolute;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   top: -2rem;
   left: 50%;
   transform: translateX(-50%);
@@ -243,6 +243,7 @@
   flex-direction: column;
   gap: 0.388vw;
   padding-bottom: 0.905vw;
+  height: 230px;
 }
 
 .country-item {
