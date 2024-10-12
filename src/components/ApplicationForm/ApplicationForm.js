@@ -27,16 +27,17 @@ const ApplicationForm = () => {
 
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = ''; // Display a confirmation dialog
+      // Standard approach to trigger a confirmation dialog
+      event.returnValue = "Are you sure you want to leave? Changes you made may not be saved.";
     };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
+  
+    window.addEventListener("beforeunload", handleBeforeUnload);
+  
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
+  
 
   const handleExit = () => {
     router.back();  // This sends the user to the previous page

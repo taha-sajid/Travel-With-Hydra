@@ -181,8 +181,11 @@
 }
 
 @media screen and (max-width: 768px) {
+  .priceDetails span p{
+    line-height: 0.5rem;
+  }
   .visaFreeText{
-    font-size: 0.6rem;
+    font-size: 0.9rem;
   }
   .applyNowContainer {
     max-width: none;
@@ -192,14 +195,14 @@
     padding: 0rem 0rem;
   }
   .applicantFormGroup label {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
     margin-left: 0.4rem;
   }
   .applicantFormGroup img {
     width: 0.6rem;
   }
   .counterIcon {
-    width: 0.5rem;
+    width: 0.9rem;
   }
   .applyNowCard {
     padding-bottom: 1.5rem;
@@ -210,42 +213,42 @@
     font-weight: 700;
   }
   .formGroup > label {
-    font-size: 0.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.9rem;
   }
   .priceDetails {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.9rem;
   }
   .priceDetails span img {
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 0.9rem;
+    height: 0.9rem;
   }
   .applicantCount {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
     margin: 0 0.3rem;
   }
   .priceDetails span {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
   }
   .priceDetails span:last-child {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
   }
   .totalAmount span:first-child {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
   }
   .totalAmount span:last-child {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
   }
   .startApplicationButton {
-    font-size: 0.6rem;
-    margin-top: 0.5rem;
-    padding: 0.5rem 2rem;
+    font-size: 0.9rem;
+    margin-top: 0.9rem;
+    padding: 0.9rem 2rem;
     width: 90%;
   }
   .wishlistButton{
-    font-size: 0.6rem;
+    font-size: 0.9rem;
     margin-top: 1.5rem;
-    padding: 0.5rem 2rem;
+    padding: 0.9rem 2rem;
     width: 90%;
   }
 }

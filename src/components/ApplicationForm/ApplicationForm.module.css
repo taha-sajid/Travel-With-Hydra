@@ -314,6 +314,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0vw 1.292vw;
 }
 
 .uploadContainer .icon {
@@ -325,9 +326,9 @@
   font-size: 1.042vw;
   color: black;
 }
-.uploadContainer input {
+/* .uploadContainer input {
   display: none;
-}
+} */
 
 .doneIcon {
   width: 12.5vw;
@@ -371,6 +372,9 @@
   color: black;
 }
 @media screen and (max-width: 768px) {
+  .visaApplicationForm input{
+    font-size: 0.5rem;
+  }
   .applicationFormContainer {
     padding: 0rem 1.5rem;
     padding-bottom: 4rem;
@@ -491,7 +495,7 @@
     font-size: 0.9rem;
   }
   .uploadContainer {
-    height: 4rem;
+    height: 6rem;
     max-width: none;
     width: 100%;
     border-radius: 0.3rem;
