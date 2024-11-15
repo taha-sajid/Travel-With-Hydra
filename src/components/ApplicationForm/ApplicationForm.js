@@ -26,21 +26,38 @@ const ApplicationForm = () => {
   }, []);
 
   useEffect(() => {
+    const message = "You have unsaved changes in this form. If you leave now, your data will not be stored. Are you sure you want to leave?";
+
     const handleBeforeUnload = (event) => {
-      // Standard approach to trigger a confirmation dialog
-      event.returnValue = "Are you sure you want to leave? Changes you made may not be saved.";
+      // Warning for page reload or closing
+      event.returnValue = message;
     };
-  
+
+    const handlePopState = (event) => {
+      // Warning for the back button
+      if (!window.confirm(message)) {
+        // Push the current state back into history to cancel the navigation
+        window.history.pushState(null, "", window.location.href);
+      }
+    };
+
+    // Add event listeners
     window.addEventListener("beforeunload", handleBeforeUnload);
-  
+    window.addEventListener("popstate", handlePopState);
+
     return () => {
+      // Cleanup event listeners
       window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("popstate", handlePopState);
     };
   }, []);
   
 
   const handleExit = () => {
-    router.back();  // This sends the user to the previous page
+    const message = "You have unsaved changes in this form. If you leave now, your data will not be stored. Are you sure you want to leave?";
+    if (window.confirm(message)) {
+      router.back(); // Navigate to the previous page
+    }
   };
   const dispatch = useDispatch();
   const currentCountryForms = useSelector(
